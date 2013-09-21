@@ -16,3 +16,5 @@
 .metadata
 *.d
 PPC603gnu
+.cproject
+.wrmakefile
