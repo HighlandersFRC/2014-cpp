@@ -32,7 +32,7 @@ MODE_DIR := NonDebug
 endif
 OBJ_DIR := .
 WS_ROOT_DIR := C:/WindRiver/workspace
-PRJ_ROOT_DIR := $(WS_ROOT_DIR)/CollaborationTest
+PRJ_ROOT_DIR := $(WS_ROOT_DIR)/2014-cpp/CollaborationTest
 
 
 
@@ -170,14 +170,6 @@ CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Commands/Au
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
-CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Commands/DrewCommand.o : $(PRJ_ROOT_DIR)/Commands/DrewCommand.cpp $(FORCE_FILE_BUILD)
-	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
-
-
-CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Commands/LindaCommand.o : $(PRJ_ROOT_DIR)/Commands/LindaCommand.cpp $(FORCE_FILE_BUILD)
-	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
-
-
 CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/OI.o : $(PRJ_ROOT_DIR)/OI.cpp $(FORCE_FILE_BUILD)
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
@@ -194,24 +186,12 @@ CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Subsystems/
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
-CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Subsystems/DrewSubsystem.o : $(PRJ_ROOT_DIR)/Subsystems/DrewSubsystem.cpp $(FORCE_FILE_BUILD)
-	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
-
-
-CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Subsystems/LindaSubsystem.o : $(PRJ_ROOT_DIR)/Subsystems/LindaSubsystem.cpp $(FORCE_FILE_BUILD)
-	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
-
-
 OBJECTS_CollaborationTest_partialImage = CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Commands/AlexCommand.o \
 	 CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Commands/AutonomousCommand.o \
-	 CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Commands/DrewCommand.o \
-	 CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Commands/LindaCommand.o \
 	 CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/OI.o \
 	 CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Robot.o \
 	 CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/RobotMap.o \
-	 CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Subsystems/AlexSubsystem.o \
-	 CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Subsystems/DrewSubsystem.o \
-	 CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Subsystems/LindaSubsystem.o
+	 CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Subsystems/AlexSubsystem.o
 
 CollaborationTest_partialImage/$(MODE_DIR)/CollaborationTest_partialImage.o : $(OBJECTS_CollaborationTest_partialImage)
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc -r -nostdlib -Wl,-X  -o "$@" $(OBJECTS_CollaborationTest_partialImage) $(LIBPATH) $(LIBS) $(ADDED_LIBPATH) $(ADDED_LIBS)  && if [ "$(EXPAND_DBG)" = "1" ]; then plink "$@";fi
@@ -225,10 +205,8 @@ CollaborationTest_partialImage/$(MODE_DIR)/CollaborationTest_partialImage_clean 
 
 force : 
 
-DEP_FILES := CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Commands/AlexCommand.d CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Commands/AutonomousCommand.d CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Commands/DrewCommand.d \
-	 CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Commands/LindaCommand.d CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/OI.d CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Robot.d \
-	 CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/RobotMap.d CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Subsystems/AlexSubsystem.d CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Subsystems/DrewSubsystem.d \
-	 CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Subsystems/LindaSubsystem.d
+DEP_FILES := CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Commands/AlexCommand.d CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Commands/AutonomousCommand.d CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/OI.d \
+	 CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Robot.d CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/RobotMap.d CollaborationTest_partialImage/$(MODE_DIR)/Objects/CollaborationTest/Subsystems/AlexSubsystem.d
 -include $(DEP_FILES)
 
 

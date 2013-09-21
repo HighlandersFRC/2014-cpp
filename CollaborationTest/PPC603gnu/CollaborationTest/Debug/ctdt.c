@@ -9,21 +9,13 @@
 
 void _GLOBAL__I__ZN11AlexCommandC2Ev();
 
-void _GLOBAL__I__ZN11DrewCommandC2Ev();
-
-void _GLOBAL__I__ZN12LindaCommandC2Ev();
-
 void _GLOBAL__I__ZN13AlexSubsystemC2Ev();
-
-void _GLOBAL__I__ZN13DrewSubsystemC2Ev();
-
-void _GLOBAL__I__ZN14LindaSubsystemC2Ev();
 
 void _GLOBAL__I__ZN17AutonomousCommandC2Ev();
 
 void _GLOBAL__I__ZN2OIC2Ev();
 
-void _GLOBAL__I__ZN5Robot13drewSubsystemE();
+void _GLOBAL__I__ZN5Robot13alexSubsystemE();
 
 void _GLOBAL__I__ZN8RobotMap4initEv();
 
@@ -79,14 +71,10 @@ extern void (*_ctors[])();
 void (*_ctors[])() =
     {
     _GLOBAL__I__ZN11AlexCommandC2Ev,
-    _GLOBAL__I__ZN11DrewCommandC2Ev,
-    _GLOBAL__I__ZN12LindaCommandC2Ev,
     _GLOBAL__I__ZN13AlexSubsystemC2Ev,
-    _GLOBAL__I__ZN13DrewSubsystemC2Ev,
-    _GLOBAL__I__ZN14LindaSubsystemC2Ev,
     _GLOBAL__I__ZN17AutonomousCommandC2Ev,
     _GLOBAL__I__ZN2OIC2Ev,
-    _GLOBAL__I__ZN5Robot13drewSubsystemE,
+    _GLOBAL__I__ZN5Robot13alexSubsystemE,
     _GLOBAL__I__ZN8RobotMap4initEv,
     _GLOBAL__I__ZN12PrintCommandC2EPKc,
     _GLOBAL__I__ZN9Scheduler9_instanceE,
@@ -117,21 +105,13 @@ void (*_ctors[])() =
 
 void _GLOBAL__D__ZN11AlexCommandC2Ev();
 
-void _GLOBAL__D__ZN11DrewCommandC2Ev();
-
-void _GLOBAL__D__ZN12LindaCommandC2Ev();
-
 void _GLOBAL__D__ZN13AlexSubsystemC2Ev();
-
-void _GLOBAL__D__ZN13DrewSubsystemC2Ev();
-
-void _GLOBAL__D__ZN14LindaSubsystemC2Ev();
 
 void _GLOBAL__D__ZN17AutonomousCommandC2Ev();
 
 void _GLOBAL__D__ZN2OIC2Ev();
 
-void _GLOBAL__D__ZN5Robot13drewSubsystemE();
+void _GLOBAL__D__ZN5Robot13alexSubsystemE();
 
 void _GLOBAL__D__ZN8RobotMap4initEv();
 
@@ -177,14 +157,10 @@ extern void (*_dtors[])();
 void (*_dtors[])() =
     {
     _GLOBAL__D__ZN11AlexCommandC2Ev,
-    _GLOBAL__D__ZN11DrewCommandC2Ev,
-    _GLOBAL__D__ZN12LindaCommandC2Ev,
     _GLOBAL__D__ZN13AlexSubsystemC2Ev,
-    _GLOBAL__D__ZN13DrewSubsystemC2Ev,
-    _GLOBAL__D__ZN14LindaSubsystemC2Ev,
     _GLOBAL__D__ZN17AutonomousCommandC2Ev,
     _GLOBAL__D__ZN2OIC2Ev,
-    _GLOBAL__D__ZN5Robot13drewSubsystemE,
+    _GLOBAL__D__ZN5Robot13alexSubsystemE,
     _GLOBAL__D__ZN8RobotMap4initEv,
     _GLOBAL__D__ZN9Scheduler9_instanceE,
     _GLOBAL__D_wpi_error_s_ModuleIndexOutOfRange,
