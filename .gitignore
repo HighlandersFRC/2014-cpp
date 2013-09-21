@@ -18,3 +18,5 @@
 PPC603gnu
 .cproject
 .wrmakefile
+.wproject
+.project
