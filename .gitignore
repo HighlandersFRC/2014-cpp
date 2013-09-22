@@ -11,3 +11,13 @@
 *.lai
 *.la
 *.a
+
+# WindRiver Files
+.metadata
+*.d
+PPC603gnu
+.cproject
+.wrmakefile
+.wproject
+.project
+.wrproject
