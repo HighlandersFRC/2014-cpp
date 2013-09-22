@@ -15,6 +15,7 @@ private:
 public:
 	DrewSubsystem();
 	void InitDefaultCommand();
+	void PrintMonkeys();
 };
 
 #endif

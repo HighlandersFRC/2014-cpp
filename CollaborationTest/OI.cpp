@@ -19,7 +19,7 @@
 OI::OI() {
 	
 	stick = new Joystick(JOYSTICK_PORT);
-	trigger = new JoystickButton(stick, Joystick::kTriggerButton);
+	trigger = new JoystickButton(stick, 1);
 	trigger->WhenPressed(new DrewCommand);
 	button3 = new JoystickButton(stick,3);
 	button3->WhenPressed(new LindaCommand);
