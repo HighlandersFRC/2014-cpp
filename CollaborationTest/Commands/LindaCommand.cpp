@@ -1,31 +1,31 @@
-#include "DrewCommand.h"
+#include "LindaCommand.h"
 
-DrewCommand::DrewCommand() {
+LindaCommand::LindaCommand() {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 }
 
 // Called just before this Command runs the first time
-void DrewCommand::Initialize() {
+void LindaCommand::Initialize() {
 	
 }
 
 // Called repeatedly when this Command is scheduled to run
-void DrewCommand::Execute() {
-	//printf("monkeys");
+void LindaCommand::Execute() {
+	printf("Button 3 pressed!");
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool DrewCommand::IsFinished() {
+bool LindaCommand::IsFinished() {
 	return false;
 }
 
 // Called once after isFinished returns true
-void DrewCommand::End() {
+void LindaCommand::End() {
 	
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void DrewCommand::Interrupted() {
+void LindaCommand::Interrupted() {
 }

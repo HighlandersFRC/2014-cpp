@@ -11,7 +11,7 @@
  */
 class LindaCommand: public Command {
 public:
-	DrewCommand();
+	LindaCommand();
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
