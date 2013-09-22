@@ -14,6 +14,7 @@ public:
 	DrewCommand();
 	virtual void Initialize();
 	virtual void Execute();
+	virtual void Monkeys();
 	virtual bool IsFinished();
 	virtual void End();
 	virtual void Interrupted();
