@@ -7,7 +7,6 @@ DrewCommand::DrewCommand() {
 
 // Called just before this Command runs the first time
 void DrewCommand::Initialize() {
-	
 }
 
 // Called repeatedly when this Command is scheduled to run
