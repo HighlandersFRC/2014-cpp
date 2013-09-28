@@ -2,7 +2,7 @@
 
 DrewCommand::DrewCommand() {
 	// Use requires() here to declare subsystem dependencies
-	// eg. requires(chassis);
+	Requires(Robot::drewSubsystem);
 }
 
 // Called just before this Command runs the first time
@@ -11,11 +11,12 @@ void DrewCommand::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DrewCommand::Execute() {
+	Robot::drewSubsystem->PrintMonkeys();
 }
 
-void DrewCommand::Monkeys() {
-	printf("Monkeys!");
-}
+//void DrewCommand::Monkeys() {
+//	printf("Monkeys!");
+//}
 
 // Make this return true when this Command no longer needs to run execute()
 bool DrewCommand::IsFinished() {

@@ -21,3 +21,6 @@ PPC603gnu
 .wproject
 .project
 .wrproject
+
+# Robot Builder Files
+*~
