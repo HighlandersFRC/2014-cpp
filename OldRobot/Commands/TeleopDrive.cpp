@@ -26,7 +26,7 @@ void TeleopDrive::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void TeleopDrive::Execute() {
-	
+	Robot::driveBase->drive(Robot::oi->getJoy2()->GetX(), Robot::oi->getJoy2()->GetY(), Robot::oi->getJoy1()->GetX());
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -36,7 +36,7 @@ bool TeleopDrive::IsFinished() {
 
 // Called once after isFinished returns true
 void TeleopDrive::End() {
-	
+	Robot::driveBase->drive(0,0,0);
 }
 
 // Called when another command which requires one or more of the same
