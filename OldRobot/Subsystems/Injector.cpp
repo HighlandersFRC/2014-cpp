@@ -32,3 +32,6 @@ void Injector::InitDefaultCommand() {
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
+void Injector::set(double pwr) {
+	injectorController->Set(pwr);
+}
