@@ -31,6 +31,7 @@ class Articulator: public PIDSubsystem {
 	double ReturnPIDInput();
 	void UsePIDOutput(double output);
 	void InitDefaultCommand();
+	void articulate(double);
 };
 
 #endif
