@@ -49,8 +49,7 @@ void Robot::RobotInit() {
   }
 	
 void Robot::AutonomousInit() {
-	if (autonomousCommand != NULL)
-		autonomousCommand->Start();
+	autonomousCommand->Start();
 	driveCommand->Cancel();
 }
 	
@@ -68,8 +67,7 @@ void Robot::TeleopInit() {
 }
 	
 void Robot::TeleopPeriodic() {
-	if (autonomousCommand != NULL)
-		Scheduler::GetInstance()->Run();
+	Scheduler::GetInstance()->Run();
 }
 
 void Robot::TestPeriodic() {
