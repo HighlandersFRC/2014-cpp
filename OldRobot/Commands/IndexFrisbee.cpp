@@ -22,6 +22,7 @@ IndexFrisbee::IndexFrisbee() {
 // Called just before this Command runs the first time
 void IndexFrisbee::Initialize() {
 	
+	indexer->Set(-1.0);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -31,12 +32,13 @@ void IndexFrisbee::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool IndexFrisbee::IsFinished() {
-	return false;
+	return Timer->getFPGATTimestamp() > endTime;
+	//fix endTime, not referenced earlier
 }
 
 // Called once after isFinished returns true
 void IndexFrisbee::End() {
-	
+	indexer->Set(0.0);
 }
 
 // Called when another command which requires one or more of the same

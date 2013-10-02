@@ -29,11 +29,11 @@ void Shoulder::InitDefaultCommand() {
 }
 void Shoulder::SetShoulder(double pwr) {
 	//if (!locked) {
-	            shoulder->set(pwr);
+	            shoulderMotor->Set(pwr);
 	       // }
 }
 
-void Shoulder::SetLock(boolean on) {
+void Shoulder::SetLock(bool on) {
 //	lock->set(!on);
 //	        if (!on) {
 //	            locked = false;
