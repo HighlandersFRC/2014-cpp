@@ -11,6 +11,8 @@
 
 
 #include "InjectFrisbee.h"
+#include "RunInjectorFwd.h"
+#include "RunInjectorBack.h"
 
 InjectFrisbee::InjectFrisbee() {
 	// Add Commands here:

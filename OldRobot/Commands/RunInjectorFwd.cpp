@@ -9,8 +9,6 @@
 // it from being updated in th future.
 #include "RunInjectorFwd.h"
 
-double RunInjectorFwd::endTime = 0;
-
 RunInjectorFwd::RunInjectorFwd() {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
