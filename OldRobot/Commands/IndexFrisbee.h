@@ -24,6 +24,7 @@
 class IndexFrisbee: public Command {
 public:
 	IndexFrisbee();
+	double endTime;
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();

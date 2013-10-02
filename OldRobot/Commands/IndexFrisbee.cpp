@@ -17,8 +17,9 @@ IndexFrisbee::IndexFrisbee() {
 }
 // Called just before this Command runs the first time
 void IndexFrisbee::Initialize() {
-	
-	indexer->Set(-1.0);
+	endTime - Timer::GetFPGATimestamp() + 1;
+	//endTime = Timer.getFPGATimestamp() + SmartDashboard.getnumber("Indexer Time", 1.0);
+	Robot::indexer->set(-1.0);
 }
 // Called repeatedly when this Command is scheduled to run
 void IndexFrisbee::Execute() {
@@ -26,12 +27,15 @@ void IndexFrisbee::Execute() {
 }
 // Make this return true when this Command no longer needs to run execute()
 bool IndexFrisbee::IsFinished() {
-	return Timer->getFPGATTimestamp() > endTime;
-	//fix endTime, not referenced earlier
+
+
+	return Timer::GetFPGATimestamp() > endTime;
+	//return Timer.getFPGATimestamp() > endTime;
 }
 // Called once after isFinished returns true
 void IndexFrisbee::End() {
-	indexer->Set(0.0);
+	Robot::indexer->set(0.0);
+
 }
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
