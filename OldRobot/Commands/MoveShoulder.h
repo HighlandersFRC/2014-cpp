@@ -24,6 +24,10 @@
 class MoveShoulder: public Command {
 public:
 	MoveShoulder();
+	
+	Shoulder* shldr;
+	OI* oi;
+	
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
