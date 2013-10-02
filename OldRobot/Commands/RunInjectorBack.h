@@ -9,8 +9,8 @@
 // it from being updated in th future.
 
 
-#ifndef LAUNCH_H
-#define LAUNCH_H
+#ifndef RUNINJECTORBACK_H
+#define RUNINJECTORBACK_H
 
 
 #include "Commands/Subsystem.h"
@@ -21,9 +21,9 @@
  *
  * @author ExampleAuthor
  */
-class Launch: public Command {
+class RunInjectorBack: public Command {
 public:
-	Launch();
+	RunInjectorBack();
 	double endTime;
 	virtual void Initialize();
 	virtual void Execute();

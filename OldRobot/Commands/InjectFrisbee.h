@@ -9,26 +9,20 @@
 // it from being updated in th future.
 
 
+
 #ifndef INJECTFRISBEE_H
 #define INJECTFRISBEE_H
 
-
-#include "Commands/Subsystem.h"
-#include "../Robot.h"
+#include "Commands/CommandGroup.h"
 
 /**
  *
  *
  * @author ExampleAuthor
  */
-class InjectFrisbee: public Command {
-public:
+class InjectFrisbee: public CommandGroup {
+public:	
 	InjectFrisbee();
-	virtual void Initialize();
-	virtual void Execute();
-	virtual bool IsFinished();
-	virtual void End();
-	virtual void Interrupted();
 };
 
 #endif

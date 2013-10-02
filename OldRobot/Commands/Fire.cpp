@@ -11,6 +11,9 @@
 
 
 #include "Fire.h"
+#include "IndexFrisbee.h"
+#include "InjectFrisbee.h"
+#include "Launch.h"
 
 Fire::Fire() {
 	// Add Commands here:
@@ -29,4 +32,8 @@ Fire::Fire() {
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
+	SetInterruptible(false);
+	AddParallel(new InjectFrisbee());
+	AddParallel(new Launch());
+	AddParallel(new IndexFrisbee());
 }
