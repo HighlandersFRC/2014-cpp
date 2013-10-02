@@ -21,7 +21,7 @@ void MoveBelt::Initialize() {
 }
 // Called repeatedly when this Command is scheduled to run
 void MoveBelt::Execute() {
-	beltMove->climb(10);
+	beltMove->climb(Robot::oi->getJoy3()->GetY());
 }
 // Make this return true when this Command no longer needs to run execute()
 bool MoveBelt::IsFinished() {
