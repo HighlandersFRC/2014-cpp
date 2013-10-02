@@ -21,7 +21,7 @@ void MoveBelt::Initialize() {
 }
 // Called repeatedly when this Command is scheduled to run
 void MoveBelt::Execute() {
-	
+	beltMove->climb(10);
 }
 // Make this return true when this Command no longer needs to run execute()
 bool MoveBelt::IsFinished() {
@@ -29,7 +29,7 @@ bool MoveBelt::IsFinished() {
 }
 // Called once after isFinished returns true
 void MoveBelt::End() {
-	
+	beltMove->climb(0);
 }
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run

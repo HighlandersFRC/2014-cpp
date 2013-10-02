@@ -24,6 +24,9 @@
 class MoveBelt: public Command {
 public:
 	MoveBelt();
+	
+	Belt* beltMove;
+	
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
