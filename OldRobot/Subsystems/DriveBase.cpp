@@ -30,5 +30,5 @@ void DriveBase::InitDefaultCommand() {
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 void DriveBase::drive(double x, double y, double theta) {
-	robotDrive41->MecanumDrive_Cartesian(x, -y, theta, 0);
+	robotDrive41->MecanumDrive_Cartesian(-x, y, theta, 0);
 }
