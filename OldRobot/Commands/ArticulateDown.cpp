@@ -21,7 +21,7 @@ void ArticulateDown::Initialize() {
 }
 // Called repeatedly when this Command is scheduled to run
 void ArticulateDown::Execute() {
-	Robot::articulator->articulate(-0.5);
+	Robot::articulator->Articulate(-0.5);
 }
 // Make this return true when this Command no longer needs to run execute()
 bool ArticulateDown::IsFinished() {
@@ -29,7 +29,7 @@ bool ArticulateDown::IsFinished() {
 }
 // Called once after isFinished returns true
 void ArticulateDown::End() {
-	Robot::articulator->articulate(0);
+	Robot::articulator->Articulate(0);
 }
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
