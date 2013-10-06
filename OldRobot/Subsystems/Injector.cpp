@@ -27,7 +27,6 @@ void Injector::InitDefaultCommand() {
 void Injector::set(double pwr) {
 	injectorController->Set(pwr);
 }
-
 bool Injector::getLimit() {
 	return injectorLimit->Get();
 }

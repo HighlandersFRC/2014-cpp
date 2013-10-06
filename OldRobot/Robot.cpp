@@ -61,7 +61,9 @@ void Robot::TeleopInit() {
 }
 	
 void Robot::TeleopPeriodic() {
+	double stime = Timer::GetFPGATimestamp();
 	Scheduler::GetInstance()->Run();
+	SmartDashboard::PutNumber("Cycle time", Timer::GetFPGATimestamp() - stime);
 }
 void Robot::TestPeriodic() {
 	lw->Run();
