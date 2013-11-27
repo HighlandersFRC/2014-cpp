@@ -17,12 +17,17 @@ Launch::Launch() {
 }
 // Called just before this Command runs the first time
 void Launch::Initialize() {
-	Launch::endTime = Timer::GetFPGATimestamp() + 0.25;
+	Launch::switchTime = Timer::GetFPGATimestamp() + 0.25;
+	Launch::endTime = Timer::GetPPCTimestamp() + 0.85;
 	Robot::launcher->set(-1);
 }
 // Called repeatedly when this Command is scheduled to run
 void Launch::Execute() {
-	
+	if (Timer::GetFPGATimestamp() > switchTime) {
+		Robot::launcher->set(-0.55);
+	} else {
+		Robot::launcher->set(-1);
+	}
 }
 // Make this return true when this Command no longer needs to run execute()
 bool Launch::IsFinished() {

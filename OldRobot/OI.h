@@ -22,6 +22,8 @@ private:
 	JoystickButton* articulateDownButton2;
 	JoystickButton* articulateUpButton2;
 	Joystick* joy3;
+	JoystickButton* releaseArm;
+	JoystickButton* startBelt;
 	Joystick* joy2;
 	JoystickButton* fireButton1;
 	JoystickButton* startShooterButton1;

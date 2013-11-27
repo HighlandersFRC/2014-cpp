@@ -51,4 +51,3 @@ void Articulator::InitDefaultCommand() {
 void Articulator::Articulate(double pwr) {
 	articulatorMotor->Set(pwr);
 }
-

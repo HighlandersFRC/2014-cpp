@@ -9,28 +9,21 @@
 // it from being updated in th future.
 
 
-#ifndef LAUNCH_H
-#define LAUNCH_H
 
+#ifndef FIRE3FRISBEES_H
+#define FIRE3FRISBEES_H
 
-#include "Commands/Subsystem.h"
-#include "../Robot.h"
+#include "Commands/CommandGroup.h"
+#include "TestText.h"
 
 /**
  *
  *
  * @author ExampleAuthor
  */
-class Launch: public Command {
-public:
-	Launch();
-	double endTime;
-	double switchTime;
-	virtual void Initialize();
-	virtual void Execute();
-	virtual bool IsFinished();
-	virtual void End();
-	virtual void Interrupted();
+class Fire3Frisbees: public CommandGroup {
+public:	
+	Fire3Frisbees();
 };
 
 #endif

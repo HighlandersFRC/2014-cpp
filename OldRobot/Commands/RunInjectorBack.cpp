@@ -18,14 +18,18 @@ RunInjectorBack::RunInjectorBack() {
 // Called just before this Command runs the first time
 void RunInjectorBack::Initialize() {
 	Robot::injector->set(0.5);
+	endTime = Timer::GetFPGATimestamp() + 0.3;
 }
 // Called repeatedly when this Command is scheduled to run
 void RunInjectorBack::Execute() {
-	
+	Robot::injector->set(0.5);
+	//printf("IsFinished: %d, getLimit: %d \n", IsFinished(), Robot::injector->getLimit());
+	//printf("endtime: %f, time: %f \n", endTime, Timer::GetFPGATimestamp());
 }
 // Make this return true when this Command no longer needs to run execute()
 bool RunInjectorBack::IsFinished() {
-	return Robot::injector->getLimit();
+	//injector limit disabled: not installed
+	return (Robot::injector->getLimit() && false) || (Timer::GetFPGATimestamp() > endTime);
 }
 // Called once after isFinished returns true
 void RunInjectorBack::End() {
@@ -34,4 +38,5 @@ void RunInjectorBack::End() {
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void RunInjectorBack::Interrupted() {
+	Robot::injector->set(0);
 }
