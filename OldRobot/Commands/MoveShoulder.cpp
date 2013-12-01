@@ -21,7 +21,7 @@ void MoveShoulder::Initialize() {
 }
 // Called repeatedly when this Command is scheduled to run
 void MoveShoulder::Execute() {
-	Robot::shoulder->SetShoulder(Robot::oi->getJoy4()->GetY());
+	Robot::shoulder->SetShoulder(Robot::oi->getJoy4()->GetY() * -1);
 }
 // Make this return true when this Command no longer needs to run execute()
 bool MoveShoulder::IsFinished() {
