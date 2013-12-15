@@ -23,6 +23,7 @@
  */
 class AutonomousCommand: public Command {
 public:
+	double endTime;
 	AutonomousCommand();
 	virtual void Initialize();
 	virtual void Execute();
