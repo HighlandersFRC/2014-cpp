@@ -7,6 +7,30 @@ Children:
 - Name: Subsystems
   Base: Subsystems
   Children:
+  - Name: ShooterGyro
+    Base: Subsystem
+    Children:
+    - Name: gyro
+      Base: Gyro
+      Children: []
+      Properties:
+        Sensitivity: !!robotbuilder.data.properties.DoubleProperty {default: 0.007,
+          name: Sensitivity, validators: null, value: 0.007}
+        Input Module (Analog): !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['1']
+          default: '1'
+          name: Input Module (Analog)
+          validators: [AnalogInput]
+          value: '1'
+        Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['1', '2']
+          default: '1'
+          name: Input Channel (Analog)
+          validators: [AnalogInput]
+          value: '1'
+    Properties:
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
   - Name: DriveBase
     Base: Subsystem
     Children:
@@ -57,28 +81,6 @@ Children:
             name: Output Channel (PWM)
             validators: *id005
             value: '1'
-      - Name: BRController
-        Base: Speed Controller
-        Children: []
-        Properties:
-          Output Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id001
-            default: '1'
-            name: Output Module (Digital)
-            validators: *id002
-            value: '1'
-          Type: !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id003
-            default: Victor
-            name: Type
-            validators: null
-            value: Victor
-          Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id004
-            default: '1'
-            name: Output Channel (PWM)
-            validators: *id005
-            value: '3'
       - Name: BLController
         Base: Speed Controller
         Children: []
@@ -101,6 +103,28 @@ Children:
             name: Output Channel (PWM)
             validators: *id005
             value: '2'
+      - Name: BRController
+        Base: Speed Controller
+        Children: []
+        Properties:
+          Output Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
+            choices: *id001
+            default: '1'
+            name: Output Module (Digital)
+            validators: *id002
+            value: '1'
+          Type: !!robotbuilder.data.properties.ChoicesProperty
+            choices: *id003
+            default: Victor
+            name: Type
+            validators: null
+            value: Victor
+          Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+            choices: *id004
+            default: '1'
+            name: Output Channel (PWM)
+            validators: *id005
+            value: '3'
       Properties:
         Sensitivity: !!robotbuilder.data.properties.DoubleProperty {default: 0.5,
           name: Sensitivity, validators: null, value: 0.5}

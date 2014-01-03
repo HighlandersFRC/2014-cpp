@@ -15,6 +15,7 @@
 
 #include "Commands/Subsystem.h"
 #include "../Robot.h"
+#include "WPILib.h"
 
 /**
  *
@@ -22,8 +23,10 @@
  * @author ExampleAuthor
  */
 class AutonomousCommand: public Command {
+	
 public:
 	double endTime;
+	double angle;
 	AutonomousCommand();
 	virtual void Initialize();
 	virtual void Execute();
