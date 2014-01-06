@@ -13,9 +13,11 @@ private:
 	}
 	
 	virtual void AutonomousInit() {
+		autonomousCommand->Start();
 	}
 	
 	virtual void AutonomousPeriodic() {
+		Scheduler::GetInstance()->Run();
 	}
 	
 	virtual void TeleopInit() {
@@ -24,7 +26,6 @@ private:
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
 		autonomousCommand->Cancel();
-		Scheduler::GetInstance()->Run();
 	}
 	
 	virtual void TeleopPeriodic() {
@@ -37,4 +38,3 @@ private:
 };
 
 START_ROBOT_CLASS(CommandBasedRobot);
-
