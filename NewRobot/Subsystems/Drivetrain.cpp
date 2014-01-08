@@ -1,6 +1,6 @@
 #include "Drivetrain.h"
-#include "../Robotmap.h"
-#include "../Commands/DriveCMD.h"
+#include "../Commands/DriveCMD.h"        // Import Default Drivetrain command
+
 
 /* Drivetrain(int, int)
  * Inputs  - 
@@ -12,13 +12,22 @@
  * Creates Motors method call values (int)
 */
 Drivetrain::Drivetrain(int l, int r) : Subsystem("ExampleSubsystem") {
-	_MotorLeft  = new Victor(l); 	// Define left victor
-	_MotorRight = new Victor(r); 	// Define right victor
+	_MotorLeft  = new Victor(l); 	     // Define left victor
+	_MotorRight = new Victor(r); 	     // Define right victor
 }
-    
+
+
+/* InitDefaultCommand()
+ * Inputs  - 
+ * 		None.
+ * Returns - 
+ * 		Drivetrain
+ * 
+ * Sets the default command for the Drivetrain 
+ * (needs DriveCMD)
+*/
 void Drivetrain::InitDefaultCommand() {
-	// Set the default command for a subsystem here.
-	SetDefaultCommand(new DriveCMD());
+	SetDefaultCommand(new DriveCMD());   // Set the default command for a Drivetrain
 }
 
 
@@ -35,74 +44,78 @@ void Drivetrain::InitDefaultCommand() {
 */
 void Drivetrain::SetSpeeds(double l, double r) {
 	bool Error = false;
-	Error |= (l < -1 || l > -1);    // Check if left speed is in range
-	Error |= (r < -1 || r > -1);    // Check if right speed is in range
+	Error |= (l < -1 || l > 1);          // Check if left speed is in range
+	Error |= (r < -1 || r > 1);          // Check if right speed is in range
 	
-	if (_Inverse_L) {               // Invert left speed if needed
+	if (_Inverse_L) {                    // Invert left speed if needed
 		l *= -1;
 	}
-	if (_Inverse_R) {               // Invert right speed if needed
+	if (_Inverse_R) {                    // Invert right speed if needed
 		r *= -1;
 	}
 	
-	if (Error) {                    // Check for error
-		this->Stop();                // Stop motors if error is true
+	if (Error) {                         // Check for error
+		this->Stop();                    // Stop motors if error is true
 	}
 	else {
-		_MotorLeft->Set(l);         // Set Left motor speed
-		_MotorRight->Set(r);        // Set Right motor speed
+		_MotorLeft->Set(l);              // Set Left motor speed
+		_MotorRight->Set(r);             // Set Right motor speed
 	}
 }
 
 
 /* Drivetrain::TankDrive(double, double)
  * Inputs  - 
- * 		Left motor speed  (range 1 to -1)
- * 		Right motor speed (range 1 to -1)
+ * 		Left Joystick y-axis  (range 1 to -1)
+ * 		Right Joystick y-axis (range 1 to -1)
  * Returns - 
  * 		None
  * 
- * Sets PWM rate corresponding to motor. If the
- * value is out of range, then the motors will
- * be stoped.
+ * Takes the y-axis value of two joysticks 
+ * and sets the motor speeds accordingly. The
+ * motors will stop if an error is detected.
 */
-void Drivetrain::TankDrive(double x1, double x2) {
+void Drivetrain::TankDrive(double y1, double y2) {
 	bool Error = false;
-    Error |= (x1 < -1 || x1 > -1);  // Check if left joystick is in range
-	Error |= (x2 < -1 || x2 > -1);  // Check if right joystick is in range
+    Error |= (y1 < -1 || y1 > 1);        // Check if left joystick is in range
+	Error |= (y2 < -1 || y2 > 1);        // Check if right joystick is in range
 	
 	if (Error) {
-		this->Stop();                // Stop Motors if error
+		this->Stop();                    // Stop Motors if error
 	}
 	else {
-		this->SetSpeeds(x1, x2);     // Set motor speeds
+		this->SetSpeeds(y1, y2);         // Set motor speeds
 	}
 }
 
 
-/* Drivetrain::SetSpeeds(int, int)
+/* Drivetrain::ArcadeDrive(double, double)
  * Inputs  - 
- * 		x-axis  (range 1 to -1)
- * 		y-axis (range 1 to -1)
+ * 		Joystick x-axis (range 1 to -1)
+ * 		Joystick y-axis (range 1 to -1)
  * Returns - 
  * 		None
  * 
- * Sets PWM rate corresponding to motor. If the
- * value is out of range, then the motors will
- * be stoped.
+ * Takes the x-axis and y-axis value of joysticks 
+ * and sets the motor speeds accordingly. The
+ * motors will stop if an error is detected.
 */
 void Drivetrain::ArcadeDrive(double x, double y) {
 	bool Error = false;
-	Error |= (x < -1 || x > -1);  // Check if left joystick is in range
-	Error |= (y < -1 || y > -1);  // Check if right joystick is in range
+	Error |= (x < -1 || x > 1);          // Check if left joystick is in range
+	Error |= (y < -1 || y > 1);          // Check if right joystick is in range
 	
 	if (Error) {
 		this->Stop();
 	}
 	else {
-		double motor_l = minz(maxz((x+y),-1), 1);
-		double motor_r = minz(maxz((x-y),-1), 1);
-		this->SetSpeeds(motor_l, motor_r);
+		// Add or subtract turn (x-axis) to
+		// speed (y-axis) and limit values
+		// to 1 to -1 range
+		double motor_l = minz(maxz((y+x),-1), 1);
+		double motor_r = minz(maxz((y-x),-1), 1);
+		
+		this->SetSpeeds(motor_l, motor_r); // Set motor speeds
 	}
 }
 
@@ -116,7 +129,7 @@ void Drivetrain::ArcadeDrive(double x, double y) {
  * Stops both motors
 */
 void Drivetrain::Stop() {
-	this->SetSpeeds(0.0, 0.0);
+	this->SetSpeeds(0.0, 0.0);           // Set motor speeds to zero
 }
 
 
@@ -131,9 +144,9 @@ void Drivetrain::Stop() {
  * stops both motors.
 */
 void Drivetrain::SetInvert(bool l, bool r) {
-	_Inverse_L = l;                 // Set left motor inverse
-	_Inverse_R = r;                 // Set right motor inverse
-	this->Stop();                    // Stop motors
+	_Inverse_L = l;                      // Set left motor inverse
+	_Inverse_R = r;                      // Set right motor inverse
+	this->Stop();                        // Stop motors
 }
 
 
@@ -146,6 +159,8 @@ void Drivetrain::SetInvert(bool l, bool r) {
  * 		None
  * 
  * Returns the smallest value
+ * 
+ * @warn Private
 */
 double Drivetrain::minz(double i, double n) {
 	return(i<n?i:n);
@@ -160,6 +175,8 @@ double Drivetrain::minz(double i, double n) {
  * 		None
  * 
  * Returns the largest value
+ * 
+ *  @warn Private
 */
 double Drivetrain::maxz(double i, double n) {
 	return(i>n?i:n);
