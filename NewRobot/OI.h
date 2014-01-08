@@ -4,14 +4,17 @@
 #include "WPILib.h"
 
 class OI {
-private:
-	Joystick *joystick_1;
-	Joystick *joystick_2;
-public:
-	OI();
-	// Test
-	Joystick* GetJoystick1();
-	Joystick* GetJoystick2();
+	private:
+		// Controls
+		Joystick *joystick_1;
+		Joystick *joystick_2;
+		
+	public:
+		OI();
+		
+		// Control Access Functions
+		Joystick* GetJoystick1();
+		Joystick* GetJoystick2();
 };
 
 #endif
