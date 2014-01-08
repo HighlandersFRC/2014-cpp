@@ -9,7 +9,7 @@ DriveCMD::DriveCMD() {
 
 // Called just before this Command runs the first time
 void DriveCMD::Initialize() {
-	
+	drivetrain->Stop();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -24,11 +24,11 @@ bool DriveCMD::IsFinished() {
 
 // Called once after isFinished returns true
 void DriveCMD::End() {
-	drivetrain->TankDrive(0,0);
+	drivetrain->Stop();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void DriveCMD::Interrupted() {
-	drivetrain->TankDrive(0,0);
+	drivetrain->Stop();
 }
