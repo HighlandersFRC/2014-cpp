@@ -16,7 +16,7 @@ Drivetrain::Drivetrain(int l, int r) : Subsystem("ExampleSubsystem") {
 	_MotorRight = new Victor(r); 	// Define right victor
 }
     
-void Drivetrain::Init() {
+void Drivetrain::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	SetDefaultCommand(new DriveCMD());
 }

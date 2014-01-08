@@ -17,7 +17,7 @@ class Drivetrain: public Subsystem {
 		
 	public:
 		Drivetrain(int, int);
-		void Init();
+		void InitDefaultCommand();
 		void SetSpeeds(double, double);
 		void TankDrive(double, double);
 		void ArcadeDrive(double, double);
