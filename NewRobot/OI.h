@@ -9,6 +9,7 @@ private:
 	Joystick *joystick_2;
 public:
 	OI();
+	// Test
 	Joystick* GetJoystick1();
 	Joystick* GetJoystick2();
 };
