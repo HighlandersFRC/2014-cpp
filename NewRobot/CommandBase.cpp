@@ -22,5 +22,6 @@ void CommandBase::init() {
 	// line should be repeated for each subsystem in the project.
 	examplesubsystem = new ExampleSubsystem();
 	drivetrain = new Drivetrain(LEFTMOTOR, RIGHTMOTOR);
+	
 	oi = new OI();
 }

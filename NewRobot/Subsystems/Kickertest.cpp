@@ -1,13 +1,17 @@
-#include "ExampleSubsystem.h"
+#include "Kickertest.h"
 #include "../Robotmap.h"
 
-ExampleSubsystem::ExampleSubsystem() : Subsystem("ExampleSubsystem") {
-	
+Kickertest::Kickertest(k) : Subsystem("Kickertest") {
+	Kick = new Victor(k);
 }
     
-void ExampleSubsystem::InitDefaultCommand() {
+void Kickertest::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	SetDefaultCommand(new DriveCMD());
+}
+
+void Kickertest::SetSpeed(double k){
+	
 }
 
 
