@@ -15,5 +15,8 @@ OI::OI() {
 	
 	joystick_1 = new Joystick(1);
 	joystick_2 = new Joystick(2);
+	
+	btn1       = new JoystickButton(1);
+	//btn1->WhileHeld(DriveCMD);
 }
 

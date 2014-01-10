@@ -14,6 +14,7 @@
 Drivetrain::Drivetrain(int l, int r) : Subsystem("ExampleSubsystem") {
 	_MotorLeft  = new Victor(l); 	     // Define left victor
 	_MotorRight = new Victor(r); 	     // Define right victor
+	this->InitDefaultCommand();
 }
 
 
