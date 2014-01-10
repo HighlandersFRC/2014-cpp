@@ -11,6 +11,7 @@ private:
 	
 	virtual void RobotInit() {
 		CommandBase::init();
+		cout<<"/Begin Robot/n";
 		autonomousCommand = new ExampleCommand();
 		lw = LiveWindow::GetInstance();
 	}
@@ -28,7 +29,7 @@ private:
 		// teleop starts running. If you want the autonomous to 
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		cout<<"Begin Teleop\n";
+		cout<<"/Begin Teleop/n";
 		autonomousCommand->Cancel();
 	}
 	
