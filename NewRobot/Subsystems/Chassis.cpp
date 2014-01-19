@@ -24,8 +24,6 @@ Chassis::Chassis() : Subsystem("Chassis") {
 	gyro_sens     = new Gyro(1);
 	
 	shifter       = new DoubleSolenoid(SHIFTER_A, SHIFTER_B);
-	
-	compressoa    = new Compressor(COMPRESSOR_SWITCH, COMPRESSOR_RELAY);
 }
 
 

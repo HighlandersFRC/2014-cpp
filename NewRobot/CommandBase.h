@@ -10,6 +10,7 @@
 // Import Subsystems
 #include "Subsystems/Chassis.h"
 #include "Subsystems/Kicker.h"
+#include "Subsystems/AirCompressor.h"
 
 /*
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -28,6 +29,7 @@ public:
 	// Create single static instance of subsystems
 	static Chassis *chassis;
 	static Kicker *kicker;
+	static AirCompressor *aircompressor;
 };
 
 #endif

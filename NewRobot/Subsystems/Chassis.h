@@ -3,11 +3,7 @@
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 
-/**
- *
- *
- * @author Drew
- */
+
 class Chassis: public Subsystem {
 private:
 	// It's desirable that everything possible under private except
@@ -21,7 +17,6 @@ private:
 	AnalogChannel  *dist_sens_1;
 	Gyro           *gyro_sens;
 	DoubleSolenoid *shifter;
-	Compressor     *compressoa;
 	
 	double cube(double);
 	

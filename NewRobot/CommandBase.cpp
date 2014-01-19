@@ -13,6 +13,7 @@ OI*      CommandBase::oi      = NULL;
 // Initialize single static instance of all of subsystems (set to NULL)
 Chassis* CommandBase::chassis = NULL;
 Kicker*  CommandBase::kicker  = NULL;
+AirCompressor* CommandBase::aircompressor = NULL;
 
 /* CommandBase::init()
  * Inputs  -
@@ -29,4 +30,5 @@ void CommandBase::init() {
 	// Initialize subsystems
 	chassis = new Chassis();
 	kicker  = new Kicker();
+	aircompressor = new AirCompressor();
 }
