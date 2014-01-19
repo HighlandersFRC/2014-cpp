@@ -21,7 +21,7 @@ private:
 	AnalogChannel  *dist_sens_1;
 	Gyro           *gyro_sens;
 	DoubleSolenoid *shifter;
-	Compressor     *compressor;
+	Compressor     *compressoa;
 	
 	double cube(double);
 	

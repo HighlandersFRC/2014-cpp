@@ -25,7 +25,7 @@ Chassis::Chassis() : Subsystem("Chassis") {
 	
 	shifter       = new DoubleSolenoid(SHIFTER_A, SHIFTER_B);
 	
-	compressor    = new Compressor(COMPRESSOR_SWITCH, COMPRESSOR_RELAY);
+	compressoa    = new Compressor(COMPRESSOR_SWITCH, COMPRESSOR_RELAY);
 }
 
 
