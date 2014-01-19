@@ -14,6 +14,7 @@ public:
 	Kicker();
 	void InitDefaultCommand();
 	void setSpeed(double);
+	double KickerSpeed;
 };
 
 #endif
