@@ -1,22 +1,53 @@
 #include "OI.h"
 
+// Include commands
+#include "Commands/MoveKicker.h"
 
-/* OI::OI()
- * Inputs  - 
- * 		None
- * Returns - 
- * 		None
+/*OI::OI()
+ * Inputs  -
+ * 	None
+ * Returns -
+ * 	None
  * 
- * Creates control objects and assigns
- * commands to events.
+ * Instilizes the operator interfaces
 */
 OI::OI() {
-	// Process operator interface input here.
+	stick1 = new Joystick(JOYSTICK_PORT1);
+	stick2 = new Joystick(JOYSTICK_PORT2);
 	
-	joystick_1 = new Joystick(1);
-	joystick_2 = new Joystick(2);
+	Button1 = new JoystickButton(stick2, KICKER_BTN);
+	Button1->WhileHeld(new MoveKicker(0));
 	
-	btn1       = new JoystickButton(1);
-	btn1->WhileHeld(new DriveCMD());
+	Button2 = new JoystickButton(stick2, REVERSE_BTN);
+	Button2->WhileHeld(new MoveKicker(1));
+	
+	Shift_Up_btn   = new JoystickButton(stick1, SHIFT_UP_BTN);
+	
+    Shift_Down_btn = new JoystickButton(stick1, SHIFT_DOWN_BTN);
 }
 
+
+/*OI::getJoystick1()
+ * Inputs  -
+ * 	None
+ * Returns -
+ * 	joystick (Joystick*) 
+ * 
+ * Returns joystick 1
+*/
+Joystick* OI::getJoystick1() {
+	return stick1;
+}
+
+
+/*OI::getJoystick2()
+ * Inputs  -
+ * 	None
+ * Returns -
+ * 	joystick (Joystick*) 
+ * 
+ * Returns joystick 2
+*/
+Joystick* OI::getJoystick2() {
+	return stick2;
+}
