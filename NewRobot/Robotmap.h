@@ -27,5 +27,7 @@
 #define KICKER_MOTOR_1         5           // PWM Out        Kicker Motor 1                 kicker
 #define KICKER_MOTOR_2         6           // PWM Out        Kicker Motor 2                 kicker
 
+#define INTAKE_MOTOR		   7		   // PWM Out		 Intake Motor					intake
+
 
 #endif
