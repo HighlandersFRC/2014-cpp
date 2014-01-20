@@ -21,6 +21,9 @@ private:
 		//@todo Drago901 1/11/14 Replace the example command with our actual autonomous command
 		//autonomousCommand = new ExampleCommand();
 		//lw = LiveWindow::GetInstance();
+		
+		//SmartDashboard Values (Defaults for values that read from SmartDashboard)
+		SmartDashboard::PutNumber("Kicker Max Speed Forward", .75);
 	}
 	
 	
