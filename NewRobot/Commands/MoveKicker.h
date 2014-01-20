@@ -17,8 +17,6 @@ public:
 	virtual void End();
 	virtual void Interrupted();
 	double KickSpdFwd;
-	double KickSpdBack;
-	double RampUp;
 };
 
 #endif

@@ -24,12 +24,9 @@ MoveKicker::MoveKicker(int m) {
  * Called just before this Command runs 
  * the first time
 */
-void MoveKicker::Initialize() {
-	speed = 0.00; 
+void MoveKicker::Initialize() {	
 	//Set default kicker speeds in SmartDashboard
-	SmartDashboard::PutNumber("Kicker Speed Forward", .75);
-	SmartDashboard::PutNumber("Gradual Ramp Up Speed", .055);
-	SmartDashboard::PutNumber("Kicker Speed Backward", -.4);
+	speed = 0.00; 
 }
 
 
@@ -45,23 +42,23 @@ void MoveKicker::Initialize() {
 void MoveKicker::Execute() {
 	if (Mode == 0) {
 		kicker->setSpeed(speed);
-		KickSpdFwd = SmartDashboard::GetNumber("Kicker Speed Forward");
+		
+		KickSpdFwd = SmartDashboard::GetNumber("Kicker Max Speed Forward");
+
 		if (speed>=KickSpdFwd) {
 			speed=KickSpdFwd;
 		}
 		else {
-			RampUp = SmartDashboard::GetNumber("Gradual Ramp Up Speed");
-			speed += RampUp;
+			speed += .055;
 		}
 	}
 	else {
 		kicker->setSpeed(speed);
-		KickSpdBack = SmartDashboard::GetNumber("Kicker Speed Backward");		
-		if (speed<=KickSpdBack) {
-			speed=KickSpdBack;
+		if (speed<= -.4) {
+			speed= -.4;
 		}
 		else {
-			speed -= RampUp;
+			speed -= .055;
 		}
 	}
 }
