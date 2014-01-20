@@ -27,6 +27,8 @@ void CommandBase::init() {
 	oi = new OI();
 	
 	// Initialize subsystems
-	chassis = new Chassis();
-	kicker  = new Kicker();
+	chassis 	= new Chassis();
+	kicker  	= new Kicker();
+	intake		= new Intake();
+	platform	= new Platform();
 }

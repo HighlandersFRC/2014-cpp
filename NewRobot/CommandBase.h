@@ -28,6 +28,8 @@ public:
 	// Create single static instance of subsystems
 	static Chassis *chassis;
 	static Kicker *kicker;
+	static Intake *intake;
+	static Platform *platform;
 };
 
 #endif

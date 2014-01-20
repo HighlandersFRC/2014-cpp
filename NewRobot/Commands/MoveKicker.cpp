@@ -40,18 +40,21 @@ void MoveKicker::Initialize() {
  * scheduled to run
 */
 void MoveKicker::Execute() {
+	KickSpdFwd = SmartDashboard::GetNumber("Kicker Max Speed Forward");
+	//Takes preset value from SmartDashboard, either defaulted or edited
 	if (Mode == 0) {
 		kicker->setSpeed(speed);
-		
-		KickSpdFwd = SmartDashboard::GetNumber("Kicker Max Speed Forward");
 
+		
 		if (speed>=KickSpdFwd) {
 			speed=KickSpdFwd;
 		}
+		
 		else {
 			speed += .055;
 		}
 	}
+
 	else {
 		kicker->setSpeed(speed);
 		if (speed<= -.4) {
