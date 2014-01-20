@@ -2,7 +2,6 @@
 #include "../Robotmap.h"
 #include "../DebugPrint.h"
 
-
 ///Kicker::Kicker()
 ///
 ///@brief This function constructs the subsystem.
@@ -44,4 +43,6 @@ void Kicker::InitDefaultCommand() {
 void Kicker::setSpeed(double s) {
 	motor_1->Set(s);
 	motor_2->Set(s);
+	KickerSpeed = s;
+	SmartDashboard::PutNumber("Kicker Speed", KickerSpeed);
 }

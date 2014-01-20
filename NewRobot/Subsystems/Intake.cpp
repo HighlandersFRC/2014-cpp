@@ -1,6 +1,6 @@
 #include "Intake.h"
 #include "../Robotmap.h"
-/*TODO: Double Solenoid (used as single solenoid) Pneumatics
+/*TODO: Double Solenoid (used as single solenoid) pneumatics
  * must raise the intake when ready to fire Kicker through button.
  * A PG 188 motor must be configured for the axel to drive the
  * intake wheels forward, backward, or stopped.

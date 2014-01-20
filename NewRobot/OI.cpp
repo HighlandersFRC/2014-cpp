@@ -2,6 +2,7 @@
 
 // Include commands
 #include "Commands/MoveKicker.h"
+#include "SmartDashboard/SmartDashboard.h"
 
 /*OI::OI()
  * Inputs  -
@@ -51,3 +52,4 @@ Joystick* OI::getJoystick1() {
 Joystick* OI::getJoystick2() {
 	return stick2;
 }
+
