@@ -9,7 +9,7 @@
  *  driver to run it up and down.
 */
 Platform::Platform() : Subsystem("Platform") {
-	
+	Belt_Motor = new Jaguar(BELT_MOTOR);
 }
     
 void Platform::InitDefaultCommand() {
