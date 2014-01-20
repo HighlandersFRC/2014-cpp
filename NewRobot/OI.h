@@ -15,10 +15,17 @@ private:
 	static const int SHIFT_UP_BTN    = 3;
 	static const int SHIFT_DOWN_BTN  = 4;
 	
+	static const int INTAKE_UP_BTN   = 7;
+	static const int INTAKE_DOWN_BTN = 8;
+	static const int INTAKE_STOP_BTN = 9;
+	
 	Joystick *stick1;
 	Joystick *stick2;
 	JoystickButton *Button1;
 	JoystickButton *Button2;
+	JoystickButton *Button3;
+	JoystickButton *Button4;
+	JoystickButton *Button5;
 
 public:
 	OI();
