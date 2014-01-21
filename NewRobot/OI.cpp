@@ -22,7 +22,7 @@ OI::OI() {
 	
 	Button2 = new JoystickButton(stick2, REVERSE_BTN);
 	Button2->WhileHeld(new MoveKicker(1));
-	
+	 
 	Button3 = new JoystickButton(stick1, INTAKE_UP_BTN);
 	Button3->WhileHeld(new IntakeCMD(0.2));
 	
