@@ -23,18 +23,13 @@ OI::OI() {
 	Button2 = new JoystickButton(stick2, REVERSE_BTN);
 	Button2->WhileHeld(new MoveKicker(1));
 	 
-	Button3 = new JoystickButton(stick1, INTAKE_UP_BTN);
-	Button3->WhileHeld(new IntakeCMD(0.2));
+	Button3 = new JoystickButton(stick2, INTAKE_IN_BTN);
+	Button3->WhileHeld(new IntakeCMD(0.2)); 
 	
-	Button4 = new JoystickButton(stick1, INTAKE_DOWN_BTN);
+	Button4 = new JoystickButton(stick1, INTAKE_OUT_BTN);
 	Button4->WhileHeld(new IntakeCMD(-0.2));
 	
-	Button5 = new JoystickButton(stick1, INTAKE_STOP_BTN);
-	Button5->WhileHeld(new IntakeCMD(0.0));
-	
-	Shift_Up_btn   = new JoystickButton(stick1, SHIFT_UP_BTN);
-	
-    Shift_Down_btn = new JoystickButton(stick1, SHIFT_DOWN_BTN);
+	Shift_Down_btn   = new JoystickButton(stick2, SHIFT_DOWN_BTN);
 }
 
 

@@ -12,12 +12,10 @@ private:
 	static const int KICKER_BTN      = 1;
 	static const int REVERSE_BTN     = 2;
 	
-	static const int SHIFT_UP_BTN    = 3;
-	static const int SHIFT_DOWN_BTN  = 4;
+	static const int SHIFT_DOWN_BTN    = 2;
 	
-	static const int INTAKE_UP_BTN   = 6;
-	static const int INTAKE_DOWN_BTN = 7;
-	static const int INTAKE_STOP_BTN = 8;
+	static const int INTAKE_OUT_BTN   = 1;
+	static const int INTAKE_IN_BTN = 1;
 	
 	Joystick *stick1;
 	Joystick *stick2;
