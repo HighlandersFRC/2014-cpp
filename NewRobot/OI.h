@@ -2,31 +2,27 @@
 #define OI_H
 
 #include "WPILib.h"
+#include "RobotMap.h"
 
 class OI {
 private:
-    // TODO: Investigate moving these to robotmap.h
-	static const int JOYSTICK_PORT1  = 1;
-	static const int JOYSTICK_PORT2  = 2;
+	Joystick *joystick1;
+	Joystick *joystick2;
+	Joystick *joystick3;
+	JoystickButton *kick_btn;
+	JoystickButton *reload_btn;
+	JoystickButton *shift_up_btn;
+	JoystickButton *shift_down_btn;
 	
-	static const int KICKER_BTN      = 1;
-	static const int REVERSE_BTN     = 2;
-	
-	static const int SHIFT_UP_BTN    = 3;
-	static const int SHIFT_DOWN_BTN  = 4;
-	
-	Joystick *stick1;
-	Joystick *stick2;
-	JoystickButton *Button1;
-	JoystickButton *Button2;
-
 public:
 	OI();
 	Joystick *getJoystick1();
 	Joystick *getJoystick2();
-	
-	JoystickButton *Shift_Up_btn;
-	JoystickButton *Shift_Down_btn;
+	Joystick *getJoystick3();
+	JoystickButton *getKickBtn();
+	JoystickButton *getReloadBtn();
+	JoystickButton *getShiftUpBtn();
+	JoystickButton *getShiftDownBtn();
 };
 
 #endif
