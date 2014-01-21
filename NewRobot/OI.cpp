@@ -22,6 +22,13 @@ OI::OI() {
 	Button2 = new JoystickButton(stick2, REVERSE_BTN);
 	Button2->WhileHeld(new MoveKicker(1));
 	
+	Kick Power = stick4->GetAxis(z);
+	Platform = stick3->GetAxis(y);
+	
+	Kick_Btn	   = new JoystickButton(stick4, KICK_BTN);
+	
+	Kick_Prep_Btn  = new JoystickButton(stick4, KICK_PREP_BTN);
+	
 	Shift_Up_btn   = new JoystickButton(stick1, SHIFT_UP_BTN);
 	
     Shift_Down_btn = new JoystickButton(stick1, SHIFT_DOWN_BTN);

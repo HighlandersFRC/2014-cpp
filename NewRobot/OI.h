@@ -15,8 +15,14 @@ private:
 	static const int SHIFT_UP_BTN    = 3;
 	static const int SHIFT_DOWN_BTN  = 4;
 	
+	static const int KICK_BTN  		 = 1;
+	static const int KICK_PREP_BTN   = 2;
+	
+	
 	Joystick *stick1;
 	Joystick *stick2;
+	Joystick *stick3;
+	Joystick *stick4;
 	JoystickButton *Button1;
 	JoystickButton *Button2;
 
@@ -27,6 +33,10 @@ public:
 	
 	JoystickButton *Shift_Up_btn;
 	JoystickButton *Shift_Down_btn;
+	
+	JoystickButton *Kick_Btn;
+	JoystickButton *Kick_Prep_Btn;
+	
 };
 
 #endif
