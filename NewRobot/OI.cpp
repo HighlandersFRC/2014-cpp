@@ -30,7 +30,7 @@ OI::OI() {
 	Button4->WhileHeld(new IntakeCMD(-0.2));
 	
 	Button5 = new JoystickButton(stick1, INTAKE_STOP_BTN);
-	Button5->WhileHeld(new IntakeCMD(0));
+	Button5->WhileHeld(new IntakeCMD(0.0));
 	
 	Shift_Up_btn   = new JoystickButton(stick1, SHIFT_UP_BTN);
 	
