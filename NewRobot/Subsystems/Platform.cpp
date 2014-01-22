@@ -1,5 +1,7 @@
 #include "Platform.h"
 #include "../Robotmap.h"
+#include "../Commands/PlatformControl.h"
+
 /*TODO: The platform needs two limit switches (one at
  *  the top and one at the bottom) to stop the platform
  *  if it gets too close to the end. It will also have
@@ -9,15 +11,18 @@
  *  driver to run it up and down.
 */
 Platform::Platform() : Subsystem("Platform") {
-	
+	Belt_Motor = new Jaguar(BELT_MOTOR);
 }
     
 void Platform::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
-	//SetDefaultCommand(new MySpecialCommand());
+	SetDefaultCommand(new PlatformControl());
 }
 
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
+void Platform::setSpeed(double speed) {
+	Belt_Motor->SetSpeed(speed);
+}

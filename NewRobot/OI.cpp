@@ -1,4 +1,6 @@
 #include "OI.h"
+#include "RobotMap.h"
+
 
 // Include commands
 #include "Commands/MoveKicker.h"
@@ -13,18 +15,25 @@
  * Instilizes the operator interfaces
 */
 OI::OI() {
-	stick1 = new Joystick(JOYSTICK_PORT1);
-	stick2 = new Joystick(JOYSTICK_PORT2);
+	joystick1 = new Joystick(JOYSTICK_PORT1);
+	joystick2 = new Joystick(JOYSTICK_PORT2);
+	joystick3 = new Joystick(JOYSTICK_PORT3);
+	joystick4 = new Joystick(JOYSTICK_PORT4);
 	
-	Button1 = new JoystickButton(stick2, KICKER_BTN);
-	Button1->WhileHeld(new MoveKicker(0));
+	kick_btn = new JoystickButton(joystick2, KICK_BTN);
+	kick_btn->WhileHeld(new MoveKicker(0));
 	
-	Button2 = new JoystickButton(stick2, REVERSE_BTN);
-	Button2->WhileHeld(new MoveKicker(1));
+	reload_btn = new JoystickButton(joystick2, RELOAD_BTN);
+	reload_btn->WhileHeld(new MoveKicker(1));
 	
-	Shift_Up_btn   = new JoystickButton(stick1, SHIFT_UP_BTN);
 	
-    Shift_Down_btn = new JoystickButton(stick1, SHIFT_DOWN_BTN);
+	kick_btn	   = new JoystickButton(joystick4, KICK_BTN);
+	
+	reload_btn     = new JoystickButton(joystick4, RELOAD_BTN);
+	
+	shift_up_btn   = new JoystickButton(joystick1, SHIFT_UP_BTN);
+	
+    shift_down_btn = new JoystickButton(joystick1, SHIFT_DOWN_BTN);
 }
 
 
@@ -37,7 +46,7 @@ OI::OI() {
  * Returns joystick 1
 */
 Joystick* OI::getJoystick1() {
-	return stick1;
+	return joystick1;
 }
 
 
@@ -50,6 +59,29 @@ Joystick* OI::getJoystick1() {
  * Returns joystick 2
 */
 Joystick* OI::getJoystick2() {
-	return stick2;
+	return joystick2;
 }
 
+Joystick* OI::getJoystick3() {
+	return joystick3;
+}
+
+Joystick* OI::getJoystick4() {
+	return joystick4;
+}
+
+JoystickButton* OI::getKickBtn() {
+	return kick_btn;
+}
+
+JoystickButton* OI::getReloadBtn() {
+	return reload_btn;
+}
+
+JoystickButton* OI::getShiftUpBtn() {
+	return shift_up_btn;
+}
+
+JoystickButton* OI::getShiftDownBtn() {
+	return shift_down_btn;
+}
