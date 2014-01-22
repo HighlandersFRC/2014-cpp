@@ -12,6 +12,7 @@
 #include "Subsystems/Kicker.h"
 #include "Subsystems/AirCompressor.h"
 #include "Subsystems/Intake.h"
+#include "Subsystems/Platform.h"
 
 /*
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -32,6 +33,7 @@ public:
 	static Kicker *kicker;
 	static AirCompressor *aircompressor;
 	static Intake *intake;
+	static Platform *platform;
 };
 
 #endif

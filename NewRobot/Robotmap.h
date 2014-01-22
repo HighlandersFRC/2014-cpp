@@ -21,6 +21,7 @@
 #define GYRO_SENS              1           // Analog in      gyro for direction               chassis          Linda
 #define SHIFTER_A              1           // Pneumatic      forward gear shifter             chassis          Zack
 #define SHIFTER_B              2           // Pneumatic      reverse gear shifter             chassis          Zack
+
 #define COMPRESSOR_RELAY       1           // Relay          compressor motor relay           compressor       Drew
 #define COMPRESSOR_SWITCH      3           // I/O            compressor limit switch          compressor       Drew
                                                                                                                
@@ -30,5 +31,21 @@
 #define BELT_MOTOR             8           // PWM Out        elevation control for platform   platform         Zack
                                                                                                                
 #define INTAKE_MOTOR           7           // PWM Out        ball grab motor                  Intake           Drew
+
+
+//***************************** Joystick Controls *****************************//
+// Controllers
+//         Name                Controller Number
+const int JOYSTICK_PORT1     = 1;
+const int JOYSTICK_PORT2     = 2;
+const int JOYSTICK_PORT3     = 3;
+const int JOYSTICK_PORT4     = 4;
+
+// Buttons
+//        Name                 Button Number         Controller Number
+const int KICK_BTN           = 1;                    // JOYSTICK_PORT1
+const int SHIFT_UP_BTN       = 3;                    // JOYSTICK_PORT1
+const int SHIFT_DOWN_BTN     = 2;                    // JOYSTICK_PORT1
+const int RELOAD_BTN         = 5;                    // JOYSTICK_PORT1
 
 #endif

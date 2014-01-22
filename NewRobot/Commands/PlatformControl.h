@@ -1,22 +1,21 @@
-#ifndef MOVEKICKER_H
-#define MOVEKICKER_H
+#ifndef PLATFORMCONTROL_H
+#define PLATFORMCONTROL_H
 
 #include "../CommandBase.h"
 
-
-class MoveKicker: public CommandBase {
-private:
-	double speed;
-	int    Mode;
-
+/**
+ *
+ *
+ * @author ExampleAuthor
+ */
+class PlatformControl: public CommandBase {
 public:
-	MoveKicker(int);
+	PlatformControl();
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
 	virtual void End();
 	virtual void Interrupted();
-	double KickSpdFwd;
 };
 
 #endif
