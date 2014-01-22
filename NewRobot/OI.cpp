@@ -4,6 +4,7 @@
 
 // Include commands
 #include "Commands/MoveKicker.h"
+#include "Commands/IntakeCMD.h"
 #include "SmartDashboard/SmartDashboard.h"
 
 /*OI::OI()
@@ -29,11 +30,24 @@ OI::OI() {
 	
 	kick_btn	   = new JoystickButton(joystick4, KICK_BTN);
 	
+<<<<<<< HEAD
 	reload_btn     = new JoystickButton(joystick4, RELOAD_BTN);
 	
 	shift_up_btn   = new JoystickButton(joystick1, SHIFT_UP_BTN);
 	
     shift_down_btn = new JoystickButton(joystick1, SHIFT_DOWN_BTN);
+=======
+	Button2 = new JoystickButton(stick2, REVERSE_BTN);
+	Button2->WhileHeld(new MoveKicker(1));
+	 
+	Button3 = new JoystickButton(stick2, INTAKE_IN_BTN);
+	Button3->WhileHeld(new IntakeCMD(0.2)); 
+	
+	Button4 = new JoystickButton(stick1, INTAKE_OUT_BTN);
+	Button4->WhileHeld(new IntakeCMD(-0.2));
+	
+	Shift_Down_btn   = new JoystickButton(stick2, SHIFT_DOWN_BTN);
+>>>>>>> drewJ_compressor
 }
 
 
