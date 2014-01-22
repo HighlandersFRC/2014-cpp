@@ -1,4 +1,6 @@
 #include "OI.h"
+#include "RobotMap.h"
+
 
 // Include commands
 #include "Commands/MoveKicker.h"
@@ -24,16 +26,14 @@ OI::OI() {
 	reload_btn = new JoystickButton(joystick2, RELOAD_BTN);
 	reload_btn->WhileHeld(new MoveKicker(1));
 	
-	Kick_Power = joystick4->GetAxis(z);
-	Platform   = joystick3->GetAxis(y);
 	
-	Kick_Btn	   = new JoystickButton(joystick4, KICK_BTN);
+	kick_btn	   = new JoystickButton(joystick4, KICK_BTN);
 	
-	Kick_Prep_Btn  = new JoystickButton(joystick4, KICK_PREP_BTN);
+	reload_btn     = new JoystickButton(joystick4, RELOAD_BTN);
 	
-	Shift_Up_btn   = new JoystickButton(joystick1, SHIFT_UP_BTN);
+	shift_up_btn   = new JoystickButton(joystick1, SHIFT_UP_BTN);
 	
-    Shift_Down_btn = new JoystickButton(joystick1, SHIFT_DOWN_BTN);
+    shift_down_btn = new JoystickButton(joystick1, SHIFT_DOWN_BTN);
 }
 
 
