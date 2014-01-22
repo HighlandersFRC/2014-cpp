@@ -11,13 +11,11 @@ private:
 	Joystick *joystick3;
 	Joystick *joystick4;
 	
-<<<<<<< HEAD
 	JoystickButton *kick_btn;
 	JoystickButton *reload_btn;
 	JoystickButton *shift_up_btn;
 	JoystickButton *shift_down_btn;
 	
-=======
 	static const int SHIFT_DOWN_BTN    = 2;
 	
 	static const int INTAKE_OUT_BTN   = 1;
@@ -31,7 +29,6 @@ private:
 	JoystickButton *Button4;
 	JoystickButton *Button5;
 
->>>>>>> drewJ_compressor
 public:
 	OI();
 	Joystick *getJoystick1();
