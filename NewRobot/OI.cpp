@@ -16,6 +16,7 @@ OI::OI() {
 	joystick1 = new Joystick(JOYSTICK_PORT1);
 	joystick2 = new Joystick(JOYSTICK_PORT2);
 	joystick3 = new Joystick(JOYSTICK_PORT3);
+	joystick4 = new Joystick(JOYSTICK_PORT4);
 	
 	kick_btn = new JoystickButton(joystick2, KICK_BTN);
 	kick_btn->WhileHeld(new MoveKicker(0));
@@ -23,9 +24,16 @@ OI::OI() {
 	reload_btn = new JoystickButton(joystick2, RELOAD_BTN);
 	reload_btn->WhileHeld(new MoveKicker(1));
 	
-	shift_up_btn   = new JoystickButton(joystick1, SHIFT_UP_BTN);
+	Kick_Power = joystick4->GetAxis(z);
+	Platform   = joystick3->GetAxis(y);
 	
-    shift_down_btn = new JoystickButton(joystick1, SHIFT_DOWN_BTN);
+	Kick_Btn	   = new JoystickButton(joystick4, KICK_BTN);
+	
+	Kick_Prep_Btn  = new JoystickButton(joystick4, KICK_PREP_BTN);
+	
+	Shift_Up_btn   = new JoystickButton(joystick1, SHIFT_UP_BTN);
+	
+    Shift_Down_btn = new JoystickButton(joystick1, SHIFT_DOWN_BTN);
 }
 
 
@@ -56,6 +64,10 @@ Joystick* OI::getJoystick2() {
 
 Joystick* OI::getJoystick3() {
 	return joystick3;
+}
+
+Joystick* OI::getJoystick4() {
+	return joystick4;
 }
 
 JoystickButton* OI::getKickBtn() {
