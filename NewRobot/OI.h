@@ -16,6 +16,19 @@ private:
 	JoystickButton *shift_up_btn;
 	JoystickButton *shift_down_btn;
 	
+	static const int SHIFT_DOWN_BTN    = 2;
+	
+	static const int INTAKE_OUT_BTN   = 1;
+	static const int INTAKE_IN_BTN = 1;
+	
+	Joystick *stick1;
+	Joystick *stick2;
+	JoystickButton *Button1;
+	JoystickButton *Button2;
+	JoystickButton *Button3;
+	JoystickButton *Button4;
+	JoystickButton *Button5;
+
 public:
 	OI();
 	Joystick *getJoystick1();
