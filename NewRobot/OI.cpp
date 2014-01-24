@@ -4,6 +4,7 @@
 
 // Include commands
 #include "Commands/MoveKicker.h"
+#include "Commands/IntakeCMD.h"
 #include "SmartDashboard/SmartDashboard.h"
 
 /*OI::OI()
@@ -28,7 +29,7 @@ OI::OI() {
 	
 	
 	kick_btn	   = new JoystickButton(joystick4, KICK_BTN);
-	
+
 	reload_btn     = new JoystickButton(joystick4, RELOAD_BTN);
 	
 	shift_up_btn   = new JoystickButton(joystick1, SHIFT_UP_BTN);
