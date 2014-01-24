@@ -28,8 +28,6 @@ public:
 	JoystickButton *getReloadBtn();
 	JoystickButton *getShiftUpBtn();
 	JoystickButton *getShiftDownBtn();
-	JoystickButton *getIntakeOutBtn();
-	JoystickButton *getIntakeInBtn();
 };
 
 #endif

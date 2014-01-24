@@ -47,5 +47,7 @@ const int KICK_BTN           = 1;                    // JOYSTICK_PORT1
 const int SHIFT_UP_BTN       = 3;                    // JOYSTICK_PORT1
 const int SHIFT_DOWN_BTN     = 2;                    // JOYSTICK_PORT1
 const int RELOAD_BTN         = 5;                    // JOYSTICK_PORT1
+const int INTAKE_OUT_BTN     = 1;					 // JOYSTICK_PORT1
+const int INTAKE_IN_BTN		 = 1;					 // JOYSTICK_PORT2
 
 #endif
