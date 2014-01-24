@@ -30,7 +30,7 @@ OI::OI() {
 	intake_out_btn = new JoystickButton(joystick1, INTAKE_OUT_BTN);
 	intake_out_btn->WhileHeld(new IntakeCMD(-0.2));
 	
-	intake_in_btn = new JoystickButton(joystick1, INTAKE_OUT_BTN);
+	intake_in_btn = new JoystickButton(joystick2, INTAKE_IN_BTN);
 	intake_in_btn->WhileHeld(new IntakeCMD(0.2));
 	
 	kick_btn	   = new JoystickButton(joystick4, KICK_BTN);
