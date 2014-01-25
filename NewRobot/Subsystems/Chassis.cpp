@@ -19,11 +19,12 @@ Chassis::Chassis() : Subsystem("Chassis") {
 	left_encode   = new Encoder(LEFT_ENCODER_A, LEFT_ENCODER_B, false);
 	left_encode->Start();
 	
-	dist_sens_1   = new AnalogChannel(DIST_SENS);
-	
 	gyro_sens     = new Gyro(1);
 	
 	shifter       = new DoubleSolenoid(SHIFTER_A, SHIFTER_B);
+	
+	
+	Pi = 4.0 * atan(1.0);
 }
 
 
@@ -62,6 +63,12 @@ void Chassis::tankDrive(double left, double right){
 }
 
 
+void Chassis::tankCosDrive(double left, double right) {
+	double motor_l = (left  < 0 ? -1 : 1) * ( sin( left  * Pi - (Pi / 2) ) / 2) + ( 1 / 2);
+	double motor_r = (right < 0 ? -1 : 1) * ( sin( right * Pi - (Pi / 2) ) / 2) + ( 1 / 2);
+	this->tankDrive(motor_l, motor_r);
+}
+
 /*Chassis::arcadeDrive(Joystick*)
  * Inputs  -
  * 	joystick (Joystick*)
@@ -74,20 +81,7 @@ void Chassis::tankDrive(double left, double right){
 void Chassis::arcadeDrive(Joystick* stick){
 	//This should never be called!
 	// We will never use Arcade drive!
-}
-
-
-///Chassis::getDistSens()
-///
-///@brief This function moves the chassis based on y joystick axis position.
-///
-///@param left  : double argument for left joystick y-axis (range 1 to -1)
-///@param right : double argument for right joystick y-axis (range 1 to -1)
-///
-///This function returns a distance in inches as a double.
-///
-double Chassis::getDistSens() {
-	return ((dist_sens_1->GetAverageVoltage()/5)*254);
+	cout<<"Function Not Implemented: Chassis::arcadeDrive(Joystick*)\n";
 }
 
 

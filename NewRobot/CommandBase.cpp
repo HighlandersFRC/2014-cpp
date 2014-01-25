@@ -8,14 +8,15 @@ CommandBase::CommandBase() : Command() {
 }
 
 // Initialize Operator Interface to NULL
-OI*      CommandBase::oi      = NULL;
+OI* CommandBase::oi = NULL;
 
 // Initialize single static instance of all of subsystems (set to NULL)
-Chassis* CommandBase::chassis             = NULL;
-Kicker*  CommandBase::kicker              = NULL;
-AirCompressor* CommandBase::aircompressor = NULL;
-Intake* CommandBase::intake               = NULL;
-Platform* CommandBase::platform           = NULL;
+Chassis*       CommandBase::chassis            = NULL;
+Kicker*        CommandBase::kicker             = NULL;
+AirCompressor* CommandBase::aircompressor      = NULL;
+Intake*        CommandBase::intake             = NULL;
+Platform*      CommandBase::platform           = NULL;
+Sensors*       CommandBase::sensors            = NULL;
 
 /* CommandBase::init()
  * Inputs  -
@@ -35,4 +36,5 @@ void CommandBase::init() {
 	aircompressor = new AirCompressor();
 	intake        = new Intake();
 	platform      = new Platform();
+	sensors       = new Sensors();
 }

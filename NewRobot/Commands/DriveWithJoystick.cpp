@@ -38,7 +38,9 @@ void DriveWithJoystick::Initialize() {
 */
 void DriveWithJoystick::Execute() {
 	chassis->tankDrive(oi->getJoystick1()->GetY(), oi->getJoystick2()->GetY());
-	//cout<<"Distance Sensor: "<<chassis->getDistSens()<<"\n";
+	
+	//chassis->tankCosDrive(oi->getJoystick1()->GetY(), oi->getJoystick2()->GetY());
+	
 	//cout<<"Motor Encoder: "<<chassis->encoderGet()<<"\n";
 	//cout<<"Gyro: "<<chassis->getAngle()<<"\n";
 	

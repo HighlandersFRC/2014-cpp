@@ -2,7 +2,7 @@
 #define CHASSIS_H
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
-
+#include <math.h>
 
 class Chassis: public Subsystem {
 private:
@@ -14,9 +14,10 @@ private:
 	Talon          *drive_right_2;
 	
 	Encoder        *left_encode;
-	AnalogChannel  *dist_sens_1;
 	Gyro           *gyro_sens;
 	DoubleSolenoid *shifter;
+	
+	double Pi;
 	
 	double cube(double);
 	
@@ -25,8 +26,8 @@ public:
 	void InitDefaultCommand();
 	void tankDrive(double, double);
 	void tankExpDrive(double, double);
+	void tankCosDrive(double, double);
 	void arcadeDrive(Joystick *stick);
-	double getDistSens();
 	void encoderReset();
 	double encoderGet();
 	void gyroReset();
