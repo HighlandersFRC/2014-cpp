@@ -12,6 +12,7 @@
 */
 Platform::Platform() : Subsystem("Platform") {
 	Belt_Motor = new Jaguar(BELT_MOTOR);
+//	Encoder = new Encoder();
 }
     
 void Platform::InitDefaultCommand() {

@@ -24,6 +24,8 @@ private:
 		
 		//SmartDashboard Values (Defaults for values that read from SmartDashboard)
 		SmartDashboard::PutNumber("Kicker Max Speed Forward", .75);
+		SmartDashboard::PutNumber("Intake Speed", .2);
+		//SmartDashboard::PutNumber("Belt Speed, ")
 	}
 	
 	

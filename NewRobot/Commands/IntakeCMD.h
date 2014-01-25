@@ -11,7 +11,6 @@
 class IntakeCMD: public CommandBase {
 private:
 	double speed;
-	
 public:
 	IntakeCMD(double);
 	virtual void Initialize();
@@ -19,6 +18,8 @@ public:
 	virtual bool IsFinished();
 	virtual void End();
 	virtual void Interrupted();
+	double IntakeSpeed;
+	double val;
 };
 
 #endif
