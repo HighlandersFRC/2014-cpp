@@ -12,10 +12,12 @@ private:
 
 	JoystickButton *kick_btn;
 	JoystickButton *reload_btn;
-	JoystickButton *shift_up_btn;
+	//JoystickButton *shift_up_btn;
 	JoystickButton *shift_down_btn;
 	JoystickButton *intake_out_btn;
 	JoystickButton *intake_in_btn;
+	JoystickButton *intake_elevate_up;
+	JoystickButton *intake_elevate_down;
 
 public:
 	OI();
@@ -26,7 +28,7 @@ public:
 	
 	JoystickButton *getKickBtn();
 	JoystickButton *getReloadBtn();
-	JoystickButton *getShiftUpBtn();
+	//JoystickButton *getShiftUpBtn();
 	JoystickButton *getShiftDownBtn();
 };
 
