@@ -13,6 +13,7 @@
 #include "Subsystems/AirCompressor.h"
 #include "Subsystems/Intake.h"
 #include "Subsystems/Platform.h"
+#include "Subsystems/Nomos.h"
 #include "Subsystems/Sensors.h"
 
 /*
@@ -33,8 +34,9 @@ public:
 	static Chassis       *chassis;
 	static Kicker        *kicker;
 	static AirCompressor *aircompressor;
-	static Intake        *intake;
-	static Platform      *platform;
+	static Intake *intake;
+	static Platform *platform;
+	static Nomos *nomos;
 	static Sensors       *sensors;
 };
 

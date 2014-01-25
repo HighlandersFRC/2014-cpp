@@ -30,7 +30,10 @@
                                                                                                                
 #define BELT_MOTOR             8           // PWM Out        elevation control for platform   platform         Zack
                                                                                                                
-#define INTAKE_MOTOR           7           // PWM Out        ball grab motor                  Intake           Drew
+#define INTAKE_MOTOR           7           // PWM Out        ball grab motor                  intake           Drew
+
+#define SOL_A				   3		   // Pneumatic		 forward solenoid for intake	  nomos			   Drew
+#define SOL_B				   4		   // Pneumatic		 reverse solenoid for intake	  nomos			   Drew
 
 
 //***************************** Joystick Controls *****************************//
@@ -43,11 +46,16 @@ const int JOYSTICK_PORT4     = 4;
 
 // Buttons
 //        Name                 Button Number         Controller Number
-const int KICK_BTN           = 1;                    // JOYSTICK_PORT1
-const int SHIFT_UP_BTN       = 3;                    // JOYSTICK_PORT1
-const int SHIFT_DOWN_BTN     = 2;                    // JOYSTICK_PORT1
-const int RELOAD_BTN         = 5;                    // JOYSTICK_PORT1
 const int INTAKE_OUT_BTN     = 1;					 // JOYSTICK_PORT1
+const int INTAKE_ELEVATE_DOWN =2;					 //	JOYSTICK_PORT1
+const int INTAKE_ELEVATE_UP  = 3;					 // JOYSTICK_PORT1
+
 const int INTAKE_IN_BTN		 = 1;					 // JOYSTICK_PORT2
+const int SHIFT_DOWN_BTN     = 2;                    // JOYSTICK_PORT2
+//const int SHIFT_UP_BTN       = 3;                    // JOYSTICK_PORT2
+
+const int KICK_BTN           = 1;                    // JOYSTICK_PORT4
+const int RELOAD_BTN         = 2;                    // JOYSTICK_PORT4
+
 
 #endif

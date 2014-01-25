@@ -44,7 +44,7 @@ void DriveWithJoystick::Execute() {
 	//cout<<"Motor Encoder: "<<chassis->encoderGet()<<"\n";
 	//cout<<"Gyro: "<<chassis->getAngle()<<"\n";
 	
-	chassis->setShifter(oi->getShiftUpBtn()->Get());
+	chassis->setShifter(oi->getShiftDownBtn()->Get());
 }
 
 
