@@ -13,10 +13,12 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	Talon *intakeRollers;
+	DoubleSolenoid *sol;
 public:
 	Intake();
 	void InitDefaultCommand();
 	void Set(double);
+	void MoveSolenoid(bool);
 };
 
 #endif

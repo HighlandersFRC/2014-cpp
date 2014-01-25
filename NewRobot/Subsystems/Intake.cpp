@@ -7,8 +7,9 @@
 */
 Intake::Intake() : Subsystem("Intake") {
 	intakeRollers = new Talon(INTAKE_MOTOR);
+	sol = new DoubleSolenoid(SOL_A, SOL_B);
 }
-    
+
 void Intake::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	//SetDefaultCommand(new MySpecialCommand());
@@ -16,6 +17,14 @@ void Intake::InitDefaultCommand() {
 
 void Intake::Set(double num) {
 	intakeRollers->Set(num);
+}
+
+void Intake::MoveSolenoid(bool val) {
+	if(val) {
+		sol->Set(sol->kForward);
+	} else {
+		sol->Set(sol->kReverse);
+	}
 }
 
 

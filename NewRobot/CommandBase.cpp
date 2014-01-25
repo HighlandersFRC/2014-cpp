@@ -16,7 +16,6 @@ Kicker*  CommandBase::kicker              = NULL;
 AirCompressor* CommandBase::aircompressor = NULL;
 Intake* CommandBase::intake               = NULL;
 Platform* CommandBase::platform           = NULL;
-Nomos* CommandBase::nomos				  = NULL;
 Sensors*       CommandBase::sensors       = NULL;
 
 /* CommandBase::init()
@@ -37,6 +36,5 @@ void CommandBase::init() {
 	aircompressor = new AirCompressor();
 	intake        = new Intake();
 	platform      = new Platform();
-	nomos		  = new Nomos();
 	sensors       = new Sensors();
 }
