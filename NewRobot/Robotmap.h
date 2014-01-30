@@ -29,7 +29,9 @@
 #define KICKER_MOTOR_2         6           // PWM Out        Kicker Motor 2                   kicker           Linda
                                                                                                                
 #define BELT_MOTOR             8           // PWM Out        elevation control for platform   platform         Zack
-                                                                                                               
+#define BELT_ENCODER_A		   4		   // I/O			 Platform Encoder data A port	  platform
+#define BELT_ENCODER_B		   5		   // I/O			 Platform Encoder data B port	  platform
+
 #define INTAKE_MOTOR           7           // PWM Out        ball grab motor                  intake           Drew
 
 #define SOL_A				   3		   // Pneumatic		 forward solenoid for intake	  nomos			   Drew
