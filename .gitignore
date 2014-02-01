@@ -16,10 +16,7 @@
 .metadata
 *.d
 PPC603gnu
-.cproject
-.wrmakefile
-.wproject
-.project
+
 .wrproject
 
 # Robot Builder Files
