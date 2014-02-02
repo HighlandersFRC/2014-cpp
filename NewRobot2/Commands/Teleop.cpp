@@ -78,14 +78,14 @@ void Teleop::Execute() {
 	chassis->tankDrive(left_driver_1->GetY(), right_driver_1->GetY());
 	
 	//*************** Move Chassis Shifter ***********************//
-	chassis->setShifter(shifter_btn->Get());
+	chassis->setShifter(!shifter_btn->Get());
 	
 	
 	
 	
 	//*************** Move Kicker Arm ****************************//
-	double MaxKickerFwdSpd = 0.75;
-	double MaxKickerRvsSpd = -0.40;
+	double MaxKickerFwdSpd = -1.00;
+	double MaxKickerRvsSpd = 0.50;
 	
 	if (kick_btn->Get() && !reload_btn->Get()) {
 		// Kick Kicker Arm
@@ -123,7 +123,7 @@ void Teleop::Execute() {
 	if (intake_engage_btn->Get()){
 		// Move intake arm down and spin motors
 		intake->MoveSolenoid(true);
-		intake->Set(0.50);
+		intake->Set(-1.00);
 	}
 	else {
 		// Move intake arm up and stop motors
