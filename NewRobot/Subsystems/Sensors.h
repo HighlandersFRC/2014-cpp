@@ -6,14 +6,17 @@
 class Sensors: public Subsystem {
 private:
 	AnalogChannel *DistanceSensor;
+	Gyro *Gyroscope;
 	
 public:
 	Sensors();
 	void InitDefaultCommand();
 	double get_DS_Distance();
+	double get_Gyro_Distance();
 	double get_V_Distance();
 	double get_V_X();
 	double get_V_Y();
+	void Drive_Straight();
 };
 
 #endif

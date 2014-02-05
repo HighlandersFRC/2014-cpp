@@ -14,6 +14,7 @@ void SensorsUpdate::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void SensorsUpdate::Execute() {
 	sensors->get_DS_Distance();
+	sensors->get_Gyro_Distance();
 }
 
 // Make this return true when this Command no longer needs to run execute()

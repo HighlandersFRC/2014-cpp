@@ -6,7 +6,7 @@
 /**
  *
  *
- * @author 4499 The Highlanders
+ * @author ExampleAuthor
  */
 class PlatformControl: public CommandBase {
 public:
