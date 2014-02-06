@@ -31,6 +31,10 @@ double Sensors::get_Gyro_Distance() {
 	return angle;
 }
 
+void Sensors::Gyro_Reset() {
+	Gyroscope->Reset();
+}
+
 void Sensors::Drive_Straight() {
 // No idea if this works, I don't know much about moving the robot
 // in autonomous. uncomment if you think it will work.

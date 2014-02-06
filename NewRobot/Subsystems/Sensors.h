@@ -13,6 +13,7 @@ public:
 	void InitDefaultCommand();
 	double get_DS_Distance();
 	double get_Gyro_Distance();
+	void Gyro_Reset();
 	double get_V_Distance();
 	double get_V_X();
 	double get_V_Y();
