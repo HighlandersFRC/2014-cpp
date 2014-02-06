@@ -17,8 +17,9 @@
 #define RIGHT_DRIVE_MOTOR_2		4       // PWM Out			Right drive motor port 2        chassis         Zack
 #define LEFT_ENCODER_A			1       // I/O				Left Encoder data A port        chassis         Zack
 #define LEFT_ENCODER_B			2       // I/O				Left Encoder data B port        chassis         Zack
-#define DIST_SENS				2       // Analog in		Front Distance Sensor           sensors         Zack
-#define GYRO_SENS				1       // Analog in		gyro for direction              chassis         Linda
+#define DIST_SENS				3       // Analog in		Front Distance Sensor           sensors         Zack
+#define GYRO_TEMP				2		// Analog in		Gyro Temperature sensor			sensors			Linda
+#define GYRO_SENS				1       // Analog in		gyro for direction              sensors         Linda
 #define SHIFTER_A				1       // Pneumatic		forward gear shifter            chassis         Zack
 #define SHIFTER_B				2       // Pneumatic		reverse gear shifter            chassis         Zack
 
