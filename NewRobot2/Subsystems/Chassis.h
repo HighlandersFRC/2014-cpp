@@ -14,6 +14,7 @@ private:
 	Talon          *drive_right_2;
 	
 	Encoder        *left_encode;
+	Encoder 	   *right_encode;
 	Gyro           *gyro_sens;
 	DoubleSolenoid *shifter;
 	
@@ -29,7 +30,8 @@ public:
 	void tankCosDrive(double, double);
 	void arcadeDrive(Joystick *stick);
 	void encoderReset();
-	double encoderGet();
+	double encoderLeftGet();
+	double encoderRightGet();
 	void gyroReset();
 	double getAngle();
 	void setShifter(bool);

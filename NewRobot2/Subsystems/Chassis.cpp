@@ -16,6 +16,8 @@ Chassis::Chassis() : Subsystem("Chassis") {
 	
 	left_encode   = new Encoder(LEFT_ENCODER_A, LEFT_ENCODER_B, false);
 	left_encode->Start();
+	right_encode  = new Encoder(RIGHT_ENCODER_A, RIGHT_ENCODER_B, false);
+	right_encode->Start();
 	
 	gyro_sens     = new Gyro(1);
 	
@@ -85,13 +87,17 @@ void Chassis::arcadeDrive(Joystick* stick){
 ///
 void Chassis::encoderReset() {
 	left_encode->Reset();
+	right_encode->Reset();
 }
 
 
-double Chassis::encoderGet() {
+double Chassis::encoderLeftGet() {
 	return left_encode->Get();
 }
 
+double Chassis::encoderRightGet() {
+	return right_encode->Get();
+}
 
 ///Chassis::getAngle()
 ///
