@@ -36,12 +36,10 @@ void Sensors::Gyro_Reset() {
 }
 
 void Sensors::Drive_Straight() {
-// No idea if this works, I don't know much about moving the robot
-// in autonomous. uncomment if you think it will work.
 
-//	float angle = gyro.GetAngle();
-//	myRobot.Drive(-1.0, -angle * Kp);
-//	Wait(0.004);
+	float angle = gyro.GetAngle();
+	myRobot.Drive(-1.0, -angle * Kp);
+	Wait(0.004);
 }
 
 double Sensors::get_V_Distance() {
