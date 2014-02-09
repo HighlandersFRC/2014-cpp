@@ -22,6 +22,7 @@ public:
 	double ReturnPIDInput();
 	void UsePIDOutput(double output);
 	void InitDefaultCommand();
+	
 };
 
 #endif
