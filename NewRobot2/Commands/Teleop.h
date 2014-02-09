@@ -11,7 +11,7 @@
  */
 class Teleop: public CommandBase {
 private:
-	double kicker_speed;
+	int timer_count;
 public:
 	Teleop();
 	virtual void Initialize();

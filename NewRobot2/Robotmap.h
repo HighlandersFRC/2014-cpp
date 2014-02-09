@@ -21,8 +21,8 @@
 #define RIGHT_ENCODER_B		   5           // I/O			 Right Encoder data B port	      chassis		   Drew
 #define DIST_SENS              2           // Analog in      Front Distance Sensor            sensors          Zack			
 #define GYRO_SENS              1           // Analog in      gyro for direction               chassis          Linda		
-#define SHIFTER_A              3           // Pneumatic      forward gear shifter             chassis          Zack			
-#define SHIFTER_B              4           // Pneumatic      reverse gear shifter             chassis          Zack			
+#define SHIFTER_A              1           // Pneumatic      forward gear shifter             chassis          Zack			
+#define SHIFTER_B              2           // Pneumatic      reverse gear shifter             chassis          Zack			
 
 #define COMPRESSOR_RELAY       1           // Relay          compressor motor relay           compressor       Drew			
 #define COMPRESSOR_SWITCH      1           // I/O            compressor limit switch          compressor       Drew			
@@ -36,8 +36,8 @@
                                                                                                                
 #define INTAKE_MOTOR           7           // PWM Out        ball grab motor                  intake           Drew			White Green
 
-#define SOL_A				   1		   // Pneumatic		 forward solenoid for intake	  nomos			   Drew			
-#define SOL_B				   2		   // Pneumatic		 reverse solenoid for intake	  nomos			   Drew			
+#define SOL_A				   3		   // Pneumatic		 forward solenoid for intake	  nomos			   Drew			
+#define SOL_B				   4		   // Pneumatic		 reverse solenoid for intake	  nomos			   Drew			
 
 
 //***************************** Joystick Controls *****************************//
