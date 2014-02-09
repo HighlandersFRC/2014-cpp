@@ -2,8 +2,9 @@
 #include "../Robotmap.h"
 #include "../Commands/SensorsUpdate.h"
 
-Sensors::Sensors() : Subsystem("ExampleSubsystem") {
+Sensors::Sensors() : Subsystem("Sensors") {
 	DistanceSensor = new AnalogChannel(DIST_SENS);
+	Gyroscope = new Gyro(GYRO_SENS);
 }
     
 void Sensors::InitDefaultCommand() {
@@ -23,6 +24,24 @@ double Sensors::get_DS_Distance() {
 	SmartDashboard::PutNumber("Distance Sensor", distance);
 	
 	return distance;
+}
+
+double Sensors::get_Gyro_Distance() {
+	double angle = Gyroscope->GetAngle();
+	return angle;
+}
+
+void Sensors::Gyro_Reset() {
+	Gyroscope->Reset();
+}
+
+void Sensors::Drive_Straight() {
+// No idea if this works, I don't know much about moving the robot
+// in autonomous. uncomment if you think it will work.
+
+//	float angle = gyro.GetAngle();
+//	myRobot.Drive(-1.0, -angle * Kp);
+//	Wait(0.004);
 }
 
 double Sensors::get_V_Distance() {

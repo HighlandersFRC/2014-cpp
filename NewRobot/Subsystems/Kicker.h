@@ -3,6 +3,11 @@
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 
+/**
+ *
+ *
+ * @author Javario
+ */
 class Kicker: public Subsystem {
 private:
 	// It's desirable that everything possible under private except
