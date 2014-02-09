@@ -29,10 +29,10 @@ OI::OI() {
 	reload_btn->WhileHeld(new MoveKicker(1));
 	
 	intake_out_btn = new JoystickButton(joystick1, INTAKE_OUT_BTN);
-	intake_out_btn->WhileHeld(new IntakeCMD(-0.2));
+	intake_out_btn->WhileHeld(new IntakeCMD(-1));
 	
 	intake_in_btn = new JoystickButton(joystick2, INTAKE_IN_BTN);
-	intake_in_btn->WhileHeld(new IntakeCMD(0.2));
+	intake_in_btn->WhileHeld(new IntakeCMD(1));
 	
 	intake_elevate_down = new JoystickButton(joystick1, INTAKE_ELEVATE_DOWN);
 	intake_elevate_down->WhenPressed(new IntakeElevatio(false));

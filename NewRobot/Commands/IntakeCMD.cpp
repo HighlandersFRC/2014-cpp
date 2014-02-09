@@ -3,7 +3,9 @@
 IntakeCMD::IntakeCMD(double num) {
 	// Use requires() here to declare subsystem dependencies
 	Requires(intake);
-	speed = num;
+//	speed = num;
+	speed = SmartDashboard::GetNumber("Intake Speed");
+	val = num;
 }
 
 // Called just before this Command runs the first time
@@ -13,7 +15,12 @@ void IntakeCMD::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void IntakeCMD::Execute() {
-	intake->Set(speed);
+	if(val > 0) {
+		intake->Set(speed);
+	}
+	if(val < 0) {
+		intake->Set(speed);
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()

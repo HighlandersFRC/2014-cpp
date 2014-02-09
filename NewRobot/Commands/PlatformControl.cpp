@@ -12,7 +12,11 @@ void PlatformControl::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void PlatformControl::Execute() {
+//	Pspeed = oi->getJoystick3()->GetY();
+//	platform->setSpeed(Pspeed);
 	platform->setSpeed(oi->getJoystick3()->GetY());
+	//Asked to get speed from SmartDashboard, but it's Y axis, so instead printing that to SmartDashboard
+//	Pspeed = SmartDashboard.PutNumber("Belt Speed");
 }
 
 // Make this return true when this Command no longer needs to run execute()

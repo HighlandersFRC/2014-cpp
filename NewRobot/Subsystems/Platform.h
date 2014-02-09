@@ -13,6 +13,7 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	Jaguar *Belt_Motor;
+//	Encoder *Encoder;
 public:
 	Platform();
 	void InitDefaultCommand();
