@@ -16,6 +16,9 @@ Teleop::Teleop() {
 	Requires(kicker);
 	Requires(platform);
 	Requires(vision);
+	
+	// Init Timer for kicker
+	kicker_timer = new Timer();
 }
 
 
@@ -31,13 +34,6 @@ Teleop::Teleop() {
  *   Initializes the teleop command
  */
 void Teleop::Initialize() {
-	
-	
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
-	//!!!!!!!!!!!!!!!!TODO: change counter to timer!!!!!!!!!!!!!!!!!//
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
-	timer_count = 0;
 }
 
 
@@ -95,12 +91,10 @@ void Teleop::Execute() {
 	
 	if (right_driver_2->GetRawButton(2)) {
 		kicker->setSpeed(right_driver_2->GetY());
-		timer_count = 0;
+		kicker_timer->Reset();
 	}
 	else if (right_driver_2->GetRawButton(1)) {
-		timer_count++;
-		
-		if (timer_count <= Max_time) {
+		if (kicker_timer->Get() <= Max_time) {
 			kicker->setSpeed(MaxKickerFwdSpd);
 		}
 		else {
@@ -110,7 +104,7 @@ void Teleop::Execute() {
 	else {
 		// Stop Kicker Arm
 		kicker->setSpeed(0.00);
-		timer_count = 0;
+		kicker_timer->Reset();
 	}
 	
 	

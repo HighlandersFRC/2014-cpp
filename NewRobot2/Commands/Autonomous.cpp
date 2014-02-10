@@ -6,46 +6,75 @@ Autonomous::Autonomous() {
 	Requires(chassis);
 	Requires(intake);
 	
-	//ticktock = new Timer();
+	chassis->encoderReset();
+	ticktock = new Timer();
+	state = S_INIT;
 }
 
 // Called just before this Command runs the first time
 void Autonomous::Initialize() {
+	//chassis->encoderReset();
+
 	chassis->encoderReset();
-	//ticktock->Reset();
-	//ticktock->Start();
+	state = S_INIT;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void Autonomous::Execute() {
-	//intake->MoveSolenoid(false);
 	
-	chassis->tankDrive(0.25, 0.25);
-	cout<<"Left Encoder: "<<chassis->encoderLeftGet()<<"  ";
-	cout<<"Right Encoder: "<<chassis->encoderRightGet()<<"\n";
+	cout<<"Right Encoder: "<<chassis->encoderLeftGet()<<"    Left Encoder: "<<chassis->encoderRightGet();
 	
-//	if(chassis->encoderLeftGet()<=1.0 && chassis->encoderRightGet()<=1.0) {
-//		chassis->tankDrive(-0.25, -0.25);
-////	} else if(!(chassis->encoderLeftGet()<=1440.0) && chassis->encoderRightGet()<=1440.0) {
-////		chassis->tankDrive(0.0, -0.25);
-////	} else if (chassis->encoderLeftGet()<=1440.0 && !(chassis->encoderRightGet()<=1440.0)) {
-////		chassis->tankDrive(-0.25, 0.0);
-//	} else {
-//		chassis->tankDrive(0.0, 0.0);
-//	}
+	switch(state) {
+		case S_INIT:
+			ticktock->Reset();
+			ticktock->Start();
+			state = S_PICK_UP;
+			cout<<"S_INIT\n";
+			break;
 	
 	
-	
-	
-//	//runs robot forward at 25% speed for 5 second
-//		if(ticktock->Get()<= 5) {
-//			cout<<"Run Motors\n";
-//			chassis->tankDrive(-0.25, -0.25);
-//		}
-//		else {
-//			//stops robot
-//			cout<<"stop Motors\n";
-//		}
+		case S_PICK_UP:
+			intake->MoveSolenoid(true);
+			intake->Set(-1.0);
+			cout<<"S_PICK_UP\n";
+			
+			if (ticktock->Get()>=2.0) {
+				state = S_LOAD;
+				ticktock->Reset();
+				ticktock->Start();
+			}
+			else {
+				state = S_PICK_UP;
+			}
+			break;
+		
+		case S_LOAD:
+			chassis->tankDrive(0.25, 0.25);
+			
+			
+			cout<<"S_LOAD\n";
+			if (ticktock->Get()>=1.75) {
+				state = S_FIRE;
+				ticktock->Reset();
+				ticktock->Start();
+			}
+			else {
+				state = S_LOAD;
+			}
+			break;
+		
+		case S_FIRE:
+			cout<<"S_FIRE\n";
+			intake->MoveSolenoid(false);
+			intake->Set(0.0);
+			chassis->tankDrive(0.0, 0.0);
+			state = S_FIRE;
+			break;
+			
+		default:
+			state = S_INIT;
+			break;
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -56,10 +85,12 @@ bool Autonomous::IsFinished() {
 // Called once after isFinished returns true
 void Autonomous::End() {
 	chassis->tankDrive(0.0, 0.0);
+	state = S_INIT;
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void Autonomous::Interrupted() {
 	chassis->tankDrive(0.0, 0.0);
+	state = S_INIT;
 }
