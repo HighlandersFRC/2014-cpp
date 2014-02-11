@@ -3,16 +3,17 @@
 #include "SmartDashboard/SmartDashboard.h"
 
 Elevator::Elevator() : PIDSubsystem("Elevator", Kp, Ki, Kd) {
-	// Use these to get going:
-	// SetSetpoint() -  Sets where the PID controller should move the system
-	//                  to
-	// Enable() - Enables the PID controller.
+	Belt_Motor = new Jaguar(BELT_MOTOR);
+	Belt_Encoder = new Encoder(BELT_ENCODER_A, BELT_ENCODER_B);
+	SetSetpoint(STOW);
+	Enable();
 }
 
 double Elevator::ReturnPIDInput() {
 	// Return your input value for the PID loop
 	// e.g. a sensor, like a potentiometer:
 	// yourPot->SetAverageVoltage() / kYourMaxVoltage;
+	Belt_Encoder->PIDget();
 	return 0.0;
 }
 
