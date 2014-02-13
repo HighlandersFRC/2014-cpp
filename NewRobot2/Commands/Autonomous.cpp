@@ -22,7 +22,7 @@ void Autonomous::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void Autonomous::Execute() {
 	
-	cout<<"Right Encoder: "<<chassis->encoderLeftGet()<<"    Left Encoder: "<<chassis->encoderRightGet();
+	cout<<"Left Encoder: "<<chassis->encoderLeftGet()<<"    Right  Encoder: "<<chassis->encoderRightGet();
 	
 	switch(state) {
 		case S_INIT:
