@@ -28,7 +28,7 @@ public:
 	void tankDrive(double, double);
 	void tankExpDrive(double, double);
 	void tankCosDrive(double, double);
-	void arcadeDrive(Joystick *stick);
+	void arcadeDrive(double, double);
 	void encoderReset();
 	double encoderLeftGet();
 	double encoderRightGet();

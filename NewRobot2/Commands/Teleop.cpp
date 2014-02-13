@@ -51,6 +51,8 @@ void Teleop::Initialize() {
 void Teleop::Execute() {
 	//*************** Grab operator interface data ***************//
 	// Grab drive joysticks
+	Joystick *driver_1        = oi->getJoystick1();
+	
 	Joystick *left_driver_1   = oi->getJoystick1();
 	Joystick *right_driver_1  = oi->getJoystick2();
 	
@@ -77,10 +79,12 @@ void Teleop::Execute() {
 	
 	
 	//*************** Move Chassis Motors ************************//
-	chassis->tankDrive(-right_driver_1->GetY(), -left_driver_1->GetY());
+	chassis->arcadeDrive(-driver_1->GetRawAxis(1), -driver_1->GetRawAxis(2));
+	//chassis->tankDrive(-right_driver_1->GetY(), -left_driver_1->GetY());
 	
 	//*************** Move Chassis Shifter ***********************//
-	chassis->setShifter(!right_driver_1->GetRawButton(2));
+	chassis->setShifter(!right_driver_1->GetRawButton(6));
+	//chassis->setShifter(!right_driver_1->GetRawButton(2));
 	
 	
 	//*************** Move Kicker Arm ****************************//
@@ -112,17 +116,17 @@ void Teleop::Execute() {
 	
 	
 	//*************** Move Intake Arm and Motors *****************//
-	if (left_driver_1->GetRawButton(1)) {
+	if (driver_1->GetRawButton(5)) {
 		intake->Set(-1.00);
 	}
-	else if (right_driver_1->GetRawButton(1)) {
+	else if (driver_1->GetRawButton(7)) {
 		intake->Set(1.00);
 	}
 	else {
 		intake->Set(0.00);
 	}
 	
-	intake->MoveSolenoid(left_driver_1->GetRawButton(2));
+	intake->MoveSolenoid(left_driver_1->GetRawButton(8));
 	
 //	if (intake_engage_btn->Get()){
 //		// Move intake arm down and spin motors
