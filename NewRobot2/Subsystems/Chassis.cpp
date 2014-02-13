@@ -72,12 +72,34 @@ void Chassis::tankCosDrive(double left, double right) {
  * 	None
  * 
  * Changes the motor speeds to given
- * parameters.
+ * parameters. Uses a curve (x^3 in 
+ * calculations).
 */
-void Chassis::arcadeDrive(Joystick* stick){
-	//This should never be called!
-	// We will never use Arcade drive!
-	cout<<"Function Not Implemented: Chassis::arcadeDrive(Joystick*)\n";
+void Chassis::arcadeDrive(double x, double y){
+	x = (x*x*x);
+	y = (y*y*y);
+	
+	double left  = y + x;
+	double right = y - x;
+	
+	if (left >= 1) {
+		left = 1;
+	}
+	if (left <= -1) {
+		left = -1;
+	}
+	if (right >= 1) {
+		right = 1;
+	}
+	if (right <= -1) {
+		right = -1;
+	}
+	
+	
+	drive_left_1->Set(left);
+	drive_left_2->Set(left);
+	drive_right_1->Set(right*-1);
+	drive_right_2->Set(right*-1);
 }
 
 
