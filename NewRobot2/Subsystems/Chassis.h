@@ -4,6 +4,8 @@
 #include "WPILib.h"
 #include <math.h>
 
+//#define USE_DISTANCE_PER_PULSE 1
+
 class Chassis: public Subsystem {
 private:
 	// It's desirable that everything possible under private except
@@ -18,9 +20,10 @@ private:
 	Gyro           *gyro_sens;
 	DoubleSolenoid *shifter;
 	
-	
+#if (USE_DISTANCE_PER_PULSE == 1)	
 	Timer *distance_clk;
 	double distance_last;
+#endif
 	
 	double Pi;
 	
@@ -32,7 +35,9 @@ public:
 	void tankDrive(double, double);
 	void tankExpDrive(double, double);
 	void tankCosDrive(double, double);
+#if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)		
 	void arcadeDrive(double, double);
+#endif	
 	void encoderReset();
 	double encoderLeftGet();
 	double encoderRightGet();

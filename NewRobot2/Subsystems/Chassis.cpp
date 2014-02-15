@@ -1,6 +1,5 @@
 #include "Chassis.h"
 #include "../Robotmap.h"
-#include <Math.h>
 
 
 ///Chassis::Chassis()
@@ -17,19 +16,27 @@ Chassis::Chassis() : Subsystem("Chassis") {
 	
 	left_encode   = new Encoder(LEFT_ENCODER_A, LEFT_ENCODER_B, false);
 	left_encode->Start();
+#if (USE_DISTANCE_PER_PULSE == 1)
 	left_encode->SetDistancePerPulse((1/3)*(0.0001));
+#endif
 	
 	right_encode  = new Encoder(RIGHT_ENCODER_A, RIGHT_ENCODER_B, false);
 	right_encode->Start();
+#if (USE_DISTANCE_PER_PULSE == 1)
 	right_encode->SetDistancePerPulse((1/3)*(0.0001));
+#endif
 	
 	gyro_sens     = new Gyro(1);
 	
 	shifter       = new DoubleSolenoid(SHIFTER_A, SHIFTER_B);
 	
+#if (USE_DISTANCE_PER_PULSE == 1)
 	distance_last = 0;
 	
 	Pi = acos(-1);
+#else
+	Pi = 4.0 * atan(1.0);
+#endif
 }
 
 
@@ -61,6 +68,8 @@ void Chassis::tankDrive(double left, double right){
 	drive_left_2->Set(left);
 	drive_right_1->Set(right*-1);
 	drive_right_2->Set(right*-1);
+
+#if (USE_DISTANCE_PER_PULSE == 1)
 	
 	cout<<"Left Encoder: "<<left_encode->Get()<<"\t\tRight  Encoder: "<<right_encode->Get();
 	
@@ -75,16 +84,25 @@ void Chassis::tankDrive(double left, double right){
 	
 	distance_last = distance;
 	distance_clk->Reset();
+#endif
 }
 
 
 void Chassis::tankCosDrive(double left, double right) {
+#if (USE_DISTANCE_PER_PULSE == 1)
 	double motor_l = (( sin( left  * Pi - (Pi / 2) ) / 2) + ( 1 / 2));// * (left  < 0 ? -1 : 1);
 	double motor_r = (( sin( right * Pi - (Pi / 2) ) / 2) + ( 1 / 2));// * (right < 0 ? -1 : 1);
 	cout<<motor_l<<"\t\t"<<motor_r<<"\n";
+#else
+	double motor_l = (left  < 0 ? -1 : 1) * ( sin( left  * Pi - (Pi / 2) ) / 2) + ( 1 / 2);
+	double motor_r = (right < 0 ? -1 : 1) * ( sin( right * Pi - (Pi / 2) ) / 2) + ( 1 / 2);
+#endif	
+
 	this->tankDrive(motor_l, motor_r);
 }
 
+
+#if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
 /*Chassis::arcadeDrive(Joystick*)
  * Inputs  -
  * 	joystick (Joystick*)
@@ -121,6 +139,7 @@ void Chassis::arcadeDrive(double x, double y){
 	drive_right_1->Set(right*-1);
 	drive_right_2->Set(right*-1);
 }
+#endif // #if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
 
 
 ///Chassis::encoderReset()

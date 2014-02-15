@@ -51,8 +51,9 @@ void Teleop::Initialize() {
 void Teleop::Execute() {
 	//*************** Grab operator interface data ***************//
 	// Grab drive joysticks
-	//Joystick *driver_1        = oi->getJoystick1();
-	
+#if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
+	Joystick *driver_1        = oi->getJoystick1();
+#endif	
 	Joystick *left_driver_1   = oi->getJoystick1();
 	Joystick *right_driver_1  = oi->getJoystick2();
 	
@@ -79,13 +80,18 @@ void Teleop::Execute() {
 	
 	
 	//*************** Move Chassis Motors ************************//
-	//chassis->arcadeDrive(-driver_1->GetRawAxis(1), -driver_1->GetRawAxis(2));
-	//chassis->tankCosDrive(-right_driver_1->GetY(), -left_driver_1->GetY());
+#if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
+	chassis->arcadeDrive(-driver_1->GetRawAxis(1), -driver_1->GetRawAxis(2));
+#else
 	chassis->tankDrive(-right_driver_1->GetY(), -left_driver_1->GetY());
-	
+#endif
+		
 	//*************** Move Chassis Shifter ***********************//
-	//chassis->setShifter(!right_driver_1->GetRawButton(6));
+#if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
+	chassis->setShifter(!right_driver_1->GetRawButton(6));
+#else
 	chassis->setShifter(!right_driver_1->GetRawButton(2));
+#endif
 	
 	
 	//*************** Move Kicker Arm ****************************//
@@ -94,8 +100,8 @@ void Teleop::Execute() {
 	
 	int Max_time = (int)SmartDashboard::GetNumber("Kicker Time");
 	
-	if (right_driver_2->GetRawButton(3)) {
-		kicker->setSpeed(-right_driver_2->GetY());
+	if (right_driver_2->GetRawButton(2)) {
+		kicker->setSpeed(right_driver_2->GetY());
 		kicker_timer->Reset();
 	}
 	else if (right_driver_2->GetRawButton(1)) {
@@ -117,31 +123,48 @@ void Teleop::Execute() {
 	
 	
 	//*************** Move Intake Arm and Motors *****************//
-	if (right_driver_1->GetRawButton(1)) {
+#if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
+	if (driver_1->GetRawButton(5)) {
 		intake->Set(-1.00);
 	}
-	else if (left_driver_1->GetRawButton(1)) {
+	else if (driver_1->GetRawButton(7)) {
 		intake->Set(1.00);
 	}
 	else {
 		intake->Set(0.00);
 	}
 	
-    intake->MoveSolenoid(left_driver_1->GetRawButton(2));
+	intake->MoveSolenoid(left_driver_1->GetRawButton(8));
+#else
+	if (left_driver_1->GetRawButton(1)) {
+		intake->Set(-1.00);
+	}
+	else if (right_driver_1->GetRawButton(1)) {
+		intake->Set(1.00);
+	}
+	else {
+		intake->Set(0.00);
+	}
 	
-	//if (intake_engage_btn->Get()){
-	//	// Move intake arm down and spin motors
-	//	intake->MoveSolenoid(true);
-	//	intake->Set(-1.00);
-	//}
-	//else {
-	//	// Move intake arm up and stop motors
-	//	intake->MoveSolenoid(false);
-	//	intake->Set(0.00);
-	//}
+	intake->MoveSolenoid(left_driver_1->GetRawButton(2));
+#endif
+	
+//	if (intake_engage_btn->Get()){
+//		// Move intake arm down and spin motors
+//		intake->MoveSolenoid(true);
+//		intake->Set(-1.00);
+//	}
+//	else {
+//		// Move intake arm up and stop motors
+//		intake->MoveSolenoid(false);
+//		intake->Set(0.00);
+//	}
+	
+	
+	
 	
 	//*************** Move Platform ******************************//
-	platform->setSpeed(-left_driver_2->GetY());
+	platform->setSpeed(left_driver_2->GetY());
 	
 //	if (platform_up_btn->Get() && !platform_down_btn->Get()){
 //		// move platform up

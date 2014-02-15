@@ -2,6 +2,13 @@
 #define ROBOTMAP_H
 
 
+#define DRIVE_TYPE_TANK   0
+#define DRIVE_TYPE_ARCADE 1
+
+#define DRIVE_TYPE   DRIVE_TYPE_TANK
+
+
+
 
 /*
  * The RobotMap is a mapping from the ports sensors and actuators are wired into

@@ -5,7 +5,7 @@ Autonomous::Autonomous() {
 	// eg. requires(chassis);
 	Requires(chassis);
 	Requires(intake);
-//	ticktock1 = new Timer();
+	ticktock1 = new Timer();
 }
 
 // Called just before this Command runs the first time
