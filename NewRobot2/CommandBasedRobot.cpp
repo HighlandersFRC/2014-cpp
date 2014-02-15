@@ -1,12 +1,14 @@
 #include "WPILib.h"
 #include "Commands/Command.h"
 #include "Commands/Teleop.h"
+#include "Commands/Autonomous.h"
 #include "CommandBase.h"
 
 class CommandBasedRobot : public IterativeRobot {
 private:
 	//Command *autonomousCommand;
 	//LiveWindow *lw;
+	Autonomous *autonomous;
 	Teleop *teleop;
 	
 	/* RobotInit()
@@ -23,10 +25,12 @@ private:
 		//autonomousCommand = new ExampleCommand();
 		//lw = LiveWindow::GetInstance();
 		
+		autonomous = new Autonomous();
 		teleop = new Teleop();
 		
 		//SmartDashboard Values (Defaults for values that read from SmartDashboard)
 		SmartDashboard::PutNumber("Kicker Max Speed Forward", .75);
+		SmartDashboard::PutNumber("Kicker Time", 5);
 	}
 	
 	
@@ -40,6 +44,7 @@ private:
 	*/
 	virtual void AutonomousInit() {
 		//autonomousCommand->Start();
+		autonomous->Start();
 		teleop->Cancel();
 	}
 	
@@ -53,7 +58,7 @@ private:
 	 * Runs repeatedly during the autonomous period 
 	*/
 	virtual void AutonomousPeriodic() {
-		//Scheduler::GetInstance()->Run();
+		Scheduler::GetInstance()->Run();
 	}
 	
 	
@@ -71,6 +76,7 @@ private:
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
 		//autonomousCommand->Cancel();
+		autonomous->Cancel();
 		teleop->Start();
 	}
 	
