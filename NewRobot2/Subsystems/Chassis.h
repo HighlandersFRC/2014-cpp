@@ -18,6 +18,10 @@ private:
 	Gyro           *gyro_sens;
 	DoubleSolenoid *shifter;
 	
+	
+	Timer *distance_clk;
+	double distance_last;
+	
 	double Pi;
 	
 	double cube(double);

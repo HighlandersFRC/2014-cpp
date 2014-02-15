@@ -1,5 +1,6 @@
 #include "Chassis.h"
 #include "../Robotmap.h"
+#include <Math.h>
 
 
 ///Chassis::Chassis()
@@ -16,15 +17,19 @@ Chassis::Chassis() : Subsystem("Chassis") {
 	
 	left_encode   = new Encoder(LEFT_ENCODER_A, LEFT_ENCODER_B, false);
 	left_encode->Start();
+	left_encode->SetDistancePerPulse((1/3)*(0.0001));
+	
 	right_encode  = new Encoder(RIGHT_ENCODER_A, RIGHT_ENCODER_B, false);
 	right_encode->Start();
+	right_encode->SetDistancePerPulse((1/3)*(0.0001));
 	
 	gyro_sens     = new Gyro(1);
 	
 	shifter       = new DoubleSolenoid(SHIFTER_A, SHIFTER_B);
 	
+	distance_last = 0;
 	
-	Pi = 4.0 * atan(1.0);
+	Pi = acos(-1);
 }
 
 
@@ -56,12 +61,27 @@ void Chassis::tankDrive(double left, double right){
 	drive_left_2->Set(left);
 	drive_right_1->Set(right*-1);
 	drive_right_2->Set(right*-1);
+	
+	cout<<"Left Encoder: "<<left_encode->Get()<<"\t\tRight  Encoder: "<<right_encode->Get();
+	
+	left_encode->GetRate();
+	
+	
+	double distance = ((((left_encode->Get()/1440)*.48)+((right_encode->Get()/1440)*.48))/2);
+	
+	double velocity = (distance-distance_last)/distance_clk->Get();
+	
+	SmartDashboard::PutNumber("RobotVelocity", velocity);
+	
+	distance_last = distance;
+	distance_clk->Reset();
 }
 
 
 void Chassis::tankCosDrive(double left, double right) {
-	double motor_l = (left  < 0 ? -1 : 1) * ( sin( left  * Pi - (Pi / 2) ) / 2) + ( 1 / 2);
-	double motor_r = (right < 0 ? -1 : 1) * ( sin( right * Pi - (Pi / 2) ) / 2) + ( 1 / 2);
+	double motor_l = (( sin( left  * Pi - (Pi / 2) ) / 2) + ( 1 / 2));// * (left  < 0 ? -1 : 1);
+	double motor_r = (( sin( right * Pi - (Pi / 2) ) / 2) + ( 1 / 2));// * (right < 0 ? -1 : 1);
+	cout<<motor_l<<"\t\t"<<motor_r<<"\n";
 	this->tankDrive(motor_l, motor_r);
 }
 

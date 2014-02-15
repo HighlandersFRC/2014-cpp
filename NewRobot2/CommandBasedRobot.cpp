@@ -30,7 +30,7 @@ private:
 		
 		//SmartDashboard Values (Defaults for values that read from SmartDashboard)
 		SmartDashboard::PutNumber("Kicker Max Speed Forward", .75);
-		SmartDashboard::PutNumber("Kicker Time", 10);
+		SmartDashboard::PutNumber("Kicker Time", 5);
 	}
 	
 	
