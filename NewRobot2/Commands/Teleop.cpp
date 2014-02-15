@@ -86,6 +86,10 @@ void Teleop::Execute() {
 	chassis->tankDrive(-right_driver_1->GetY(), -left_driver_1->GetY());
 #endif
 		
+	
+	cout<<"Left Encoder: "<<chassis->encoderLeftGet()<<"\t\tRight Encoder: "<<chassis->encoderRightGet()<<"\n";
+	
+	
 	//*************** Move Chassis Shifter ***********************//
 #if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
 	chassis->setShifter(!right_driver_1->GetRawButton(6));
@@ -164,7 +168,7 @@ void Teleop::Execute() {
 	
 	
 	//*************** Move Platform ******************************//
-	platform->setSpeed(left_driver_2->GetY());
+	platform->setSpeed(-left_driver_2->GetY());
 	
 //	if (platform_up_btn->Get() && !platform_down_btn->Get()){
 //		// move platform up
