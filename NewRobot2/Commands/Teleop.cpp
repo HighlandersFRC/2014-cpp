@@ -99,7 +99,7 @@ void Teleop::Execute() {
 	
 	
 	//*************** Move Kicker Arm ****************************//
-	double MaxKickerFwdSpd = right_driver_2->GetRawAxis(4);
+	double MaxKickerFwdSpd = -1*((right_driver_2->GetRawAxis(4)/2)-0.5);
 	cout<<MaxKickerFwdSpd<<"\n";
 	
 	int Max_time = (int)SmartDashboard::GetNumber("Kicker Time");
