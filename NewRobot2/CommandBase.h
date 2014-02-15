@@ -14,6 +14,7 @@
 #include "Subsystems/Intake.h"
 #include "Subsystems/Platform.h"
 #include "Subsystems/Vision.h"
+#include "Subsystems/Elevator.h"
 
 /*
  * The base for all commands. All atomic commands should subclass CommandBase.

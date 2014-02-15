@@ -8,6 +8,7 @@
 */
 Platform::Platform() : Subsystem("Platform") {
 	Belt_Motor = new Jaguar(BELT_MOTOR);
+	Belt_Pot   = new AnalogChannel(BELT_POT);
 }
     
 void Platform::InitDefaultCommand() {
@@ -20,4 +21,8 @@ void Platform::InitDefaultCommand() {
 
 void Platform::setSpeed(double speed) {
 	Belt_Motor->SetSpeed(speed);
+}
+
+double Platform::getBeltPot() {
+	return Belt_Pot->GetVoltage();
 }

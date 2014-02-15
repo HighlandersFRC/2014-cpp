@@ -38,8 +38,7 @@
 #define KICKER_MOTOR_2         6           // PWM Out        Kicker Motor 2                   kicker           Linda		White Red
                                                                                                                
 #define BELT_MOTOR             8           // PWM Out        elevation control for platform   platform         Zack			White Blue
-#define BELT_ENCODER_A         6           // I/O            Encoder for Belt position (A)    platform         Zack
-#define BELT_ENCODER_B         7           // I/O            Encoder for Belt position (B)    platform         Zack
+#define BELT_POT               4           // Analog in      Pot for Belt position            platform         Zack
                                                                                                                
 #define INTAKE_MOTOR           7           // PWM Out        ball grab motor                  intake           Drew			White Green
 

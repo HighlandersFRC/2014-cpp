@@ -168,7 +168,16 @@ void Teleop::Execute() {
 	
 	
 	//*************** Move Platform ******************************//
-	platform->setSpeed(-left_driver_2->GetY());
+	if (!left_driver_2->GetRawButton(1)) {
+		platform->setSpeed(-left_driver_2->GetY());
+	}
+	else {
+		
+		cout<<"POT: "<<platform->getBeltPot()<<"\n";
+		//elevator->SetSetpoint(.5);
+	}
+	
+	//cout<<"Thingy: "<<elevator->GetSetpoint();
 	
 //	if (platform_up_btn->Get() && !platform_down_btn->Get()){
 //		// move platform up
