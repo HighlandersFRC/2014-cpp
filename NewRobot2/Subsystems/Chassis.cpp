@@ -26,7 +26,7 @@ Chassis::Chassis() : Subsystem("Chassis") {
 	right_encode->SetDistancePerPulse((1/3)*(0.0001));
 #endif
 	
-	gyro_sens     = new Gyro(1);
+	gyro_sens     = new Gyro(GYRO_SENS);
 	
 	shifter       = new DoubleSolenoid(SHIFTER_A, SHIFTER_B);
 	

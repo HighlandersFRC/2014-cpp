@@ -5,7 +5,7 @@
 AirCompressor::AirCompressor() : Subsystem("AirCompressor") {
 	compressor = new Compressor(COMPRESSOR_SWITCH, COMPRESSOR_RELAY);
 }
-    
+
 void AirCompressor::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	SetDefaultCommand(new CompressorCMD());

@@ -26,6 +26,8 @@ public:
 	double ReturnPIDInput();
 	void UsePIDOutput(double output);
 	void InitDefaultCommand();
+	void setSpeed(double speed);
+	double getBeltPot();
 	
 };
 

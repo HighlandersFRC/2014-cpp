@@ -5,6 +5,14 @@
 
 #define S_INIT				0
 
+#define AUTO_SHOOT          3 // AS
+
+#define S_AS_READY          1
+#define S_AS_SHOOT          2
+#define S_AS_MOVE           3
+#define S_AS_STALL          4
+
+
 #define AUTO_SHOOT_HOTSPOT		1 //ASH
 
 #define S_ASH_CHECK_HS		1

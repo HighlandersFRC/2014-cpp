@@ -15,7 +15,7 @@ Chassis*       CommandBase::chassis       = NULL;
 Kicker*        CommandBase::kicker        = NULL;
 AirCompressor* CommandBase::aircompressor = NULL;
 Intake*        CommandBase::intake        = NULL;
-Platform*      CommandBase::platform      = NULL;
+Elevator*      CommandBase::elevator      = NULL;
 Vision*        CommandBase::vision        = NULL;
 
 /* CommandBase::init()
@@ -30,11 +30,18 @@ void CommandBase::init() {
 	// Initialize operator interface
 	oi = new OI();
 	
+	cout<<"start\n";
 	// Initialize subsystems
 	chassis       = new Chassis();
+	cout<<"chassis\n";
 	kicker        = new Kicker();
+	cout<<"kicker\n";
 	aircompressor = new AirCompressor();
+	cout<<"air compressor\n";
 	intake        = new Intake();
-	platform      = new Platform();
+	cout<<"intake\n";
+	elevator      = new Elevator();
+	cout<<"elevator\n";
 	vision        = new Vision();
+	cout<<"vision\n";
 }

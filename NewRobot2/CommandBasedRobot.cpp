@@ -11,6 +11,7 @@ private:
 	Autonomous *autonomous;
 	Teleop *teleop;
 	
+	
 	/* RobotInit()
 	 * Inputs  -
 	 *  None
@@ -28,6 +29,7 @@ private:
 		autonomous = new Autonomous();
 		teleop = new Teleop();
 		
+		
 		//SmartDashboard Values (Defaults for values that read from SmartDashboard)
 		SmartDashboard::PutNumber("Kicker Max Speed Forward", .75);
 		SmartDashboard::PutNumber("Kicker Time", 5);
@@ -44,6 +46,7 @@ private:
 	*/
 	virtual void AutonomousInit() {
 		//autonomousCommand->Start();
+
 		autonomous->Start();
 		teleop->Cancel();
 	}

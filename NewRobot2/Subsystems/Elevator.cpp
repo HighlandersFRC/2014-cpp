@@ -22,6 +22,14 @@ void Elevator::UsePIDOutput(double output) {
 	Belt_Motor->Set(output);
 }
 
+void Elevator::setSpeed(double speed) {
+	Belt_Motor->SetSpeed(speed);
+}
+
+double Elevator::getBeltPot() {
+	return Belt_Pot->GetVoltage();
+}
+
 void Elevator::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	//setDefaultCommand(new MySpecialCommand());

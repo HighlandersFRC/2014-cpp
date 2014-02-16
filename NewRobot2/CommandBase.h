@@ -12,7 +12,7 @@
 #include "Subsystems/Kicker.h"
 #include "Subsystems/AirCompressor.h"
 #include "Subsystems/Intake.h"
-#include "Subsystems/Platform.h"
+#include "Subsystems/Elevator.h"
 #include "Subsystems/Vision.h"
 #include "Subsystems/Elevator.h"
 
@@ -35,7 +35,7 @@ public:
 	static Kicker        *kicker;
 	static AirCompressor *aircompressor;
 	static Intake        *intake;
-	static Platform      *platform;
+	static Elevator      *elevator;
 	static Vision        *vision;
 };
 
