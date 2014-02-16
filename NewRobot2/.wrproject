@@ -30,15 +30,15 @@
                 <stringAttribute value="-IC:/Data/Highlanders2014cpp/WPILibC++Source20130302rev3622/WPILib"/>
             </listAttribute>
             <listAttribute key="BLD::Info|Incl|PPC603gnu">
-                <stringAttribute value="-I$(WS_ROOT_DIR)/WPILibC++Source20130302rev3622/WPILib"/>
                 <stringAttribute value="-I$(WIND_BASE)/target/h/wrn/coreip"/>
+                <stringAttribute value="-I$(WS_ROOT_DIR)/WPILibC++Source20140101rev3876/WPILib"/>
                 <stringAttribute value="-I$(WIND_BASE)/target/h"/>
             </listAttribute>
             <listAttribute key="BLD::Info|Libs|PPC32diab">
                 <stringAttribute value="$(WIND_BASE)/target/lib/WPILib.a"/>
             </listAttribute>
             <listAttribute key="BLD::Info|Libs|PPC603gnu">
-                <stringAttribute value="$(WS_ROOT_DIR)/WPILibC++Source20130302rev3622/WPILib/PPC603gnu/WPILib/Debug/WPILib.a"/>
+                <stringAttribute value="$(WS_ROOT_DIR)/WPILibC++Source20140101rev3876/WPILib/PPC603gnu/WPILib/Debug/WPILib.a"/>
             </listAttribute>
             <listAttribute key="BLD::Info|Macros">
                 <stringAttribute value="VX_CPU_FAMILY"/>

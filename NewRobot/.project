@@ -3,7 +3,6 @@
 	<name>NewRobot</name>
 	<comment></comment>
 	<projects>
-		<project>WPILib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
