@@ -27,7 +27,9 @@ void Elevator::setSpeed(double speed) {
 }
 
 double Elevator::getBeltPot() {
-	return Belt_Pot->GetVoltage();
+	voltage = Belt_Pot->GetVoltage();
+	return voltage;
+	SmartDashboard::PutNumber("Elevator Height", voltage);
 }
 
 void Elevator::InitDefaultCommand() {

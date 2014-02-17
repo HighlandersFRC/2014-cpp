@@ -23,6 +23,7 @@ private:
 	static const double Kd = 0.0;
 	double curheight;
 	double posspeed;
+	double voltage;
 public:
 	Elevator();
 	double ReturnPIDInput();
