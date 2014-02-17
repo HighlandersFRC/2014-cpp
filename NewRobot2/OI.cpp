@@ -11,6 +11,7 @@
  * Instilizes the operator interfaces
 */
 OI::OI() {
+	
 	joystick1 = new Joystick(JOYSTICK_PORT1);
 	joystick2 = new Joystick(JOYSTICK_PORT2);
 	joystick3 = new Joystick(JOYSTICK_PORT3);
@@ -78,4 +79,15 @@ JoystickButton* OI::getPlatformUpBtn(){
 }
 JoystickButton* OI::getPlatformDownBtn(){
 	return platform_down_btn;
+}
+
+
+bool OI::getBtn(const int btn[2]) {
+	Joystick *j = new Joystick(btn[1]);
+	return j->GetRawButton(btn[0]);
+}
+
+double OI::getAxis(const int axis[2]) {
+	Joystick *j = new Joystick(axis[1]);
+	return j->GetRawAxis(axis[0]);
 }

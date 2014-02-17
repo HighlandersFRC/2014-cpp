@@ -1,5 +1,5 @@
-#ifndef EXAMPLE_COMMAND_H
-#define EXAMPLE_COMMAND_H
+#ifndef TELEOP_H
+#define TELEOP_H
 
 #include "../CommandBase.h"
 #include "../OI.h"
@@ -19,6 +19,7 @@ public:
 	virtual bool IsFinished();
 	virtual void End();
 	virtual void Interrupted();
+	bool ManualPlatform();
 };
 
 #endif

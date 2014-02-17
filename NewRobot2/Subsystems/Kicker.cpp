@@ -42,3 +42,9 @@ void Kicker::setSpeed(double s) {
 	KickerSpeed = s;
 	SmartDashboard::PutNumber("Kicker Speed", KickerSpeed);
 }
+
+void Kicker::load() {
+	motor_1->Set(-.5);
+	motor_2->Set(-.5);
+	
+}

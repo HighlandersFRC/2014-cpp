@@ -1,6 +1,7 @@
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
 
+#include "Joystickmap.h"
 
 #define DRIVE_TYPE_TANK   0
 #define DRIVE_TYPE_ARCADE 1
@@ -65,5 +66,11 @@ const int INTAKE_ENGAGE_BTN  = 1;					 // JOYSTICK_PORT1
 
 const int PLATFORM_UP_BTN    = 8;                    // JOYSTICK_PORT1
 const int PLATFORM_DOWN_BTN  = 9;                    // JOYSTICK_PORT1
+
+
+
+
+
+
 
 #endif

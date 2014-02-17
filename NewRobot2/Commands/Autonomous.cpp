@@ -6,7 +6,7 @@ Autonomous::Autonomous() {
 	Requires(chassis);
 	Requires(intake);
 	Requires(vision);
-	
+
 	chassis->encoderReset();
 	ticktock = new Timer();
 	ticktock->Reset();
@@ -27,43 +27,42 @@ void Autonomous::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void Autonomous::Execute() {
 	double TOLERANCE = 0.01;
-	double elevator_level = 1.68;
-	
+	double platform_level = 1.68;
+
 	cout<<"Left Encoder: "<<chassis->encoderLeftGet()<<"\t\tRight  Encoder: "<<chassis->encoderRightGet();
 	string s;
-	
+
 	switch(program) {
 		case AUTO_SHOOT:
-			
+
 			switch(state) {
 				case S_INIT:
 					state = S_AS_READY;
 					break;
-						
+
 				case S_AS_READY:
-					
+
 					intake->MoveSolenoid(true);
-					
-					if (elevator->ReturnPIDInput() < elevator_level) {
-						elevator->setSpeed(1.0);
+
+					if (platform->ReturnPIDInput() < platform_level) {
+						platform->setSpeed(0.5);
 					}
 					else {
-						elevator->setSpeed(-1.0);
+						platform->setSpeed(-0.5);
 					}
-					
-					if ((elevator_level + TOLERANCE >= elevator->ReturnPIDInput()) && (elevator_level-TOLERANCE <= elevator->ReturnPIDInput())) {
+
+					if ((platform_level + TOLERANCE >= platform->ReturnPIDInput()) && (platform_level-TOLERANCE <= platform->ReturnPIDInput())) {
 						state = S_AS_SHOOT;
-						elevator->setSpeed(0.0);
-						ticktock->Reset();
+						platform->setSpeed(0.0);
 					}
 					else {
 						state = S_AS_READY;
 					}
 					break;
-							
+
 				case S_AS_SHOOT:
 					ticktock->Start();
-					
+
 					if(ticktock->Get()<=0.4) {
 						kicker->setSpeed(0.75);
 					} else if(ticktock->Get()>0.4) {
@@ -72,42 +71,42 @@ void Autonomous::Execute() {
 						ticktock->Reset();
 						break;
 					}
-					
+
 					state = S_AS_SHOOT;
 					break;
-					
+
 				case S_AS_MOVE:
 					ticktock->Start();
-					
-					if(ticktock->Get()<=2.0) {
+
+					if(ticktock->Get()<=1.0) {
 						chassis->tankDrive(0.5, 0.5);
-					} else if (ticktock->Get()>0.5) {
+					} else if (ticktock->Get()>2.0) {
 						state = S_AS_STALL;
 						chassis->tankDrive(0.0, 0.0);
 						ticktock->Reset();
 						break;
 					}
-					
+
 					state = S_AS_MOVE;
 					break;
-					
+
 				case S_AS_STALL:
 					state = S_AS_STALL;
 					break;
-				
+
 				default:
 					state = S_INIT;
 					break;
 			}
-			
+
 			program = AUTO_SHOOT;
 			break;
-			
+
 		default:
 			program = AUTO_SHOOT;
 			break;
-	
-	
+
+
 //		case AUTO_SHOOT_HOTSPOT:
 //			
 //			switch(state) {
@@ -190,7 +189,7 @@ void Autonomous::Execute() {
 //			
 //			//AUTO_GETBALL_HOTSPOT ends here
 	}
-	
+
 	cout<<s<<"\n";
 }
 
