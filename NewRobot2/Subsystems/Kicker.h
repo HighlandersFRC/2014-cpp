@@ -15,6 +15,7 @@ public:
 	void InitDefaultCommand();
 	void setSpeed(double);
 	double KickerSpeed;
+	void load();
 };
 
 #endif

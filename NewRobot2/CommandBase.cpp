@@ -15,7 +15,7 @@ Chassis*       CommandBase::chassis       = NULL;
 Kicker*        CommandBase::kicker        = NULL;
 AirCompressor* CommandBase::aircompressor = NULL;
 Intake*        CommandBase::intake        = NULL;
-Elevator*      CommandBase::elevator      = NULL;
+Platform*      CommandBase::platform      = NULL;
 Vision*        CommandBase::vision        = NULL;
 
 /* CommandBase::init()
@@ -40,7 +40,7 @@ void CommandBase::init() {
 	cout<<"air compressor\n";
 	intake        = new Intake();
 	cout<<"intake\n";
-	elevator      = new Elevator();
+	platform      = new Platform();
 	cout<<"elevator\n";
 	vision        = new Vision();
 	cout<<"vision\n";

@@ -14,7 +14,7 @@ Teleop::Teleop() {
 	Requires(chassis);
 	Requires(intake);
 	Requires(kicker);
-	Requires(elevator);
+	Requires(platform);
 	Requires(vision);
 	
 	// Init Timer for kicker
@@ -71,7 +71,7 @@ void Teleop::Execute() {
 //	// Grab intake controller button(s)
 //	Button *intake_engage_btn = oi->getIntakeEngageBtn();
 //	
-//	// Grab elevator control button(s)
+//	// Grab platform control button(s)
 //	Button *platform_up_btn   = oi->getPlatformUpBtn();
 //	Button *platform_down_btn = oi->getPlatformDownBtn();
 	
@@ -167,29 +167,30 @@ void Teleop::Execute() {
 	
 	
 	
-	//*************** Move Elevator ******************************//
+	//*************** Move platform ******************************//
 	if (!left_driver_2->GetRawButton(1)) {
-		elevator->setSpeed(-left_driver_2->GetY());
+		platform->setSpeed(-left_driver_2->GetY());
 	}
 	else {
-		//elevator->SetSetpoint(.5);
+		//platform->SetSetpoint(.5);
 	}
 	
-	cout<<"Voltage: "<<elevator->ReturnPIDInput();
+	cout<<"Voltage: "<<platform->ReturnPIDInput();
+	//
 	
 	
 	
 //	if (platform_up_btn->Get() && !platform_down_btn->Get()){
-//		// move elevator up
-//		elevator->setSpeed(0.50);
+//		// move platform up
+//		platform->setSpeed(0.50);
 //	}
 //	else if (!platform_up_btn->Get() && platform_down_btn->Get()){
-//		// move elevator down
-//		elevator->setSpeed(-0.50);
+//		// move platform down
+//		platform->setSpeed(-0.50);
 //	}
 //	else {
-//		// Stop Elevator
-//		elevator->setSpeed(0.00);
+//		// Stop platform
+//		platform->setSpeed(0.00);
 //	}
 	
 }
@@ -225,7 +226,7 @@ void Teleop::End() {
 	kicker->setSpeed(0.00);
 	intake->MoveSolenoid(false);
 	intake->Set(0.00);
-	elevator->setSpeed(0.00);
+	platform->setSpeed(0.00);
 }
 
 /* Teleop::Interrupted()
@@ -242,5 +243,5 @@ void Teleop::Interrupted() {
 	kicker->setSpeed(0.00);
 	intake->MoveSolenoid(false);
 	intake->Set(0.00);
-	elevator->setSpeed(0.00);
+	platform->setSpeed(0.00);
 }

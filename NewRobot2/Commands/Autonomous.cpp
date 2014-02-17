@@ -27,7 +27,7 @@ void Autonomous::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void Autonomous::Execute() {
 	double TOLERANCE = 0.05;
-	double elevator_level = 1.65;
+	double platform_level = 1.65;
 	
 	cout<<"Left Encoder: "<<chassis->encoderLeftGet()<<"\t\tRight  Encoder: "<<chassis->encoderRightGet();
 	string s;
@@ -46,21 +46,21 @@ void Autonomous::Execute() {
 					
 					cout<<"test 1\n";
 					
-					if (elevator->ReturnPIDInput() < elevator_level) {
-						elevator->setSpeed(0.5);
+					if (platform->ReturnPIDInput() < platform_level) {
+						platform->setSpeed(0.5);
 						cout<<"test 2\n";
 					}
 					else {
-						elevator->setSpeed(-0.5);
+						platform->setSpeed(-0.5);
 						cout<<"test 3\n";
 					}
 					
 					cout<<"test 4\n";
 					
-					if ((elevator_level + TOLERANCE >= elevator->ReturnPIDInput()) && (elevator_level-TOLERANCE <= elevator->ReturnPIDInput())) {
+					if ((platform_level + TOLERANCE >= platform->ReturnPIDInput()) && (platform_level-TOLERANCE <= platform->ReturnPIDInput())) {
 						cout<<"test 5\n";
 						state = S_AS_SHOOT;
-						elevator->setSpeed(0.0);
+						platform->setSpeed(0.0);
 					}
 					else {
 						cout<<"test 6\n";
