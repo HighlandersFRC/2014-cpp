@@ -145,7 +145,6 @@ void Teleop::Execute() {
 	platform->setSpeed(-oi->getAxis(PLATFORM_C));
 	
 	cout<<"Voltage: "<<platform->ReturnPIDInput();
-	
 /*
 	if(right_driver_2->GetRawButton(3) == true) {
 		platpres = true;
@@ -239,6 +238,6 @@ void Teleop::Interrupted() {
 	chassis->tankDrive(0.00, 0.00);
 	kicker->setSpeed(0.00);
 	intake->MoveSolenoid(false);
-	intake->Set(0.00);
+	intake->Set(0.00); 
 	platform->setSpeed(0.00);
 }
