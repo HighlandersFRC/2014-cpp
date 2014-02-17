@@ -12,6 +12,8 @@
 class Teleop: public CommandBase {
 private:
 	Timer *kicker_timer;
+	bool platpres;
+	double wantedheight;
 public:
 	Teleop();
 	virtual void Initialize();
@@ -19,7 +21,7 @@ public:
 	virtual bool IsFinished();
 	virtual void End();
 	virtual void Interrupted();
-	bool ManualPlatform();
+	
 };
 
 #endif
