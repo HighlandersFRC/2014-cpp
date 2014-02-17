@@ -57,7 +57,7 @@ void Platform::requestPosition(double wantedheight) {
 }
 
 void Platform::setPosition(double height) {
-	curheight = Belt_Pot->GetVoltage();
+	curheight = Belt_Pot->GetAverageVoltage();
 	posspeed = SmartDashboard::GetNumber("Position Movement");    //should be like .5
 	if (height >= curheight - .01){                //.01 = Tolerance
 		Belt_Motor->SetSpeed(posspeed);
