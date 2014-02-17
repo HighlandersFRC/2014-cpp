@@ -195,11 +195,11 @@ void Teleop::Execute() {
 		}
 	}
 	
-	if (left_driver_2->GetY() >= .25 | left_driver_2->GetY() <= -.25) {
+	if (left_driver_2->GetY() >= .25 || left_driver_2->GetY() <= -.25) {
 		platpres = false;
 	}
 	
-	if (platpres = true) {
+	if (platpres == true) {
 		platform->requestPosition(wantedheight);
 	}
 

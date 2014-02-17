@@ -27,12 +27,13 @@
 #define LEFT_ENCODER_B         3           // I/O            Left Encoder data B port         chassis          Zack
 #define RIGHT_ENCODER_A		   4           // I/O			 Right Encoder data A port	      chassis		   Drew
 #define RIGHT_ENCODER_B		   5           // I/O			 Right Encoder data B port	      chassis		   Drew
-#define DIST_SENS              2           // Analog in      Front Distance Sensor            vision           Zack			
-#define GYRO_SENS              4           // Analog in      gyro for direction               chassis          Linda		
+#define GYRO_SENS              2           // Analog in      gyro for direction               chassis          Linda
+#define GYRO_TEMP              3           // Analog in      gyro temperature sensor          chassis          Linda
+#define DIST_SENS              4           // Analog in      Front Distance Sensor            vision           Zack	
 #define SHIFTER_A              1           // Pneumatic      forward gear shifter             chassis          Zack			
 #define SHIFTER_B              2           // Pneumatic      reverse gear shifter             chassis          Zack			
 
-#define COMPRESSOR_RELAY       2           // Relay          compressor motor relay           compressor       Drew			
+#define COMPRESSOR_RELAY       1           // Relay          compressor motor relay           compressor       Drew			
 #define COMPRESSOR_SWITCH      1           // I/O            compressor limit switch          compressor       Drew			
                                                                                                                
 #define KICKER_MOTOR_1         5           // PWM Out        Kicker Motor 1                   kicker           Linda		White Yellow
