@@ -34,6 +34,9 @@ public:
 	JoystickButton *getIntakeEngageBtn();
 	JoystickButton *getPlatformUpBtn();
 	JoystickButton *getPlatformDownBtn();
+	
+	bool getBtn(const int[2]);
+	double getAxis(const int[2]);
 };
 
 #endif

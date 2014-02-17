@@ -6,7 +6,7 @@ Autonomous::Autonomous() {
 	Requires(chassis);
 	Requires(intake);
 	Requires(vision);
-	
+
 	chassis->encoderReset();
 	ticktock = new Timer();
 	ticktock->Reset();
@@ -28,29 +28,29 @@ void Autonomous::Initialize() {
 void Autonomous::Execute() {
 	double TOLERANCE = 0.01;
 	double platform_level = 1.68;
-	
+
 	cout<<"Left Encoder: "<<chassis->encoderLeftGet()<<"\t\tRight  Encoder: "<<chassis->encoderRightGet();
 	string s;
-	
+
 	switch(program) {
 		case AUTO_SHOOT:
-			
+
 			switch(state) {
 				case S_INIT:
 					state = S_AS_READY;
 					break;
-						
+
 				case S_AS_READY:
-					
+
 					intake->MoveSolenoid(true);
-					
+
 					if (platform->ReturnPIDInput() < platform_level) {
 						platform->setSpeed(0.5);
 					}
 					else {
 						platform->setSpeed(-0.5);
 					}
-					
+
 					if ((platform_level + TOLERANCE >= platform->ReturnPIDInput()) && (platform_level-TOLERANCE <= platform->ReturnPIDInput())) {
 						state = S_AS_SHOOT;
 						platform->setSpeed(0.0);
@@ -59,10 +59,10 @@ void Autonomous::Execute() {
 						state = S_AS_READY;
 					}
 					break;
-							
+
 				case S_AS_SHOOT:
 					ticktock->Start();
-					
+
 					if(ticktock->Get()<=0.4) {
 						kicker->setSpeed(0.75);
 					} else if(ticktock->Get()>0.4) {
@@ -71,13 +71,13 @@ void Autonomous::Execute() {
 						ticktock->Reset();
 						break;
 					}
-					
+
 					state = S_AS_SHOOT;
 					break;
-					
+
 				case S_AS_MOVE:
 					ticktock->Start();
-					
+
 					if(ticktock->Get()<=1.0) {
 						chassis->tankDrive(0.5, 0.5);
 					} else if (ticktock->Get()>2.0) {
@@ -86,27 +86,27 @@ void Autonomous::Execute() {
 						ticktock->Reset();
 						break;
 					}
-					
+
 					state = S_AS_MOVE;
 					break;
-					
+
 				case S_AS_STALL:
 					state = S_AS_STALL;
 					break;
-				
+
 				default:
 					state = S_INIT;
 					break;
 			}
-			
+
 			program = AUTO_SHOOT;
 			break;
-			
+
 		default:
 			program = AUTO_SHOOT;
 			break;
-	
-	
+
+
 //		case AUTO_SHOOT_HOTSPOT:
 //			
 //			switch(state) {
@@ -189,7 +189,7 @@ void Autonomous::Execute() {
 //			
 //			//AUTO_GETBALL_HOTSPOT ends here
 	}
-	
+
 	cout<<s<<"\n";
 }
 
