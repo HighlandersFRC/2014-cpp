@@ -177,32 +177,35 @@ void Teleop::Execute() {
 	
 	cout<<"Voltage: "<<platform->ReturnPIDInput();
 	//
-	if (right_driver_2->GetRawButton(3) | right_driver_2->GetRawButton(4) | right_driver_2->GetRawButton(5) | right_driver_2->GetRawButton(6)) {
+/*
+	if(right_driver_2->GetRawButton(3) == true) {
 		platpres = true;
-		if(right_driver_2->GetRawButton(3)) {
-			wantedheight = 0;				//PRESET 1: Floor
-				}
-		//TODO THIS IS CURRENTLY A THROWAWAY VALUE. FIX IT WHEN YOU KNOW VALUE.
-		if(right_driver_2->GetRawButton(4)) {
-			wantedheight = 3;				//PRESET 2: Min Height
-		}
-		if(right_driver_2->GetRawButton(5)) {
-			wantedheight = 1.68;			//PRESET 3: 1.68 Volts
-		}
-		//TODO THIS IS CURRENTLY A THROWAWAY VALUE. FIX IT WHEN YOU KNOW VALUE.
-		if(right_driver_2->GetRawButton(6)) {
-			wantedheight = 3;				//PRESET 4: 1 More Value
-		}
+		wantedheight = 0;				//PRESET 1: Floor
+			}
+	//TODO THIS IS CURRENTLY A THROWAWAY VALUE. FIX IT WHEN YOU KNOW VALUE.
+	else if(right_driver_2->GetRawButton(4) == true) {
+		platpres = true;
+		wantedheight = 3;				//PRESET 2: Min Height
 	}
+	else if(right_driver_2->GetRawButton(5) == true) {
+		platpres = true;
+		wantedheight = 1.68;			//PRESET 3: 1.68 Volts
+	}
+	//TODO THIS IS CURRENTLY A THROWAWAY VALUE. FIX IT WHEN YOU KNOW VALUE.
+	else if(right_driver_2->GetRawButton(6) == true) {
+		platpres = true;
+		wantedheight = 3;				//PRESET 4: 1 More Value
+	}
+
 	
-	if (left_driver_2->GetY() >= .25 | left_driver_2->GetY() <= -.25) {
+	if (left_driver_2->GetY() >= .25 || left_driver_2->GetY() <= -.25) {
 		platpres = false;
 	}
 	
-	if (platpres = true) {
+	if (platpres == true) {
 		platform->requestPosition(wantedheight);
 	}
-
+*/
 	
 	
 	//	if (platform_up_btn->Get() && !platform_down_btn->Get()){
