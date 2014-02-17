@@ -26,8 +26,8 @@ void Autonomous::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void Autonomous::Execute() {
-	double TOLERANCE = 0.05;
-	double elevator_level = 1.65;
+	double TOLERANCE = 0.01;
+	double elevator_level = 1.68;
 	
 	cout<<"Left Encoder: "<<chassis->encoderLeftGet()<<"\t\tRight  Encoder: "<<chassis->encoderRightGet();
 	string s;
@@ -44,26 +44,19 @@ void Autonomous::Execute() {
 					
 					intake->MoveSolenoid(true);
 					
-					cout<<"test 1\n";
-					
 					if (elevator->ReturnPIDInput() < elevator_level) {
-						elevator->setSpeed(0.5);
-						cout<<"test 2\n";
+						elevator->setSpeed(1.0);
 					}
 					else {
-						elevator->setSpeed(-0.5);
-						cout<<"test 3\n";
+						elevator->setSpeed(-1.0);
 					}
-					
-					cout<<"test 4\n";
 					
 					if ((elevator_level + TOLERANCE >= elevator->ReturnPIDInput()) && (elevator_level-TOLERANCE <= elevator->ReturnPIDInput())) {
-						cout<<"test 5\n";
 						state = S_AS_SHOOT;
 						elevator->setSpeed(0.0);
+						ticktock->Reset();
 					}
 					else {
-						cout<<"test 6\n";
 						state = S_AS_READY;
 					}
 					break;
@@ -71,9 +64,9 @@ void Autonomous::Execute() {
 				case S_AS_SHOOT:
 					ticktock->Start();
 					
-					if(ticktock->Get()<=0.5) {
+					if(ticktock->Get()<=0.4) {
 						kicker->setSpeed(0.75);
-					} else if(ticktock->Get()>0.5) {
+					} else if(ticktock->Get()>0.4) {
 						state = S_AS_MOVE;
 						kicker->setSpeed(0.0);
 						ticktock->Reset();
@@ -88,7 +81,7 @@ void Autonomous::Execute() {
 					
 					if(ticktock->Get()<=2.0) {
 						chassis->tankDrive(0.5, 0.5);
-					} else if (ticktock->Get()>2.0) {
+					} else if (ticktock->Get()>0.5) {
 						state = S_AS_STALL;
 						chassis->tankDrive(0.0, 0.0);
 						ticktock->Reset();
