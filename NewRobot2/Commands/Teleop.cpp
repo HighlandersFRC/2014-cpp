@@ -150,7 +150,12 @@ void Teleop::Execute() {
 		intake->Set(0.00);
 	}
 	
-	intake->MoveSolenoid(left_driver_1->GetRawButton(2));
+	if (right_driver_2->GetRawButton(11)) {
+		intake->MoveSolenoid(false);
+	} else if (right_driver_2->GetRawButton(12)) {
+		intake->MoveSolenoid(true);
+	}
+	//intake->MoveSolenoid(left_driver_1->GetRawButton(2));
 #endif
 	
 //	if (intake_engage_btn->Get()){
