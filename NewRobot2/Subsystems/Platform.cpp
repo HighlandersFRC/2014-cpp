@@ -47,10 +47,12 @@ void Platform::requestPosition(double wantedheight) {
 	storeheight = wantedheight;
 	curheight = Belt_Pot->GetVoltage();
 	if (storeheight <= curheight & storeheight >= curheight) {
-		Belt_Motor->SetSpeed(0);
+		SmartDashboard::PutString("Platform Position", "No");
+		//do nothing
 	}
 	else {
 		this->setPosition(wantedheight);
+		SmartDashbaord::PutString("Platform Position", "Yes");
 	}
 }
 

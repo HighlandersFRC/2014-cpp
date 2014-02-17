@@ -177,7 +177,9 @@ void Teleop::Execute() {
 	
 	cout<<"Voltage: "<<platform->ReturnPIDInput();
 	//
-	
+	if (left_driver_2->GetAxis(Y) != 0){
+		Platform::requestPosition();
+	}
 	
 	
 //	if (platform_up_btn->Get() && !platform_down_btn->Get()){
