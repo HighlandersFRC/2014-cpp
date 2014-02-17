@@ -140,10 +140,10 @@ void Teleop::Execute() {
 	
 	intake->MoveSolenoid(left_driver_1->GetRawButton(8));
 #else
-	if (left_driver_1->GetRawButton(1)) {
+	if (left_driver_2->GetRawButton(7)) {
 		intake->Set(-1.00);
 	}
-	else if (right_driver_1->GetRawButton(1)) {
+	else if (left_driver_2->GetRawButton(6)) {
 		intake->Set(1.00);
 	}
 	else {
@@ -242,6 +242,6 @@ void Teleop::Interrupted() {
 	chassis->tankDrive(0.00, 0.00);
 	kicker->setSpeed(0.00);
 	intake->MoveSolenoid(false);
-	intake->Set(0.00);
+	intake->Set(0.00); 
 	platform->setSpeed(0.00);
 }
