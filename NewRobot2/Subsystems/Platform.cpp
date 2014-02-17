@@ -52,7 +52,7 @@ void Platform::requestPosition(double wantedheight) {
 	}
 	else {
 		this->setPosition(wantedheight);
-		SmartDashbaord::PutString("Platform Position", "Yes");
+		SmartDashboard::PutString("Platform Position", "Yes");
 	}
 }
 

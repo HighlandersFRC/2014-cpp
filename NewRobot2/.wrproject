@@ -33,6 +33,7 @@
                 <stringAttribute value="-I$(WIND_BASE)/target/h/wrn/coreip"/>
                 <stringAttribute value="-I$(WS_ROOT_DIR)/WPILibC++Source20140101rev3876/WPILib"/>
                 <stringAttribute value="-I$(WIND_BASE)/target/h"/>
+                <stringAttribute value="-IC:/Users/GLaDOS/Documents/AllHighlandersFRCCode/2014-cpp/WPILibC++Source20140101rev3876"/>
             </listAttribute>
             <listAttribute key="BLD::Info|Libs|PPC32diab">
                 <stringAttribute value="$(WIND_BASE)/target/lib/WPILib.a"/>
