@@ -124,7 +124,12 @@ void Teleop::Execute() {
 		intake->Set(0.00);
 	}
 	
-	intake->MoveSolenoid(oi->getBtn(INTAKE_SOL));
+	if(oi->getBtn(INTAKE_SOL_IN)){
+		intake->MoveSolenoid(false);
+	} else if(oi->getBtn(INTAKE_SOL_OUT)) {
+		intake->MoveSolenoid(true);
+	}
+	//intake->MoveSolenoid(oi->getBtn(INTAKE_SOL));
 #endif
 	
 //	if (intake_engage_btn->Get()){

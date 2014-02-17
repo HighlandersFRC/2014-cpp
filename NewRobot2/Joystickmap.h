@@ -62,11 +62,12 @@ static const int KICKER_POWER[2]  = {THROTTLE,   COPILOT_RIGHT_JOYSTICK};
 //               Control             Button      Joystick                     Description
 static const int SHIFT[2]         = {BTN_2,      DRIVER_RIGHT_JOYSTICK};
 
-static const int INTAKE_IN[2]     = {TRIGGER,    DRIVER_LEFT_JOYSTICK};
-static const int INTAKE_OUT[2]    = {TRIGGER,    DRIVER_RIGHT_JOYSTICK};
-static const int INTAKE_SOL[2]    = {BTN_2,      DRIVER_LEFT_JOYSTICK};
-
 static const int KICK[2]          = {TRIGGER,    COPILOT_RIGHT_JOYSTICK};
 static const int MANUAL_KICK[2]   = {BTN_2,      COPILOT_RIGHT_JOYSTICK};
+
+static const int INTAKE_IN[2]     = {BTN_8,      COPILOT_LEFT_JOYSTICK};
+static const int INTAKE_OUT[2]    = {BTN_9,      COPILOT_LEFT_JOYSTICK};
+static const int INTAKE_SOL_IN[2] = {BTN_11,     COPILOT_RIGHT_JOYSTICK};
+static const int INTAKE_SOL_OUT[2]= {BTN_12,     COPILOT_RIGHT_JOYSTICK};
 
 #endif
