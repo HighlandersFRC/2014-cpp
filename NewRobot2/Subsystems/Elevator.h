@@ -21,6 +21,8 @@ private:
 	static const double Kp = 0.1;
 	static const double Ki = 0.0;
 	static const double Kd = 0.0;
+	double curheight;
+	double posspeed;
 public:
 	Elevator();
 	double ReturnPIDInput();
@@ -28,6 +30,7 @@ public:
 	void InitDefaultCommand();
 	void setSpeed(double speed);
 	double getBeltPot();
+	void setPosition(double position);
 	
 };
 

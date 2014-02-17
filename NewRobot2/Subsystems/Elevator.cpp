@@ -34,3 +34,19 @@ void Elevator::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	//setDefaultCommand(new MySpecialCommand());
 }
+// Basic preset command to put the platform approximately one of our favorite
+// Positions. this version does not contain PID or Vision Tracking.
+void Elevator::setPosition(double height) {
+	curheight = Belt_Pot->GetVoltage();
+	posspeed = SmartDashboard::GetNumber("Position Movement");
+	if (height > curheight - .05){
+		Belt_Motor->SetSpeed(posspeed);
+	}
+	else if (height < curheight + .05){
+		Belt_Motor->SetSpeed(posspeed);
+	}
+	else {
+		Belt_Motor->SetSpeed(0);
+	}
+	
+}
