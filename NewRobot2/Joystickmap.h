@@ -58,8 +58,6 @@ static const int KICKER_MAN_C[2]  = {Y_AXIS,     COPILOT_RIGHT_JOYSTICK};
 
 static const int KICKER_POWER[2]  = {THROTTLE,   COPILOT_RIGHT_JOYSTICK};
 
-static const int TEST_AXIS[2]     = {Z_AXIS,     DRIVER_RIGHT_JOYSTICK};
-
 
 //               Control             Button      Joystick                     Description
 static const int SHIFT[2]         = {BTN_2,      DRIVER_RIGHT_JOYSTICK};
@@ -70,7 +68,5 @@ static const int INTAKE_SOL[2]    = {BTN_2,      DRIVER_LEFT_JOYSTICK};
 
 static const int KICK[2]          = {TRIGGER,    COPILOT_RIGHT_JOYSTICK};
 static const int MANUAL_KICK[2]   = {BTN_2,      COPILOT_RIGHT_JOYSTICK};
-
-static const int TEST_BTN[2]      = {BTN_2,      COPILOT_LEFT_JOYSTICK};
 
 #endif

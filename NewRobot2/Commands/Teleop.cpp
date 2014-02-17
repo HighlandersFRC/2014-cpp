@@ -49,33 +49,7 @@ void Teleop::Initialize() {
  *   Runs teleop periodically (usually every 50ms)
  */
 void Teleop::Execute() {
-	//*************** Grab operator interface data ***************//
-	// Grab drive joysticks
-#if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
-	Joystick *driver_1        = oi->getJoystick1();
-#endif	
-	Joystick *left_driver_1   = oi->getJoystick1();
-	Joystick *right_driver_1  = oi->getJoystick2();
-	
-	// Grab copilot joysticks
-	Joystick *left_driver_2   = oi->getJoystick3();
-	Joystick *right_driver_2  = oi->getJoystick4();
-	
-//	// Grab shifter controller button(s)
-//	Button *shifter_btn       = oi->getShifterBtn();
-//	
-//	// Grab kicker controller button(s)
-//	Button *reload_btn        = oi->getReloadBtn();
-//	Button *kick_btn          = oi->getKickBtn();
-//	
-//	// Grab intake controller button(s)
-//	Button *intake_engage_btn = oi->getIntakeEngageBtn();
-//	
-//	// Grab platform control button(s)
-//	Button *platform_up_btn   = oi->getPlatformUpBtn();
-//	Button *platform_down_btn = oi->getPlatformDownBtn();
-	
-	//Get Vision Data
+	//*************** Get Vision Data ****************************//
 	vision->get_DS_Distance();
 	
 	
@@ -83,7 +57,7 @@ void Teleop::Execute() {
 #if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
 	chassis->arcadeDrive(-driver_1->GetRawAxis(1), -driver_1->GetRawAxis(2));
 #else
-	chassis->tankDrive(-right_driver_1->GetY(), -left_driver_1->GetY());
+	chassis->tankDrive(-oi->getAxis(DRIVE_R), -oi->getAxis(DRIVE_L));
 #endif
 		
 	
@@ -94,21 +68,21 @@ void Teleop::Execute() {
 #if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
 	chassis->setShifter(!right_driver_1->GetRawButton(6));
 #else
-	chassis->setShifter(!right_driver_1->GetRawButton(2));
+	chassis->setShifter(!oi->getBtn(SHIFT));
 #endif
 	
 	
 	//*************** Move Kicker Arm ****************************//
-	double MaxKickerFwdSpd = -1*((right_driver_2->GetRawAxis(4)/2)-0.5);
+	double MaxKickerFwdSpd = -1*((oi->getAxis(KICKER_POWER)/2)-0.5);
 	cout<<MaxKickerFwdSpd<<"\n";
 	
 	int Max_time = (int)SmartDashboard::GetNumber("Kicker Time");
 	
-	if (right_driver_2->GetRawButton(2)) {
-		kicker->setSpeed(right_driver_2->GetY());
+	if (oi->getBtn(MANUAL_KICK)) {
+		kicker->setSpeed(-oi->getAxis(KICKER_MAN_C));
 		kicker_timer->Reset();
 	}
-	else if (right_driver_2->GetRawButton(1)) {
+	else if (oi->getBtn(KICK)) {
 		if (kicker_timer->Get() <= Max_time) {
 			kicker->setSpeed(MaxKickerFwdSpd);
 		}
@@ -140,17 +114,17 @@ void Teleop::Execute() {
 	
 	intake->MoveSolenoid(left_driver_1->GetRawButton(8));
 #else
-	if (left_driver_1->GetRawButton(1)) {
+	if (oi->getBtn(INTAKE_IN)) {
 		intake->Set(-1.00);
 	}
-	else if (right_driver_1->GetRawButton(1)) {
+	else if (oi->getBtn(INTAKE_OUT)) {
 		intake->Set(1.00);
 	}
 	else {
 		intake->Set(0.00);
 	}
 	
-	intake->MoveSolenoid(left_driver_1->GetRawButton(2));
+	intake->MoveSolenoid(oi->getBtn(INTAKE_SOL));
 #endif
 	
 //	if (intake_engage_btn->Get()){
@@ -168,15 +142,10 @@ void Teleop::Execute() {
 	
 	
 	//*************** Move platform ******************************//
-	if (!left_driver_2->GetRawButton(1)) {
-		platform->setSpeed(-left_driver_2->GetY());
-	}
-	else {
-		//platform->SetSetpoint(.5);
-	}
+	platform->setSpeed(-oi->getAxis(PLATFORM_C));
 	
 	cout<<"Voltage: "<<platform->ReturnPIDInput();
-	//
+	
 /*
 	if(right_driver_2->GetRawButton(3) == true) {
 		platpres = true;
