@@ -40,6 +40,7 @@ void Teleop::Initialize() {
 	platform->SetSetpoint(1.0);
 	pos = 0;
 	PID_enable = true;
+	kick_press = false;
 }
 
 
@@ -65,9 +66,8 @@ void Teleop::Execute() {
 #else
 	chassis->tankDrive(-oi->getAxis(DRIVE_R), -oi->getAxis(DRIVE_L));
 #endif
-		
 	
-	cout<<"Left Encoder: "<<chassis->encoderLeftGet()<<"\t\tRight Encoder: "<<chassis->encoderRightGet()<<"\n";
+	//cout<<"Left Encoder: "<<chassis->encoderLeftGet()<<"\t\tRight Encoder: "<<chassis->encoderRightGet()<<"\n";
 	
 	
 	//*************** Move Chassis Shifter ***********************//
@@ -79,32 +79,55 @@ void Teleop::Execute() {
 	
 	
 	//*************** Move Kicker Arm ****************************//
-	double MaxKickerFwdSpd = -1*((oi->getAxis(KICKER_POWER)/2)-0.5);
-	cout<<MaxKickerFwdSpd<<"\n";
 	
-	int Max_time = (int)SmartDashboard::GetNumber("Kicker Time");
+	//double MaxKickerFwdSpd = -1*((oi->getAxis(KICKER_POWER)/2)-0.5);
+	//cout<<MaxKickerFwdSpd<<"\n";	
+	//int Max_time = (int)SmartDashboard::GetNumber("Kicker Time");
 	
+	//manual joystick kick
 	if (oi->getBtn(MANUAL_KICK)) {
+		kick_press = false;
 		kicker->setSpeed(-oi->getAxis(KICKER_MAN_C));
+		kicker_timer->Stop();
 		kicker_timer->Reset();
 	}
+	//button kick
 	else if (oi->getBtn(KICK)) {
-		if (kicker_timer->Get() <= Max_time) {
-			kicker->setSpeed(MaxKickerFwdSpd);
-		}
-		else {
-			kicker->setSpeed(0.00);
-		}
+//		if (kicker_timer->Get() <= Max_time) {
+//			kicker->setSpeed(MaxKickerFwdSpd);
+//		}
+//		else {
+//			kicker->setSpeed(0.00);
+//		}
+		kick_press = true;
+		kicker_timer->Reset();
 	}
-	else {
+	else if (!kick_press){
 		// Stop Kicker Arm
 		kicker->setSpeed(0.00);
-		kicker_timer->Reset();
 	}
 	
-	
-	
-	
+	if(kick_press) {
+		kicker_timer->Start();
+		if(!intake_check) {
+			intake->MoveSolenoid(true);
+			intake_check = true;
+		}
+		if(kicker_timer->Get() <= 0.4) {
+			kicker->setSpeed(0.5);
+		}
+		else if(kicker_timer->Get() > 0.4 && kicker_timer->Get() <= 0.8) {
+			kicker->setSpeed(0.0);
+		}
+		else if(kicker_timer->Get() > 0.8 && kicker_timer->Get() <= 1.2) {
+			kicker->setSpeed(0.5);
+		}
+		else {
+			kicker_timer->Stop();
+			kick_press = false;
+		}
+	}
+
 	
 	//*************** Move Intake Arm and Motors *****************//
 #if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
@@ -132,24 +155,13 @@ void Teleop::Execute() {
 	
 	if(oi->getBtn(INTAKE_SOL_IN)){
 		intake->MoveSolenoid(false);
+		intake_check = false;
 	} else if(oi->getBtn(INTAKE_SOL_OUT)) {
 		intake->MoveSolenoid(true);
+		intake_check = true;
 	}
 	//intake->MoveSolenoid(oi->getBtn(INTAKE_SOL));
 #endif
-	
-//	if (intake_engage_btn->Get()){
-//		// Move intake arm down and spin motors
-//		intake->MoveSolenoid(true);
-//		intake->Set(-1.00);
-//	}
-//	else {
-//		// Move intake arm up and stop motors
-//		intake->MoveSolenoid(false);
-//		intake->Set(0.00);
-//	}
-	
-	
 	
 	
 	//*************** Move platform ******************************//
@@ -165,7 +177,7 @@ void Teleop::Execute() {
 		platform->setSpeed(-oi->getAxis(PLATFORM_C));
 	}
 	
-	//preset platform movement buttons
+	//pre-set platform movement buttons
 	if(oi->getBtn(PLATFORM_KICK_POS1)) {
 		platform->Enable();
 		PID_enable = true;
@@ -218,6 +230,7 @@ void Teleop::End() {
 	platform->setSpeed(0.00);
 	pos = 0;
 	PID_enable = true;
+	kick_press = false;
 }
 
 /* Teleop::Interrupted()
@@ -237,4 +250,5 @@ void Teleop::Interrupted() {
 	platform->setSpeed(0.00);
 	pos = 0;
 	PID_enable = true;
+	kick_press = false;
 }
