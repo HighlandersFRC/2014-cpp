@@ -93,12 +93,6 @@ void Teleop::Execute() {
 	}
 	//button kick
 	else if (oi->getBtn(KICK)) {
-//		if (kicker_timer->Get() <= Max_time) {
-//			kicker->setSpeed(MaxKickerFwdSpd);
-//		}
-//		else {
-//			kicker->setSpeed(0.00);
-//		}
 		kick_press = true;
 		kicker_timer->Reset();
 	}
@@ -114,13 +108,13 @@ void Teleop::Execute() {
 			intake_check = true;
 		}
 		if(kicker_timer->Get() <= 0.4) {
-			kicker->setSpeed(0.5);
+			kicker->setSpeed(-0.5);
 		}
-		else if(kicker_timer->Get() > 0.4 && kicker_timer->Get() <= 0.8) {
+		else if(kicker_timer->Get() > 0.4 && kicker_timer->Get() <= 1.6) {
 			kicker->setSpeed(0.0);
 		}
-		else if(kicker_timer->Get() > 0.8 && kicker_timer->Get() <= 1.2) {
-			kicker->setSpeed(0.5);
+		else if(kicker_timer->Get() > 1.6 && kicker_timer->Get() <= 2.0) {
+			kicker->setSpeed(1.0);
 		}
 		else {
 			kicker_timer->Stop();
@@ -189,7 +183,7 @@ void Teleop::Execute() {
 	} else if(oi->getBtn(PLATFORM_KICK_POS3)) {
 		platform->Enable();
 		PID_enable = true;
-		platform->SetSetpoint(0.0);
+		platform->SetSetpoint(2.0);
 	} else if(oi->getBtn(PLATFORM_KICK_POS4)) {
 		platform->Enable();
 		PID_enable = true;
