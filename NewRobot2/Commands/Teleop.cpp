@@ -154,10 +154,7 @@ void Teleop::Execute() {
 	
 	//*************** Move platform ******************************//
 	
-	
-	
-	//platform->setPIDValue(SmartDashboard::GetNumber("P Value: "), SmartDashboard::GetNumber("I Value: "), SmartDashboard::GetNumber("D Value: "));
-	
+	//manual platform movement
 	if ((oi->getAxis(PLATFORM_C) <= 0.1 ) && (oi->getAxis(PLATFORM_C) >= -0.1 )) {
 		if (!PID_enable) {
 			platform->setSpeed(0.00);
@@ -168,8 +165,7 @@ void Teleop::Execute() {
 		platform->setSpeed(-oi->getAxis(PLATFORM_C));
 	}
 	
-	//cout<<"Voltage: "<<platform->ReturnPIDInput();
-	
+	//preset platform movement buttons
 	if(oi->getBtn(PLATFORM_KICK_POS1)) {
 		platform->Enable();
 		PID_enable = true;
@@ -187,52 +183,6 @@ void Teleop::Execute() {
 		PID_enable = true;
 		platform->SetSetpoint(0.0);
 	}
-	
-/*
-	if(right_driver_2->GetRawButton(3) == true) {
-		platpres = true;
-		wantedheight = 0;				//PRESET 1: Floor
-			}
-	//TODO THIS IS CURRENTLY A THROWAWAY VALUE. FIX IT WHEN YOU KNOW VALUE.
-	else if(right_driver_2->GetRawButton(4) == true) {
-		platpres = true;
-		wantedheight = 3;				//PRESET 2: Min Height
-	}
-	else if(right_driver_2->GetRawButton(5) == true) {
-		platpres = true;
-		wantedheight = 1.68;			//PRESET 3: 1.68 Volts
-	}
-	//TODO THIS IS CURRENTLY A THROWAWAY VALUE. FIX IT WHEN YOU KNOW VALUE.
-	else if(right_driver_2->GetRawButton(6) == true) {
-		platpres = true;
-		wantedheight = 3;				//PRESET 4: 1 More Value
-	}
-
-	
-	if (left_driver_2->GetY() >= .25 || left_driver_2->GetY() <= -.25) {
-		platpres = false;
-	}
-	
-	if (platpres == true) {
-		platform->requestPosition(wantedheight);
-	}
-*/
-	
-	
-	//	if (platform_up_btn->Get() && !platform_down_btn->Get()){
-//		// move platform up
-//		platform->setSpeed(0.50);
-//	}
-//	else if (!platform_up_btn->Get() && platform_down_btn->Get()){
-//		// move platform down
-//		platform->setSpeed(-0.50);
-//	}
-//	else {
-//		// Stop platform
-//		platform->setSpeed(0.00);
-//	}
-	
-
 }
 
 
