@@ -14,13 +14,13 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	// set the P, I, and D constants here
-		Jaguar *Belt_Motor;
-		AnalogChannel *Belt_Pot;
-		PIDController *pid;
-	static const double STOW = 1.65;
-	static const double Kp = 0.1;
-	static const double Ki = 0.0;
-	static const double Kd = 0.0;
+	Jaguar *Belt_Motor;
+	AnalogChannel *Belt_Pot;
+	
+	static const double STOW = 1.4;
+	double Kp;
+	double Ki;
+	double Kd;
 	double curheight;
 	double posspeed;
 	double voltage;
@@ -29,6 +29,7 @@ public:
 	Platform();
 	double ReturnPIDInput();
 	void UsePIDOutput(double output);
+	void setPIDValue(double, double, double);
 	void InitDefaultCommand();
 	void setSpeed(double speed);
 	double getBeltPot();

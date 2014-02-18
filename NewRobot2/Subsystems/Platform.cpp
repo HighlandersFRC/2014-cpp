@@ -2,10 +2,11 @@
 #include "../Robotmap.h"
 #include "SmartDashboard/SmartDashboard.h"
 
-Platform::Platform() : PIDSubsystem("Platform", Kp, Ki, Kd) {
+Platform::Platform() : PIDSubsystem("Platform", 1.0, 0.0, 0.0) {
 	Belt_Motor = new Jaguar(BELT_MOTOR);
 	Belt_Pot   = new AnalogChannel(BELT_POT);
-	SetSetpoint(STOW);
+	SetInputRange(1.0f, 4.0f);
+	//SetSetpoint(STOW);
 	Enable();
 }
 
@@ -19,7 +20,7 @@ double Platform::ReturnPIDInput() {
 void Platform::UsePIDOutput(double output) {
 	// Use output to drive your system, like a motor
 	// e.g. yourMotor->Set(output);
-	Belt_Motor->Set(output);
+	Belt_Motor->PIDWrite(output);
 }
 
 void Platform::setSpeed(double speed) {
@@ -30,6 +31,12 @@ double Platform::getBeltPot() {
 	voltage = Belt_Pot->GetVoltage();
 	return voltage;
 	SmartDashboard::PutNumber("Elevator Height", voltage);
+}
+
+void Platform::setPIDValue(double p, double i, double d) {
+	Kp = p;
+	Ki = i;
+	Kd = d;
 }
 
 void Platform::InitDefaultCommand() {

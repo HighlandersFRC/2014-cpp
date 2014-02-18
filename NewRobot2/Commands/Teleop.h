@@ -14,6 +14,8 @@ private:
 	Timer *kicker_timer;
 	bool platpres;
 	double wantedheight;
+	double pos;
+	bool PID_enable;
 public:
 	Teleop();
 	virtual void Initialize();

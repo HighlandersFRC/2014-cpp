@@ -34,6 +34,12 @@ Teleop::Teleop() {
  *   Initializes the teleop command
  */
 void Teleop::Initialize() {
+//	SmartDashboard::PutNumber("P Value: ", 1.0); 
+//	SmartDashboard::PutNumber("I Value: ", 0.0);
+//	SmartDashboard::PutNumber("D Value: ", 0.0);
+	platform->SetSetpoint(1.0);
+	pos = 0;
+	PID_enable = true;
 }
 
 
@@ -147,9 +153,41 @@ void Teleop::Execute() {
 	
 	
 	//*************** Move platform ******************************//
-	platform->setSpeed(-oi->getAxis(PLATFORM_C));
 	
-	cout<<"Voltage: "<<platform->ReturnPIDInput();
+	
+	
+	//platform->setPIDValue(SmartDashboard::GetNumber("P Value: "), SmartDashboard::GetNumber("I Value: "), SmartDashboard::GetNumber("D Value: "));
+	
+	if ((oi->getAxis(PLATFORM_C) <= 0.1 ) && (oi->getAxis(PLATFORM_C) >= -0.1 )) {
+		if (!PID_enable) {
+			platform->setSpeed(0.00);
+		}
+	} else {
+		platform->Disable();
+		PID_enable = false;
+		platform->setSpeed(-oi->getAxis(PLATFORM_C));
+	}
+	
+	//cout<<"Voltage: "<<platform->ReturnPIDInput();
+	
+	if(oi->getBtn(PLATFORM_KICK_POS1)) {
+		platform->Enable();
+		PID_enable = true;
+		platform->SetSetpoint(3.0);
+	} else if(oi->getBtn(PLATFORM_KICK_POS2)) {
+		platform->Enable();
+		PID_enable = true;
+		platform->SetSetpoint(0.5);
+	} else if(oi->getBtn(PLATFORM_KICK_POS3)) {
+		platform->Enable();
+		PID_enable = true;
+		platform->SetSetpoint(0.0);
+	} else if(oi->getBtn(PLATFORM_KICK_POS4)) {
+		platform->Enable();
+		PID_enable = true;
+		platform->SetSetpoint(0.0);
+	}
+	
 /*
 	if(right_driver_2->GetRawButton(3) == true) {
 		platpres = true;
@@ -228,6 +266,8 @@ void Teleop::End() {
 	intake->MoveSolenoid(false);
 	intake->Set(0.00);
 	platform->setSpeed(0.00);
+	pos = 0;
+	PID_enable = true;
 }
 
 /* Teleop::Interrupted()
@@ -245,4 +285,6 @@ void Teleop::Interrupted() {
 	intake->MoveSolenoid(false);
 	intake->Set(0.00); 
 	platform->setSpeed(0.00);
+	pos = 0;
+	PID_enable = true;
 }
