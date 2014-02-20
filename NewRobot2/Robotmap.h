@@ -39,8 +39,8 @@
 #define KICKER_MOTOR_1          5       // PWM Out        	Kicker Motor 1                  kicker      Linda	White Yellow
 #define KICKER_MOTOR_2          6       // PWM Out        	Kicker Motor 2                  kicker      Linda	White Red
                                                                                                                
-#define BELT_MOTOR              8       // PWM Out        	elevation control for elevator  elevator    Zack	White Blue
-#define BELT_POT                1       // Analog in      	Pot for Belt position           elevator    Zack
+#define BELT_MOTOR              8       // PWM Out        	elevation control for elevator  platform    Zack	White Blue
+#define BELT_POT                1       // Analog in      	Pot for Belt position           platform    Zack
                                                                                                                
 #define INTAKE_MOTOR            7       // PWM Out        	ball grab motor                 intake      Drew	White Green
 
