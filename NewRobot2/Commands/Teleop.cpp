@@ -103,6 +103,7 @@ void Teleop::Execute() {
 		kicker->setSpeed(0.00);
 	}
 	
+	//auto-kicker sequence
 	if(kick_press) {
 		kicker_timer->Start();
 		if(!intake_check) {
