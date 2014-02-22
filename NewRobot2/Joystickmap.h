@@ -65,10 +65,10 @@ static const int SHIFT[2]         = {BTN_2,      DRIVER_RIGHT_JOYSTICK};
 static const int KICK[2]          = {TRIGGER,    COPILOT_RIGHT_JOYSTICK};
 static const int MANUAL_KICK[2]   = {BTN_2,      COPILOT_RIGHT_JOYSTICK};
 
-static const int INTAKE_IN[2]     = {BTN_8,      COPILOT_LEFT_JOYSTICK};
-static const int INTAKE_OUT[2]    = {BTN_9,      COPILOT_LEFT_JOYSTICK};
-static const int INTAKE_SOL_IN[2] = {BTN_11,     COPILOT_RIGHT_JOYSTICK};
-static const int INTAKE_SOL_OUT[2]= {BTN_12,     COPILOT_RIGHT_JOYSTICK};
+static const int INTAKE_IN[2]     = {BTN_2,      COPILOT_LEFT_JOYSTICK};
+static const int INTAKE_OUT[2]    = {BTN_3,      COPILOT_LEFT_JOYSTICK};
+static const int INTAKE_SOL_IN[2] = {BTN_4,      COPILOT_LEFT_JOYSTICK};
+static const int INTAKE_SOL_OUT[2]= {BTN_5,      COPILOT_LEFT_JOYSTICK};
 
 static const int PLATFORM_KICK_POS1[2]  = {BTN_5,		 COPILOT_RIGHT_JOYSTICK};
 static const int PLATFORM_KICK_POS2[2]  = {BTN_3,		 COPILOT_RIGHT_JOYSTICK};
