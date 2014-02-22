@@ -1,7 +1,7 @@
 #include "Teleop.h"
 #include "..\Joystickmap.h"
 
-#define LINDA_NEW 0
+#define LINDA_NEW 1
 
 /* Teleop::Teleop()
  * Input   -
@@ -167,8 +167,19 @@ void Teleop::Execute() {
 
 	
 #if LINDA_NEW	
+	//Intake Sequence: "lower arm + wheels in + platform down, then platform up."
 	if(oi->getBtn(INTAKE_SEQUENCE)){
-		intake
+//		if (intake_sequence_pressed == false){
+			intake->MoveSolenoid(true);
+			intake->Set(-1.00);
+			platform->SetSetpoint(0.0);
+			intake_sequence_pressed = true;
+//		}
+	}
+	else if(intake_sequence_pressed && !oi->getBtn(INTAKE_SEQUENCE)){
+		intake_sequence_pressed = false;
+		intake->MoveSolenoid(false);
+		intake->Set(0.00);
 	}
 #endif	
 	
