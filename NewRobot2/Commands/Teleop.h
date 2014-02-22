@@ -3,7 +3,7 @@
 
 #include "../CommandBase.h"
 #include "../OI.h"
-#include "../RobotMap.h"
+
 
 /**
  * @author Zack Palmer
@@ -25,7 +25,6 @@ public:
 	virtual bool IsFinished();
 	virtual void End();
 	virtual void Interrupted();
-	
 };
 
 #endif

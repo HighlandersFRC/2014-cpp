@@ -1,4 +1,6 @@
 #include "Teleop.h"
+#include "..\Joystickmap.h"
+
 
 /* Teleop::Teleop()
  * Input   -
