@@ -1,6 +1,7 @@
 #include "Teleop.h"
 #include "..\Joystickmap.h"
 
+#define LINDA_NEW 0
 
 /* Teleop::Teleop()
  * Input   -
@@ -158,6 +159,14 @@ void Teleop::Execute() {
 		intake_check = true;
 	}
 	//intake->MoveSolenoid(oi->getBtn(INTAKE_SOL));
+
+	
+#if LINDA_NEW	
+	if(oi->getBtn(INTAKE_SEQUENCE)){
+		intake
+	}
+#endif	
+	
 #endif
 	
 	
