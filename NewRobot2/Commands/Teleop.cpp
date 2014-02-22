@@ -174,7 +174,7 @@ void Teleop::Execute() {
 	}
 	else if(intake_sequence_btn && !oi->getBtn(INTAKE_SEQUENCE)){
 		intake_sequence_btn = false;
-		intake->MoveSolenoid(true);
+		intake->MoveSolenoid(false);
 		intake->Set(0.00);
 	}
 #endif	
