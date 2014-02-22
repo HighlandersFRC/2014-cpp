@@ -18,6 +18,8 @@ private:
 	bool PID_enable;
 	bool kick_press;
 	bool intake_check;
+	bool intake_sequence_btn;
+	
 public:
 	Teleop();
 	virtual void Initialize();

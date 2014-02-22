@@ -165,10 +165,17 @@ void Teleop::Execute() {
 
 	
 #if LINDA_NEW	
+	//Intake Sequence: "lower arm + wheels in + platform down, then platform up."
 	if(oi->getBtn(INTAKE_SEQUENCE)){
 		intake->MoveSolenoid(true);
 		intake->Set(-1.00);
 		platform->SetSetpoint(0.0);
+		intake_sequence_btn = true;
+	}
+	else if(intake_sequence_btn && !oi->getBtn(INTAKE_SEQUENCE)){
+		intake_sequence_btn = false;
+		intake->MoveSolenoid(true);
+		intake->Set(0.00);
 	}
 #endif	
 	
