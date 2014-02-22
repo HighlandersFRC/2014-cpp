@@ -5,20 +5,21 @@
 
 class OI {
 private:
-	Joystick *joystick1;
-	Joystick *joystick2;
-	Joystick *joystick3;
-	Joystick *joystick4;
+	Joystick *driverLeftJoystick;
+	Joystick *driverRightJoystick;
+	Joystick *copilotLeftJoystick;
+	Joystick *copilotRightJoystick;
 	
 public:
 	OI();
-	Joystick *getJoystick1();
-	Joystick *getJoystick2();
-	Joystick *getJoystick3();
-	Joystick *getJoystick4();
 	
 	bool getBtn(const int[2]);
-	double getAxis(const int[2]);
+	
+	double getAxisLeftDrive(const int axis[2]);
+	double getAxisRightDrive(const int axis[2]);
+	double getAxisCopilotLeft(const int axis[2]);
+	double getAxisCopilotRight(const int axis[2]);
+	
 };
 
 #endif
