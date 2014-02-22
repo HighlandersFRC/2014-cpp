@@ -66,7 +66,7 @@ void Teleop::Execute() {
 #if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
 	chassis->arcadeDrive(-driver_1->GetRawAxis(1), -driver_1->GetRawAxis(2));
 #else
-	chassis->tankDrive(-oi->getAxisLeftDrive(DRIVE_R), -oi->getAxisRightDrive(DRIVE_L));
+	chassis->tankDrive(-oi->getAxisRightDrive(DRIVE_R), -oi->getAxisLeftDrive(DRIVE_L));
 #endif
 	
 	//cout<<"Left Encoder: "<<chassis->encoderLeftGet()<<"\t\tRight Encoder: "<<chassis->encoderRightGet()<<"\n";
