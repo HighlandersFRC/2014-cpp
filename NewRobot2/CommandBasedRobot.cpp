@@ -3,6 +3,7 @@
 #include "Commands/Teleop.h"
 #include "Commands/Autonomous.h"
 #include "CommandBase.h"
+#include "Robotmap.h"
 
 class CommandBasedRobot : public IterativeRobot {
 private:
@@ -31,8 +32,12 @@ private:
 		SmartDashboard::PutData(Scheduler::GetInstance());
 		
 		//SmartDashboard Values (Defaults for values that read from SmartDashboard)
-		SmartDashboard::PutNumber("Kicker Max Speed Forward", .75);
-		SmartDashboard::PutNumber("Kicker Time", 5);
+		SmartDashboard::PutNumber(SD_KICKER_NEXT_SPEED, 0);
+		SmartDashboard::PutNumber("Current Kicker Speed", 0);
+		SmartDashboard::PutNumber("Platform Hieght", 0);
+		SmartDashboard::PutNumber("Distance Sensor", 0);
+		SmartDashboard::PutString("Intake Arm", "-----");
+		SmartDashboard::PutString("Compressor", "-----");
 	}
 	
 	

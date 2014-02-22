@@ -192,6 +192,8 @@ void Teleop::Execute() {
 		PID_enable = true;
 		platform->SetSetpoint(0.0);
 	}
+	
+	SmartDashboard::PutNumber("Platform Hieght", platform->GetPosition());
 }
 
 
