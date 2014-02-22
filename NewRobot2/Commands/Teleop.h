@@ -17,7 +17,6 @@ private:
 	double pos;
 	bool PID_enable;
 	bool kick_press;
-	bool intake_check;
 public:
 	Teleop();
 	virtual void Initialize();
