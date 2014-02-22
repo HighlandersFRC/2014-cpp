@@ -11,9 +11,9 @@
  * Instilizes the operator interfaces
 */
 OI::OI() {
-	driverLeftJoystick = new Joystick(DRIVER_LEFT_JOYSTICK);
-	driverRightJoystick = new Joystick(DRIVER_RIGHT_JOYSTICK);
-	copilotLeftJoystick = new Joystick(COPILOT_LEFT_JOYSTICK);
+	driverLeftJoystick   = new Joystick(DRIVER_LEFT_JOYSTICK);
+	driverRightJoystick  = new Joystick(DRIVER_RIGHT_JOYSTICK);
+	copilotLeftJoystick  = new Joystick(COPILOT_LEFT_JOYSTICK);
 	copilotRightJoystick = new Joystick(COPILOT_RIGHT_JOYSTICK);
 }
 

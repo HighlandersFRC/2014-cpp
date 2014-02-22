@@ -7,7 +7,7 @@
 class CommandBasedRobot : public IterativeRobot {
 private:
 	//Command *autonomousCommand;
-	//LiveWindow *lw;
+	LiveWindow *lw;
 	Autonomous *autonomous;
 	Teleop *teleop;
 	
@@ -22,13 +22,13 @@ private:
 	*/
 	virtual void RobotInit() {
 		CommandBase::init();
-		//@todo Drago901 1/11/14 Replace the example command with our actual autonomous command
-		//autonomousCommand = new ExampleCommand();
-		//lw = LiveWindow::GetInstance();
+
+		lw = LiveWindow::GetInstance();
 		
 		autonomous = new Autonomous();
-		teleop = new Teleop();
+		teleop     = new Teleop();
 		
+		SmartDashboard::PutData(Scheduler::GetInstance());
 		
 		//SmartDashboard Values (Defaults for values that read from SmartDashboard)
 		SmartDashboard::PutNumber("Kicker Max Speed Forward", .75);
@@ -46,7 +46,6 @@ private:
 	*/
 	virtual void AutonomousInit() {
 		//autonomousCommand->Start();
-
 		autonomous->Start();
 		teleop->Cancel();
 	}
@@ -107,7 +106,7 @@ private:
 	 * Runs repeatedly during the test period
 	*/
 	virtual void TestPeriodic() {
-		//lw->Run();
+		lw->Run();
 	}
 };
 
