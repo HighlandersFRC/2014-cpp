@@ -1,6 +1,7 @@
 #include "Teleop.h"
 #include "..\Joystickmap.h"
 
+#define LINDA_NEW 0
 
 /* Teleop::Teleop()
  * Input   -
@@ -106,23 +107,26 @@ void Teleop::Execute() {
 	//auto-kicker sequence
 	if(kick_press) {
 		kicker_timer->Start();
-		if(!intake_check) {
-			intake->MoveSolenoid(true);
-			intake_check = true;
-		}
+		intake->MoveSolenoid(true);
+		intake->Set(-0.5);
+		
 		if(kicker_timer->Get() <= 0.4) {
-			kicker->setSpeed(-0.5);
+			intake->Set(0.0);
 		}
-		else if(kicker_timer->Get() > 0.4 && kicker_timer->Get() <= 1.6) {
-			kicker->setSpeed(0.0);
-		}
-		else if(kicker_timer->Get() > 1.6 && kicker_timer->Get() <= 2.0) {
-			kicker->setSpeed(1.0);
-		}
-		else {
-			kicker_timer->Stop();
-			kick_press = false;
-		}
+		
+//		if(kicker_timer->Get() <= 0.4) {
+//			kicker->setSpeed(-0.5);
+//		}
+//		else if(kicker_timer->Get() > 0.4 && kicker_timer->Get() <= 1.6) {
+//			kicker->setSpeed(0.0);
+//		}
+//		else if(kicker_timer->Get() > 1.6 && kicker_timer->Get() <= 2.0) {
+//			kicker->setSpeed(1.0);
+//		}
+//		else {
+//			kicker_timer->Stop();
+//			kick_press = false;
+//		}
 	}
 
 	
@@ -158,6 +162,14 @@ void Teleop::Execute() {
 		intake_check = true;
 	}
 	//intake->MoveSolenoid(oi->getBtn(INTAKE_SOL));
+
+	
+#if LINDA_NEW	
+	if(oi->getBtn(INTAKE_SEQUENCE)){
+		intake
+	}
+#endif	
+	
 #endif
 	
 	
