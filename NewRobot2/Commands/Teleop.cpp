@@ -66,7 +66,7 @@ void Teleop::Execute() {
 #if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
 	chassis->arcadeDrive(-driver_1->GetRawAxis(1), -driver_1->GetRawAxis(2));
 #else
-	chassis->tankDrive(-oi->getAxis(DRIVE_R), -oi->getAxis(DRIVE_L));
+	chassis->tankDrive(-oi->getAxisLeftDrive(DRIVE_R), -oi->getAxisRightDrive(DRIVE_L));
 #endif
 	
 	//cout<<"Left Encoder: "<<chassis->encoderLeftGet()<<"\t\tRight Encoder: "<<chassis->encoderRightGet()<<"\n";
@@ -89,7 +89,7 @@ void Teleop::Execute() {
 	//manual joystick kick
 	if (oi->getBtn(MANUAL_KICK)) {
 		kick_press = false;
-		kicker->setSpeed(-oi->getAxis(KICKER_MAN_C));
+		kicker->setSpeed(-oi->getAxisCopilotRight(KICKER_MAN_C));
 		kicker_timer->Stop();
 		kicker_timer->Reset();
 	}
@@ -164,14 +164,14 @@ void Teleop::Execute() {
 	//*************** Move platform ******************************//
 	
 	//manual platform movement
-	if ((oi->getAxis(PLATFORM_C) <= 0.1 ) && (oi->getAxis(PLATFORM_C) >= -0.1 )) {
+	if ((oi->getAxisCopilotLeft(PLATFORM_C) <= 0.1 ) && (oi->getAxisCopilotLeft(PLATFORM_C) >= -0.1 )) {
 		if (!PID_enable) {
 			platform->setSpeed(0.00);
 		}
 	} else {
 		platform->Disable();
 		PID_enable = false;
-		platform->setSpeed(-oi->getAxis(PLATFORM_C));
+		platform->setSpeed(-oi->getAxisCopilotLeft(PLATFORM_C));
 	}
 	
 	//pre-set platform movement buttons
