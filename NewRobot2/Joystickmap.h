@@ -62,6 +62,7 @@ static const int KICKER_POWER[2]  = {THROTTLE,   COPILOT_RIGHT_JOYSTICK};
 //               Control             Button      Joystick                     Description
 static const int SHIFT[2]         = {BTN_2,      DRIVER_RIGHT_JOYSTICK};
 
+static const int KICKER_PREP[2]  = {BTN_5,		 COPILOT_RIGHT_JOYSTICK};
 static const int KICK[2]          = {TRIGGER,    COPILOT_RIGHT_JOYSTICK};
 static const int MANUAL_KICK[2]   = {BTN_2,      COPILOT_RIGHT_JOYSTICK};
 
@@ -71,10 +72,9 @@ static const int INTAKE_SOL_IN[2]	= {BTN_4,       COPILOT_LEFT_JOYSTICK};
 static const int INTAKE_SOL_OUT[2]	= {BTN_5,       COPILOT_LEFT_JOYSTICK};
 static const int INTAKE_SEQUENCE[2]	= {BTN_1,		COPILOT_LEFT_JOYSTICK};
 
-static const int PLATFORM_KICK_POS1[2]  = {BTN_5,		 COPILOT_RIGHT_JOYSTICK};
-static const int PLATFORM_KICK_POS2[2]  = {BTN_3,		 COPILOT_RIGHT_JOYSTICK};
-static const int PLATFORM_KICK_POS3[2]  = {BTN_4,		 COPILOT_RIGHT_JOYSTICK};
-static const int PLATFORM_KICK_POS4[2]  = {BTN_6,		 COPILOT_RIGHT_JOYSTICK};
+static const int PLATFORM_KICK_POS1[2]  = {BTN_3,		 COPILOT_RIGHT_JOYSTICK};
+static const int PLATFORM_KICK_POS2[2]  = {BTN_4,		 COPILOT_RIGHT_JOYSTICK};
+static const int PLATFORM_KICK_POS3[2]  = {BTN_6,		 COPILOT_RIGHT_JOYSTICK};
 
 
 #endif
