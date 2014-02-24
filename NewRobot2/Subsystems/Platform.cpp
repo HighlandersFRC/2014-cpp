@@ -30,7 +30,6 @@ void Platform::setSpeed(double speed) {
 double Platform::getBeltPot() {
 	voltage = Belt_Pot->GetVoltage();
 	return voltage;
-	SmartDashboard::PutNumber("Elevator Height", voltage);
 }
 
 void Platform::setPIDValue(double p, double i, double d) {
@@ -54,18 +53,16 @@ void Platform::requestPosition(double wantedheight) {
 	storeheight = wantedheight;
 	curheight = Belt_Pot->GetVoltage();
 	if (storeheight <= curheight & storeheight >= curheight) {
-		SmartDashboard::PutString("Platform Position", "No");
 		//do nothing
 	}
 	else {
 		this->setPosition(wantedheight);
-		SmartDashboard::PutString("Platform Position", "Yes");
 	}
 }
 
 void Platform::setPosition(double height) {
 	curheight = Belt_Pot->GetAverageVoltage();
-	posspeed = SmartDashboard::GetNumber("Position Movement");    //should be like .5
+	//posspeed = SmartDashboard::GetNumber("Position Movement");    //should be like .5
 	if (height >= curheight - .01){                //.01 = Tolerance
 		Belt_Motor->SetSpeed(posspeed);
 	}

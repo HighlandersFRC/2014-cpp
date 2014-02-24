@@ -33,9 +33,7 @@ void CommandBase::init() {
 	cout<<"start\n";
 	// Initialize subsystems
 	chassis       = new Chassis();
-	cout<<"chassis\n";
 	kicker        = new Kicker();
-	cout<<"kicker\n";
 	aircompressor = new AirCompressor();
 	cout<<"air compressor\n";
 	intake        = new Intake();

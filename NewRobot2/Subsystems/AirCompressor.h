@@ -15,6 +15,7 @@ public:
 	void InitDefaultCommand();
 	void Stop();
 	void Start();
+	void Update();
 };
 
 #endif

@@ -39,7 +39,11 @@
 #define SOL_A					3		// Pneumatic		forward solenoid for intake	  	nomos		Drew			
 #define SOL_B					4		// Pneumatic		reverse solenoid for intake	  	nomos		Drew			
 
-
-
+#define SD_KICKER_NEXT_SPEED     "Next Kick Speed"
+#define SD_KICKER_CURRENT_SPEED  "Current Kick Speed"
+#define SD_DISTANCE_SENSOR       "Distance Sensor"
+#define SD_INTAKE_ARM            "Intake Arm"
+#define SD_COMPRESSOR            "Compressor"
+#define SD_PLATFORM              "Platform"
 
 #endif
