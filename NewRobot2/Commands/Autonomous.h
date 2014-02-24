@@ -5,6 +5,7 @@
 
 #define S_INIT				0
 
+//All autonomous possibilities are AUTO_* and only one can be defined at a time
 #define AUTO_SHOOT          3 // AS
 
 #define S_AS_READY          1
