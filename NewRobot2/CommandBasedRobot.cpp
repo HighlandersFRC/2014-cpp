@@ -9,9 +9,8 @@ class CommandBasedRobot : public IterativeRobot
 {
 private:
 	// @todo: CLEAN Command *autonomousCommand;
-	LiveWindow *lw;
 	Autonomous *autonomous;
-	Teleop *teleop;
+	Teleop     *teleop;
 	
 	
 	/* RobotInit()
@@ -27,8 +26,6 @@ private:
 		DebugPrint(DBG_PRT_V1, "calling: CommandBase::init()");
 		CommandBase::init();
 
-		lw = LiveWindow::GetInstance();
-		
 		DebugPrint(DBG_PRT_V1, "calling: new Autonomous()");
 		autonomous = new Autonomous();
 
@@ -117,7 +114,7 @@ private:
 	*/
 	virtual void TestPeriodic() 
 	{
-		lw->Run();
+		CommandBase::lw->Run();
 	}
 };
 

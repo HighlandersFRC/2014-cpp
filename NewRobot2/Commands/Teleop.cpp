@@ -25,7 +25,7 @@ Teleop::Teleop()
 	Requires(kicker);
 	Requires(platform);
 	Requires(vision);
-	
+		
 	// Init Timer for kicker
 	kicker_timer = new Timer();
 }
@@ -49,6 +49,7 @@ void Teleop::Initialize()
 	// @todo: CLEAN 	SmartDashboard::PutNumber("D Value: ", 0.0);
 	
 	platform->SetSetpoint(1.0);
+	
 	pos = 0;
 	PID_enable = true;
 	kick_prep = false;
@@ -143,8 +144,8 @@ void Teleop::Execute()
 		{
 			intake->Set(0.0);	
 			
-			// Stops intake wheels and sets SetPoint of platform to 2.3
-			platform->Enable();
+			// Stops intake wheels and sets SetPoint of platform to SD_PREP_KICK_PLAT_HEIGHT
+			platform->Enable();			
 			PID_enable = true;
 			
 			platform->SetSetpoint(SmartDashboard::GetNumber(SD_PREP_KICK_PLAT_HEIGHT));
@@ -347,6 +348,6 @@ void Teleop::Interrupted()
 	platform->setSpeed(0.00);
 	pos = 0;
 	PID_enable = true;
-	kick_prep = false;
-	kick_ball = false;
+	kick_prep  = false;
+	kick_ball  = false;
 }

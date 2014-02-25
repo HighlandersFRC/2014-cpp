@@ -8,8 +8,6 @@
 #define DRIVE_TYPE   DRIVE_TYPE_TANK
 
 
-
-
 #define DRIVER_GAMEPAD         1
 #define COPILOT_GAMPAD         2
 
@@ -19,8 +17,6 @@
 #define COPILOT_RIGHT_JOYSTICK 4
 
 #define CONTROL_BOARD          5
-
-
 
 
 #define TRIGGER                1
@@ -47,7 +43,6 @@
 #define THROTTLE               4
 
 
-
 //               Control             Axis        Joystick                     Description
 static const int DRIVE_L[2]       = {Y_AXIS,     DRIVER_LEFT_JOYSTICK};
 static const int DRIVE_R[2]       = {Y_AXIS,     DRIVER_RIGHT_JOYSTICK};
@@ -62,7 +57,7 @@ static const int KICKER_POWER[2]  = {THROTTLE,   COPILOT_RIGHT_JOYSTICK};
 //               Control             Button      Joystick                     Description
 static const int SHIFT[2]         = {BTN_2,      DRIVER_RIGHT_JOYSTICK};
 
-static const int KICKER_PREP[2]  = {BTN_5,		 COPILOT_RIGHT_JOYSTICK};
+static const int KICKER_PREP[2]   = {BTN_5,		 COPILOT_RIGHT_JOYSTICK};
 static const int KICK[2]          = {TRIGGER,    COPILOT_RIGHT_JOYSTICK};
 static const int MANUAL_KICK[2]   = {BTN_2,      COPILOT_RIGHT_JOYSTICK};
 

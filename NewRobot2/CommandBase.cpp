@@ -1,14 +1,9 @@
 #include "WPILib.h"
 #include "Robotmap.h"			// for: SD_KICKER_NEXT_SPEED
 #include "DebugPrint.h"			// for: DebugPrint()
-#include "CommandBase.h"
+#include "CommandBase.h"		// for all subsystems.
 #include "Commands/Scheduler.h"
 
-CommandBase::CommandBase(const char *name) : Command(name) {
-}
-
-CommandBase::CommandBase() : Command() {
-}
 
 // Initialize Operator Interface to NULL
 OI* CommandBase::oi = NULL;
@@ -18,8 +13,20 @@ Chassis*       CommandBase::chassis       = NULL;
 Kicker*        CommandBase::kicker        = NULL;
 AirCompressor* CommandBase::aircompressor = NULL;
 Intake*        CommandBase::intake        = NULL;
-Platform*      CommandBase::platform      = NULL;
 Vision*        CommandBase::vision        = NULL;
+Platform*      CommandBase::platform      = NULL;
+LiveWindow*    CommandBase::lw            = NULL;
+
+
+CommandBase::CommandBase(const char *name) : Command(name) 
+{
+}
+
+
+CommandBase::CommandBase() : Command() 
+{
+}
+
 
 /* CommandBase::init()
  * Inputs  -
@@ -54,7 +61,8 @@ void CommandBase::init()
 	SmartDashboard::PutString(SD_PLATFORM_LOCATION, SD_STRING_UNKNOWN);
 	SmartDashboard::PutString(SD_INTAKE_WHEELS_DIR, SD_STRING_UNKNOWN);
 
-
+	lw = LiveWindow::GetInstance();
+	
 	// Initialize operator interface
 	DebugPrint(DBG_PRT_V1, "calling: new OI()");
 	oi = new OI();

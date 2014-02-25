@@ -1,27 +1,25 @@
 #ifndef COMMAND_BASE_H
 #define COMMAND_BASE_H
 
-// Import Command.h
-#include "Commands/Command.h"
 
-// Import Operator Interface
-#include "OI.h"
-
-// Import Subsystems
+#include "WPIlib.h"
+#include "OI.h"						// for: Operator Interface
 #include "Subsystems/Chassis.h"
 #include "Subsystems/Kicker.h"
 #include "Subsystems/AirCompressor.h"
 #include "Subsystems/Intake.h"
 #include "Subsystems/Platform.h"
 #include "Subsystems/Vision.h"
-#include "Subsystems/Platform.h"
+
+
 
 /*
  * The base for all commands. All atomic commands should subclass CommandBase.
  * CommandBase stores creates and stores each control system. To access a
  * subsystem elsewhere in your code in your code use CommandBase.examplesubsystem
 */
-class CommandBase: public Command {
+class CommandBase: public Command 
+{
 public:
 	CommandBase(const char *name);
 	CommandBase();
@@ -37,6 +35,7 @@ public:
 	static Intake        *intake;
 	static Platform      *platform;
 	static Vision        *vision;
+	static LiveWindow    *lw;
 };
 
 #endif
