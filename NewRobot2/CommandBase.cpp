@@ -1,3 +1,6 @@
+#include "WPILib.h"
+#include "Robotmap.h"			// for: SD_KICKER_NEXT_SPEED
+#include "DebugPrint.h"			// for: DebugPrint()
 #include "CommandBase.h"
 #include "Commands/Scheduler.h"
 
@@ -26,20 +29,44 @@ Vision*        CommandBase::vision        = NULL;
  *  
  *  Create a single static instance of all of subsystems
 */
-void CommandBase::init() {
+void CommandBase::init() 
+{
+	// Initialze SmartDashboard Values 
+	//   Numeric Values:
+	SmartDashboard::PutNumber(SD_KICKER_NEXT_SPEED, 0);
+	SmartDashboard::PutNumber(SD_KICKER_CURRENT_SPEED, 0);
+	SmartDashboard::PutNumber(SD_DISTANCE, 0);
+	SmartDashboard::PutNumber(SD_PLATFORM_PID_POS, 0);
+	SmartDashboard::PutNumber(SD_INTAKE_WHEELS_SPEED, 0);
+	SmartDashboard::PutNumber(SD_KICK_SPEED_FWD, 1.0);
+	SmartDashboard::PutNumber(SD_PREP_KICK_THRESHOLD_HEIGHT, 2.8);
+	SmartDashboard::PutNumber(SD_PREP_KICK_PLAT_HEIGHT, 2.3);
+
+	//   Debug string values
+	SmartDashboard::PutString(SD_DBG_PRT_LAST_MINUS_3, "--------------------------------------------------------");
+	SmartDashboard::PutString(SD_DBG_PRT_LAST_MINUS_2, "--------------------------------------------------------");
+	SmartDashboard::PutString(SD_DBG_PRT_LAST_MINUS_1, "--------------------------------------------------------");
+	SmartDashboard::PutString(SD_DBG_PRT_LAST, 		   "--------------------------------------------------------");
+	
+	//   multi-value string
+	SmartDashboard::PutString(SD_INTAKE_ARM_POS,    SD_STRING_UNKNOWN);
+	SmartDashboard::PutString(SD_COMPRESSOR_ON_OFF, SD_STRING_UNKNOWN);
+	SmartDashboard::PutString(SD_PLATFORM_LOCATION, SD_STRING_UNKNOWN);
+	SmartDashboard::PutString(SD_INTAKE_WHEELS_DIR, SD_STRING_UNKNOWN);
+
+
 	// Initialize operator interface
+	DebugPrint(DBG_PRT_V1, "calling: new OI()");
 	oi = new OI();
 	
-	cout<<"start\n";
-	// Initialize subsystems
+	// Create subsystems
 	chassis       = new Chassis();
 	kicker        = new Kicker();
 	aircompressor = new AirCompressor();
-	cout<<"air compressor\n";
 	intake        = new Intake();
-	cout<<"intake\n";
 	platform      = new Platform();
-	cout<<"elevator\n";
 	vision        = new Vision();
-	cout<<"vision\n";
+	
+	// Display the status of the scheduler
+	SmartDashboard::PutData(Scheduler::GetInstance());
 }

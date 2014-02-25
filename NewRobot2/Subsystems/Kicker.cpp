@@ -1,13 +1,15 @@
 #include "Kicker.h"
 #include "../Robotmap.h"
 
+
 ///Kicker::Kicker()
 ///
 ///@brief This function constructs the subsystem.
 ///
 ///This function does not take or return a value.
 ///
-Kicker::Kicker() : Subsystem("Kicker") {
+Kicker::Kicker() : Subsystem("Kicker") 
+{
 	motor_1 = new Victor(KICKER_MOTOR_1);
 	motor_2 = new Victor(KICKER_MOTOR_2);
 	setSpeed(0);
@@ -23,8 +25,8 @@ Kicker::Kicker() : Subsystem("Kicker") {
  * Sets default command for Kicker 
  * subsystem.
 */
-void Kicker::InitDefaultCommand() {
-	// Set the default command for a subsystem here.
+void Kicker::InitDefaultCommand() 
+{
 }
 
 ///Chassis::setSpeed()
@@ -35,7 +37,8 @@ void Kicker::InitDefaultCommand() {
 ///
 ///This function does not return anything
 ///
-void Kicker::setSpeed(double s) {
+void Kicker::setSpeed(double s) 
+{
 	motor_1->Set(s);
 	motor_2->Set(s);
 	SmartDashboard::PutNumber(SD_KICKER_CURRENT_SPEED, s);

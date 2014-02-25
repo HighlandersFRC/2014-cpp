@@ -1,13 +1,14 @@
 #include "WPILib.h"
+#include "DebugPrint.h"			// for: DebugPrint()
 #include "Commands/Command.h"
 #include "Commands/Teleop.h"
 #include "Commands/Autonomous.h"
 #include "CommandBase.h"
-#include "Robotmap.h"
 
-class CommandBasedRobot : public IterativeRobot {
+class CommandBasedRobot : public IterativeRobot 
+{
 private:
-	//Command *autonomousCommand;
+	// @todo: CLEAN Command *autonomousCommand;
 	LiveWindow *lw;
 	Autonomous *autonomous;
 	Teleop *teleop;
@@ -21,23 +22,18 @@ private:
 	 * 
 	 * Runs when robot is started (including reboot)
 	*/
-	virtual void RobotInit() {
+	virtual void RobotInit() 
+	{
+		DebugPrint(DBG_PRT_V1, "calling: CommandBase::init()");
 		CommandBase::init();
 
 		lw = LiveWindow::GetInstance();
 		
+		DebugPrint(DBG_PRT_V1, "calling: new Autonomous()");
 		autonomous = new Autonomous();
+
+		DebugPrint(DBG_PRT_V1, "calling: new Teleop()");
 		teleop     = new Teleop();
-		
-		SmartDashboard::PutData(Scheduler::GetInstance());
-		
-		//SmartDashboard Values (Defaults for values that read from SmartDashboard)
-		SmartDashboard::PutNumber(SD_KICKER_NEXT_SPEED, 0);
-		SmartDashboard::PutNumber("Current Kicker Speed", 0);
-		SmartDashboard::PutNumber("Platform Hieght", 0);
-		SmartDashboard::PutNumber("Distance Sensor", 0);
-		SmartDashboard::PutString("Intake Arm", "-----");
-		SmartDashboard::PutString("Compressor", "-----");
 	}
 	
 	
@@ -49,8 +45,11 @@ private:
 	 * 
 	 * Runs when the autonomous period is started
 	*/
-	virtual void AutonomousInit() {
-		//autonomousCommand->Start();
+	virtual void AutonomousInit() 
+	{
+		DebugPrint(DBG_PRT_V1, "called: AutonomousInit()");
+
+		// @todo: CLEAN autonomousCommand->Start();
 		autonomous->Start();
 		teleop->Cancel();
 	}
@@ -64,7 +63,8 @@ private:
 	 * 
 	 * Runs repeatedly during the autonomous period 
 	*/
-	virtual void AutonomousPeriodic() {
+	virtual void AutonomousPeriodic() 
+	{
 		Scheduler::GetInstance()->Run();
 	}
 	
@@ -77,12 +77,16 @@ private:
 	 * 
 	 * Runs when teleoperated period is started
 	*/
-	virtual void TeleopInit() {
+	virtual void TeleopInit() 
+	{
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to 
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		//autonomousCommand->Cancel();
+		
+		DebugPrint(DBG_PRT_V1, "called: TeleopInit()");
+
+		// @todo: CLEAN autonomousCommand->Cancel();
 		autonomous->Cancel();
 		teleop->Start();
 	}
@@ -97,7 +101,8 @@ private:
 	 * Runs repeatedly during the 
 	 * teleoperated period 
 	*/
-	virtual void TeleopPeriodic() {
+	virtual void TeleopPeriodic() 
+	{
 		Scheduler::GetInstance()->Run();
 	}
 	
@@ -110,7 +115,8 @@ private:
 	 * 
 	 * Runs repeatedly during the test period
 	*/
-	virtual void TestPeriodic() {
+	virtual void TestPeriodic() 
+	{
 		lw->Run();
 	}
 };

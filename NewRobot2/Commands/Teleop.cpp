@@ -1,7 +1,12 @@
+#include "WPILib.h"
+#include "..\Robotmap.h"		    // for: SD_PREP_KICK_PLAT_HEIGHT
+#include "..\DebugPrint.h"			// for: DebugPrint()
+#include "..\Joystickmap.h"			// for: DRIVE_R
 #include "Teleop.h"
-#include "..\Joystickmap.h"
+
 
 #define LINDA_NEW 1
+
 
 /* Teleop::Teleop()
  * Input   -
@@ -12,7 +17,8 @@
  * Description -
  *   Grabs all subsystems required for teleop
  */
-Teleop::Teleop() {
+Teleop::Teleop() 
+{
 	// Use Requires() here to declare subsystem dependencies
 	Requires(chassis);
 	Requires(intake);
@@ -25,8 +31,6 @@ Teleop::Teleop() {
 }
 
 
-
-
 /* Teleop::Initialize()
  * Input   -
  * 	 None
@@ -36,21 +40,20 @@ Teleop::Teleop() {
  * Description -
  *   Initializes the teleop command
  */
-void Teleop::Initialize() {
-//	SmartDashboard::PutNumber("P Value: ", 1.0); 
-//	SmartDashboard::PutNumber("I Value: ", 0.0);
-//	SmartDashboard::PutNumber("D Value: ", 0.0);
+void Teleop::Initialize() 
+{
+	DebugPrint(DBG_PRT_V1, "called: Teleop::Initialize()");
+	
+	// @todo: CLEAN 	SmartDashboard::PutNumber("P Value: ", 1.0); 
+	// @todo: CLEAN 	SmartDashboard::PutNumber("I Value: ", 0.0);
+	// @todo: CLEAN 	SmartDashboard::PutNumber("D Value: ", 0.0);
+	
 	platform->SetSetpoint(1.0);
 	pos = 0;
 	PID_enable = true;
 	kick_prep = false;
 	kick_ball = false;
-	SmartDashboard::PutNumber("Kicker_Speed_Forward", 1.0);
-	SmartDashboard::PutNumber("Prep_Kick_Thresh_Hold_Height", 2.8);
-	SmartDashboard::PutNumber("Prep_Kick_Platform_Height", 2.3);
 }
-
-
 
 
 /* Teleop::Execute()
@@ -62,10 +65,13 @@ void Teleop::Initialize() {
  * Description -
  *   Runs teleop periodically (usually every 50ms)
  */
-void Teleop::Execute() {
+void Teleop::Execute() 
+{	
+	// Display the status of the scheduler
+	// @todo: CLEAN SmartDashboard::PutData(Scheduler::GetInstance());
+
 	//*************** Get Vision Data ****************************//
 	vision->get_DS_Distance();
-	
 	
 	//*************** Move Chassis Motors ************************//
 #if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
@@ -74,7 +80,7 @@ void Teleop::Execute() {
 	chassis->tankDrive(-oi->getAxisRightDrive(DRIVE_R), -oi->getAxisLeftDrive(DRIVE_L));
 #endif
 	
-	//cout<<"Left Encoder: "<<chassis->encoderLeftGet()<<"\t\tRight Encoder: "<<chassis->encoderRightGet()<<"\n";
+	// @todo: CLEAN cout<<"Left Encoder: "<<chassis->encoderLeftGet()<<"\t\tRight Encoder: "<<chassis->encoderRightGet()<<"\n";
 	
 	
 	//*************** Move Chassis Shifter ***********************//
@@ -84,53 +90,68 @@ void Teleop::Execute() {
 	chassis->setShifter(!oi->getBtn(SHIFT));
 #endif
 	
-	
 	//*************** Move Kicker Arm ****************************//
 	
-	//double MaxKickerFwdSpd = -1*((oi->getAxis(KICKER_POWER)/2)-0.5);
-	//cout<<MaxKickerFwdSpd<<"\n";	
-	//int Max_time = (int)SmartDashboard::GetNumber("Kicker Time");
+	// @todo: CLEAN double MaxKickerFwdSpd = -1*((oi->getAxis(KICKER_POWER)/2)-0.5);
+	// @todo: CLEAN cout<<MaxKickerFwdSpd<<"\n";	
+	// @todo: CLEAN int Max_time = (int)SmartDashboard::GetNumber("Kicker Time");
 	
-	//manual joystick kick
-	if (oi->getBtn(MANUAL_KICK)) {
+	// manual joystick kick
+	if (oi->getBtn(MANUAL_KICK)) 
+	{
 		kick_prep = false;
 		kick_ball = false;
 		kicker->setSpeed(-oi->getAxisCopilotRight(KICKER_MAN_C));
 		kicker_timer->Stop();
 		kicker_timer->Reset();
 	}
-	//button kick
-	else if (oi->getBtn(KICKER_PREP)) {
+	else if (oi->getBtn(KICKER_PREP)) 
+	{
+		// button kick
 		kick_prep = true;
 		kicker_timer->Reset();
 	}
-	else if (oi->getBtn(KICK)) {
+	else if (oi->getBtn(KICK)) 
+	{
 		kick_ball = true;
 	}
-	else if (!kick_prep && !kick_ball){
+	else if (!kick_prep && !kick_ball)
+	{
 		// Stop Kicker Arm
 		kicker->setSpeed(0.00);
 	}
 	
-	//AUTO-KICKER PREP SEQUENCE
-	if(kick_prep) {
+	// AUTO-KICKER PREP SEQUENCE
+	if (kick_prep) 
+	{
 		kicker_timer->Start();
 		
-		if(kicker_timer->Get() <= 0.3) {	//Moves kicker above ball to hold it for 0.4 seconds
+		if (kicker_timer->Get() <= 0.3) 
+		{	
+			// Moves kicker above ball to hold it for 0.4 seconds
 			kicker->setSpeed(-0.5);
 		} 
-		else if(kicker_timer->Get() <= 0.8) 
+		else if (kicker_timer->Get() <= 0.8) 
 		{
-			intake->MoveSolenoid(true);		//Puts intake forward and moves wheels inward for 0.4 seconds
+			intake->MoveSolenoid(true);		
+			
+			// Puts intake forward and moves wheels inward for 0.4 seconds
 			kicker->setSpeed(0.0);
 			intake->Set(-0.5);
 		} 
-		else if(!kick_ball) {
-			intake->Set(0.0);				//Stops intake wheels and sets SetPoint of platform to 2.3
+		else if (!kick_ball) 
+		{
+			intake->Set(0.0);	
+			
+			// Stops intake wheels and sets SetPoint of platform to 2.3
 			platform->Enable();
 			PID_enable = true;
-			platform->SetSetpoint(SmartDashboard::GetNumber("Prep_Kick_Platform_Height"));
-			if(platform->GetSetpoint() >= SmartDashboard::GetNumber("Prep_Kick_Thresh_Hold_Height")){		//keeps the kicker holding the ball if the platform gets too high
+			
+			platform->SetSetpoint(SmartDashboard::GetNumber(SD_PREP_KICK_PLAT_HEIGHT));
+			
+			if (platform->GetSetpoint() >= SmartDashboard::GetNumber(SD_PREP_KICK_THRESHOLD_HEIGHT))
+			{		
+				// keeps the kicker holding the ball if the platform gets too high
 				kicker->setSpeed(-0.2);
 			}
 		} 
@@ -142,12 +163,18 @@ void Teleop::Execute() {
 		}
 	}
 	
-	//AUTO-KICKER KICK SEQUENCE
-	if(kick_ball) {
+	// AUTO-KICKER KICK SEQUENCE
+	if(kick_ball) 
+	{
 		kicker_timer->Start();
-		if(kicker_timer->Get() <= 0.4) {	//kicks ball for 0.4 seconds
+		
+		if(kicker_timer->Get() <= 0.4) 
+		{	
+			// kicks ball for 0.4 seconds
 			kicker->setSpeed(SmartDashboard::GetNumber("Kicker_Speed_Forward"));
-		} else {
+		} 
+		else 
+		{
 			platform->SetSetpoint(1.0);
 			kicker_timer->Stop();
 			kicker_timer->Reset();
@@ -170,52 +197,65 @@ void Teleop::Execute() {
 	
 	intake->MoveSolenoid(left_driver_1->GetRawButton(8));
 #else
-	if (oi->getBtn(INTAKE_IN)) {
+	if (oi->getBtn(INTAKE_IN)) 
+	{
 		intake->Set(-1.00);
 	}
-	else if (oi->getBtn(INTAKE_OUT)) {
+	else if (oi->getBtn(INTAKE_OUT)) 
+	{
 		intake->Set(1.00);
 	}
-	else {
+	else 
+	{
 		intake->Set(0.00);
 	}
 	
-	if(oi->getBtn(INTAKE_SOL_IN)){
+	if(oi->getBtn(INTAKE_SOL_IN))
+	{
 		intake->MoveSolenoid(false);
-	} else if(oi->getBtn(INTAKE_SOL_OUT)) {
+	} 
+	else if(oi->getBtn(INTAKE_SOL_OUT)) 
+	{
 		intake->MoveSolenoid(true);
 	}
-	//intake->MoveSolenoid(oi->getBtn(INTAKE_SOL));
+	
+	// @todo: CLEAN intake->MoveSolenoid(oi->getBtn(INTAKE_SOL));
 
 	
-#if LINDA_NEW	
-	//Intake Sequence: "lower arm + wheels in + platform down, then platform up."
-	if(oi->getBtn(INTAKE_SEQUENCE)){
-//		if (intake_sequence_pressed == false){
-			intake->MoveSolenoid(true);
-			intake->Set(-1.00);
-			platform->SetSetpoint(0.0);
-			intake_sequence_pressed = true;
-//		}
+  #if LINDA_NEW	
+	// Intake Sequence: "lower arm + wheels in + platform down, then platform up."
+	if(oi->getBtn(INTAKE_SEQUENCE))
+	{
+		// @todo: CLEAN 		if (intake_sequence_pressed == false){
+		intake->MoveSolenoid(true);
+		intake->Set(-1.00);
+		platform->SetSetpoint(0.0);
+		intake_sequence_pressed = true;
+		// @todo: CLEAN 		}
 	}
-	else if(intake_sequence_pressed && !oi->getBtn(INTAKE_SEQUENCE)){
+	else if(intake_sequence_pressed && !oi->getBtn(INTAKE_SEQUENCE))
+	{
 		intake_sequence_pressed = false;
 		intake->MoveSolenoid(false);
 		intake->Set(0.00);
 	}
-#endif	
+  #endif // #if LINDA_NEW	
 	
-#endif
+#endif // #if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)
 	
 	
 	//*************** Move platform ******************************//
 	
-	//manual platform movement
-	if ((oi->getAxisCopilotLeft(PLATFORM_C) <= 0.1 ) && (oi->getAxisCopilotLeft(PLATFORM_C) >= -0.1 )) {
-		if (!PID_enable) {
+	// manual platform movement
+	if ((oi->getAxisCopilotLeft(PLATFORM_C) <= 0.1 ) && (oi->getAxisCopilotLeft(PLATFORM_C) >= -0.1 )) 
+	{
+		if (!PID_enable) 
+		{
 			platform->setSpeed(0.00);
 		}
-	} else {
+	} 
+	else 
+	{
 		platform->Disable();
 		PID_enable = false;
 		kick_prep = false;
@@ -223,24 +263,28 @@ void Teleop::Execute() {
 		platform->setSpeed(-oi->getAxisCopilotLeft(PLATFORM_C));
 	}
 	
-	//pre-set platform movement buttons
-	if(oi->getBtn(PLATFORM_KICK_POS1)) {
+	// pre-set platform movement buttons
+	if(oi->getBtn(PLATFORM_KICK_POS1)) 
+	{
 		platform->Enable();
 		PID_enable = true;
 		platform->SetSetpoint(1.0);
-	} else if(oi->getBtn(PLATFORM_KICK_POS2)) {
+	} 
+	else if(oi->getBtn(PLATFORM_KICK_POS2)) 
+	{
 		platform->Enable();
 		PID_enable = true;
 		platform->SetSetpoint(2.0);
-	} else if(oi->getBtn(PLATFORM_KICK_POS3)) {
+	} 
+	else if(oi->getBtn(PLATFORM_KICK_POS3)) 
+	{
 		platform->Enable();
 		PID_enable = true;
 		platform->SetSetpoint(3.0);
 	}
 	
-	SmartDashboard::PutNumber("Platform Hieght", platform->GetPosition());
+	SmartDashboard::PutNumber(SD_PLATFORM_PID_POS, platform->GetPosition());
 }
-
 
 
 /* Teleop::IsFinished()
@@ -253,9 +297,11 @@ void Teleop::Execute() {
  *   returns false to cause the command to
  *   be placed on the scedular again
  */
-bool Teleop::IsFinished() {
+bool Teleop::IsFinished() 
+{
 	return false;
 }
+
 
 /* Teleop::End()
  * Input   -
@@ -266,7 +312,10 @@ bool Teleop::IsFinished() {
  * Description -
  *   should never run
  */
-void Teleop::End() {
+void Teleop::End() 
+{
+	DebugPrint(DBG_PRT_V1, "called: Teleop::End()");
+	
 	chassis->tankDrive(0.00, 0.00);
 	kicker->setSpeed(0.00);
 	intake->MoveSolenoid(false);
@@ -287,7 +336,10 @@ void Teleop::End() {
  * Description -
  *   runs if teleop is interrupted
  */
-void Teleop::Interrupted() {
+void Teleop::Interrupted() 
+{
+	DebugPrint(DBG_PRT_V1, "called: Teleop::Interrupted()");
+
 	chassis->tankDrive(0.00, 0.00);
 	kicker->setSpeed(0.00);
 	intake->MoveSolenoid(false);
