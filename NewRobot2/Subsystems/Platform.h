@@ -1,15 +1,14 @@
 #ifndef PLATFORM_H
 #define PLATFORM_H
 
-#include "Commands/PIDSubsystem.h"
 #include "WPILib.h"
 
+
 /**
- *
- *
  * @author Javario
  */
-class Platform: public PIDSubsystem {
+class Platform: public PIDSubsystem 
+{
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
@@ -37,4 +36,6 @@ public:
 	void requestPosition(double wantedheight);
 };
 
-#endif
+
+#endif // #ifndef PLATFORM_H
+

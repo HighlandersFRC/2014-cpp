@@ -16,8 +16,11 @@ private:
 	double wantedheight;
 	double pos;
 	bool PID_enable;
-	bool kick_press;
-	bool intake_check;
+	bool intake_sequence_pressed;
+	
+	bool kick_prep;
+	bool kick_ball;
+	
 public:
 	Teleop();
 	virtual void Initialize();
