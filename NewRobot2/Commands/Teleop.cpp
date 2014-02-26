@@ -105,16 +105,20 @@ void Teleop::Execute()
 		kicker->setSpeed(-oi->getAxisCopilotRight(KICKER_MAN_C));
 		kicker_timer->Stop();
 		kicker_timer->Reset();
+		kicker_timer->Start();
 	}
 	else if (oi->getBtn(KICKER_PREP)) 
 	{
 		// button kick
 		kick_prep = true;
 		kicker_timer->Reset();
+		kicker_timer->Start();
 	}
 	else if (oi->getBtn(KICK)) 
 	{
 		kick_ball = true;
+		kicker_timer->Reset();
+		kicker_timer->Start();
 	}
 	else if (!kick_prep && !kick_ball)
 	{
@@ -124,9 +128,7 @@ void Teleop::Execute()
 	
 	// AUTO-KICKER PREP SEQUENCE
 	if (kick_prep) 
-	{
-		kicker_timer->Start();
-		
+	{	
 		if (kicker_timer->Get() <= 0.3) 
 		{	
 			// Moves kicker above ball to hold it for 0.4 seconds
@@ -139,27 +141,29 @@ void Teleop::Execute()
 			// Puts intake forward and moves wheels inward for 0.4 seconds
 			kicker->setSpeed(0.0);
 			intake->Set(-0.5);
+			
+			platform->Enable();			
+			PID_enable = true;
+						
+			platform->SetSetpoint(SmartDashboard::GetNumber(SD_PREP_KICK_PLAT_HEIGHT));
 		} 
 		else if (!kick_ball) 
 		{
 			intake->Set(0.0);	
 			
 			// Stops intake wheels and sets SetPoint of platform to SD_PREP_KICK_PLAT_HEIGHT
-			platform->Enable();			
-			PID_enable = true;
+			//platform->Enable();			
+			//PID_enable = true;
 			
-			platform->SetSetpoint(SmartDashboard::GetNumber(SD_PREP_KICK_PLAT_HEIGHT));
+			//platform->SetSetpoint(SmartDashboard::GetNumber(SD_PREP_KICK_PLAT_HEIGHT));
 			
-			if (platform->GetSetpoint() >= SmartDashboard::GetNumber(SD_PREP_KICK_THRESHOLD_HEIGHT))
-			{		
-				// keeps the kicker holding the ball if the platform gets too high
-				kicker->setSpeed(-0.2);
-			}
+			// Grabs position (4 to 0) and divides it by 16 creating the range .125 to 0 then 
+			// subtracting .125 creates the range .125 to -.125 finally inverting the 
+			// range by multiplying by -1 
+			kicker->setSpeed((platform->GetPosition()/16-.125)*-1);
 		} 
 		else 
 		{
-			kicker_timer->Stop();
-			kicker_timer->Reset();
 			kick_prep = false;
 		}
 	}
@@ -167,7 +171,6 @@ void Teleop::Execute()
 	// AUTO-KICKER KICK SEQUENCE
 	if(kick_ball) 
 	{
-		kicker_timer->Start();
 		
 		if(kicker_timer->Get() <= 0.4) 
 		{	
@@ -177,8 +180,6 @@ void Teleop::Execute()
 		else 
 		{
 			platform->SetSetpoint(1.0);
-			kicker_timer->Stop();
-			kicker_timer->Reset();
 			kick_ball = false;
 		}
 	}
@@ -259,7 +260,7 @@ void Teleop::Execute()
 	{
 		platform->Disable();
 		PID_enable = false;
-		kick_prep = false;
+		//kick_prep = false;
 		kick_ball = false;
 		platform->setSpeed(-oi->getAxisCopilotLeft(PLATFORM_C));
 	}
