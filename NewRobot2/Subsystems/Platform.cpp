@@ -6,7 +6,7 @@
 
 
 
-Platform::Platform() : PIDSubsystem("Platform", 1.0, 0.0, 0.0) 
+Platform::Platform() : PIDSubsystem("Platform", 20, 0.0, 0.1, 0.2) 
 {
 	DebugPrint(DBG_PRT_V1, "called constructor: Platform()");
 
