@@ -172,7 +172,7 @@ void Teleop::Execute()
 		if(kicker_timer->Get() <= 0.4) 
 		{	
 			// kicks ball for 0.4 seconds
-			kicker->setSpeed(SmartDashboard::GetNumber("Kicker_Speed_Forward"));
+			kicker->setSpeed(SmartDashboard::GetNumber(SD_KICK_SPEED_FWD));
 		} 
 		else 
 		{
