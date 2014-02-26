@@ -5,9 +5,6 @@
 #include "Teleop.h"
 
 
-#define LINDA_NEW 1
-
-
 /* Teleop::Teleop()
  * Input   -
  * 	 None
@@ -149,8 +146,12 @@ void Teleop::Execute()
 			PID_enable = true;
 			
 			platform->SetSetpoint(SmartDashboard::GetNumber(SD_PREP_KICK_PLAT_HEIGHT));
-
-				kicker->setSpeed(((SmartDashboard::GetNumber(SD_PREP_KICK_THRESHOLD_HEIGHT)/16)-.25)*-1);
+			
+			if (platform->GetSetpoint() >= SmartDashboard::GetNumber(SD_PREP_KICK_THRESHOLD_HEIGHT))
+			{		
+				// keeps the kicker holding the ball if the platform gets too high
+				kicker->setSpeed(-0.2);
+			}
 		} 
 		else 
 		{
@@ -219,7 +220,6 @@ void Teleop::Execute()
 	// @todo: CLEAN intake->MoveSolenoid(oi->getBtn(INTAKE_SOL));
 
 	
-  #if LINDA_NEW	
 	// Intake Sequence: "lower arm + wheels in + platform down, then platform up."
 	if(oi->getBtn(INTAKE_SEQUENCE))
 	{
@@ -236,7 +236,6 @@ void Teleop::Execute()
 		intake->MoveSolenoid(false);
 		intake->Set(0.00);
 	}
-  #endif // #if LINDA_NEW	
 	
 #endif // #if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)
 	
@@ -279,13 +278,6 @@ void Teleop::Execute()
 		PID_enable = true;
 		platform->SetSetpoint(3.0);
 	}
-
-	else if(oi->getBtn(INTAKE_SEQUENCE)) 
-	{
-		platform->Enable();
-		PID_enable = true;
-	}
-
 	
 	SmartDashboard::PutNumber(SD_PLATFORM_PID_POS, platform->GetPosition());
 }
