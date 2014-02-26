@@ -13,13 +13,13 @@ Platform::Platform() : PIDSubsystem("Platform", 1.0, 0.0, 0.0)
 	Belt_Motor = new Jaguar(BELT_MOTOR);
 	Belt_Pot   = new AnalogChannel(BELT_POT);
 	
-	SetInputRange(1.0f, 4.0f);
+	SetInputRange(0.76f, 3.348f);
 	
 	// @todo: CLEAN SetSetpoint(STOW);
 	
 	Enable();
 	
-	CommandBase::lw->AddActuator("Chassis", "Platform PID", GetPIDController());	
+	CommandBase::lw->AddActuator("Chassis", "Platform PID", GetPIDController());
 }
 
 

@@ -64,6 +64,9 @@
 #define SD_PLATFORM_LOCATION     		"Platform Known Locations"
 //     Intake Wheel Direction: IN, OUT, OFF, UNKNOWN
 #define SD_INTAKE_WHEELS_DIR     		"Intake Wheels Spin Direction"
+//     Chassis encoder values
+#define SD_ENCODER_L_SPEED              "Left Motor Speed"
+#define SD_ENCODER_R_SPEED              "Right Motor Speed"
 // Generic String values for discreet settings:
   #define SD_STRING_ON       "ON"
   #define SD_STRING_OFF      "OFF"
