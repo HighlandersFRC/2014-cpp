@@ -149,12 +149,8 @@ void Teleop::Execute()
 			PID_enable = true;
 			
 			platform->SetSetpoint(SmartDashboard::GetNumber(SD_PREP_KICK_PLAT_HEIGHT));
-			
-			if (platform->GetSetpoint() >= SmartDashboard::GetNumber(SD_PREP_KICK_THRESHOLD_HEIGHT))
-			{		
-				// keeps the kicker holding the ball if the platform gets too high
-				kicker->setSpeed(-0.2);
-			}
+
+				kicker->setSpeed(((SmartDashboard::GetNumber(SD_PREP_KICK_THRESHOLD_HEIGHT)/16)-.25)*-1);
 		} 
 		else 
 		{
@@ -172,7 +168,7 @@ void Teleop::Execute()
 		if(kicker_timer->Get() <= 0.4) 
 		{	
 			// kicks ball for 0.4 seconds
-			kicker->setSpeed(SmartDashboard::GetNumber("Kicker_Speed_Forward"));
+			kicker->setSpeed(SmartDashboard::GetNumber(SD_KICK_SPEED_FWD));
 		} 
 		else 
 		{
@@ -283,6 +279,13 @@ void Teleop::Execute()
 		PID_enable = true;
 		platform->SetSetpoint(3.0);
 	}
+
+	else if(oi->getBtn(INTAKE_SEQUENCE)) 
+	{
+		platform->Enable();
+		PID_enable = true;
+	}
+
 	
 	SmartDashboard::PutNumber(SD_PLATFORM_PID_POS, platform->GetPosition());
 }
