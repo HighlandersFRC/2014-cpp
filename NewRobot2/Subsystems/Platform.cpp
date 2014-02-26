@@ -13,6 +13,8 @@ Platform::Platform() : PIDSubsystem("Platform", 1.0, 0.0, 0.0)
 	Belt_Motor = new Jaguar(BELT_MOTOR);
 	Belt_Pot   = new AnalogChannel(BELT_POT);
 	
+	// Values for Practice Bot
+	// @todo tfrye 2-25-2014: Change these values for competition bot.
 	SetInputRange(0.76f, 3.348f);
 	
 	// @todo: CLEAN SetSetpoint(STOW);

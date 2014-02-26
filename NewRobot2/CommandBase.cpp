@@ -48,6 +48,8 @@ void CommandBase::init()
 	SmartDashboard::PutNumber(SD_KICK_SPEED_FWD, 1.0);
 	SmartDashboard::PutNumber(SD_PREP_KICK_THRESHOLD_HEIGHT, 2.8);
 	SmartDashboard::PutNumber(SD_PREP_KICK_PLAT_HEIGHT, 2.3);
+	SmartDashboard::PutNumber(SD_DRIVE_ENCODER_L_SPEED, 0);
+	SmartDashboard::PutNumber(SD_DRIVE_ENCODER_R_SPEED, 0);
 
 	//   Debug string values
 	SmartDashboard::PutString(SD_DBG_PRT_LAST_MINUS_3, "--------------------------------------------------------");

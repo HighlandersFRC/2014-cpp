@@ -43,8 +43,8 @@ Chassis::Chassis() : Subsystem("Chassis") {
 	left_encode->SetDistancePerPulse(.48/1440);
 	right_encode->SetDistancePerPulse(.48/1440);
 	
-	SmartDashboard::PutNumber(SD_ENCODER_L_SPEED, left_encode->GetRate());
-	SmartDashboard::PutNumber(SD_ENCODER_R_SPEED, right_encode->GetRate());
+	SmartDashboard::PutNumber(SD_DRIVE_ENCODER_L_SPEED, left_encode->GetRate());
+	SmartDashboard::PutNumber(SD_DRIVE_ENCODER_R_SPEED, right_encode->GetRate());
 }
 
 
@@ -77,8 +77,8 @@ void Chassis::tankDrive(double left, double right){
 	drive_right_1->Set(right*-1);
 	drive_right_2->Set(right*-1);
 
-	SmartDashboard::PutNumber(SD_ENCODER_L_SPEED, left_encode->GetRate());
-	SmartDashboard::PutNumber(SD_ENCODER_R_SPEED, right_encode->GetRate());
+	SmartDashboard::PutNumber(SD_DRIVE_ENCODER_L_SPEED, left_encode->GetRate());
+	SmartDashboard::PutNumber(SD_DRIVE_ENCODER_R_SPEED, right_encode->GetRate());
 #if (USE_DISTANCE_PER_PULSE == 1)
 	
 	cout<<"Left Encoder: "<<left_encode->Get()<<"\t\tRight  Encoder: "<<right_encode->Get();

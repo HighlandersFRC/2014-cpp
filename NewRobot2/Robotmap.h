@@ -49,6 +49,9 @@
 #define SD_PREP_KICK_PLAT_HEIGHT     	"Prep Kick Platform Height"
 #define SD_PREP_KICK_THRESHOLD_HEIGHT 	"Prep Kick Threshold Height"
 #define SD_KICK_SPEED_FWD               "Kicker Speed Forward"
+//   Chassis encoder values
+#define SD_DRIVE_ENCODER_L_SPEED        "Left Motor Speed"
+#define SD_DRIVE_ENCODER_R_SPEED        "Right Motor Speed"
 //   Debug string values
 #define SD_DBG_PRT_DISPLAY_COUNT  4
 #define SD_DBG_PRT_LAST          		"Debug print (last)"
@@ -64,9 +67,6 @@
 #define SD_PLATFORM_LOCATION     		"Platform Known Locations"
 //     Intake Wheel Direction: IN, OUT, OFF, UNKNOWN
 #define SD_INTAKE_WHEELS_DIR     		"Intake Wheels Spin Direction"
-//     Chassis encoder values
-#define SD_ENCODER_L_SPEED              "Left Motor Speed"
-#define SD_ENCODER_R_SPEED              "Right Motor Speed"
 // Generic String values for discreet settings:
   #define SD_STRING_ON       "ON"
   #define SD_STRING_OFF      "OFF"
