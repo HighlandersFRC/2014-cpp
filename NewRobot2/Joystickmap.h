@@ -13,8 +13,7 @@
 
 #define DRIVER_LEFT_JOYSTICK   1
 #define DRIVER_RIGHT_JOYSTICK  2
-#define COPILOT_LEFT_JOYSTICK  3
-#define COPILOT_RIGHT_JOYSTICK 4
+#define COPILOT				   3
 
 #define CONTROL_BOARD          5
 
@@ -40,36 +39,39 @@
 #define X_AXIS                 1
 #define Y_AXIS                 2
 #define Z_AXIS                 3
-#define THROTTLE               4
+#define R_AXIS	               4
 
 
 //               Control             Axis        Joystick                     Description
 static const int DRIVE_L[2]       = {Y_AXIS,     DRIVER_LEFT_JOYSTICK};
 static const int DRIVE_R[2]       = {Y_AXIS,     DRIVER_RIGHT_JOYSTICK};
 
-static const int PLATFORM_C[2]    = {Y_AXIS,     COPILOT_LEFT_JOYSTICK};
+static const int PLATFORM_C[2]    = {R_AXIS,     COPILOT};
 
-static const int KICKER_MAN_C[2]  = {Y_AXIS,     COPILOT_RIGHT_JOYSTICK};
+static const int KICKER_MAN_C[2]  = {Y_AXIS,     COPILOT};	//NOT CHANGED
 
-static const int KICKER_POWER[2]  = {THROTTLE,   COPILOT_RIGHT_JOYSTICK};
+static const int KICKER_POWER[2]  = {Y_AXIS,   COPILOT};
 
 
 //               Control             Button      Joystick                     Description
 static const int SHIFT[2]         = {BTN_2,      DRIVER_RIGHT_JOYSTICK};
 
-static const int KICKER_PREP[2]   = {BTN_5,		 COPILOT_RIGHT_JOYSTICK};
-static const int KICK[2]          = {TRIGGER,    COPILOT_RIGHT_JOYSTICK};
-static const int MANUAL_KICK[2]   = {BTN_2,      COPILOT_RIGHT_JOYSTICK};
+static const int KICKER_PREP[2]   = {BTN_5,		 COPILOT};	//NOT CHANGED
+static const int KICK[2]          = {BTN_1,    COPILOT};
 
-static const int INTAKE_IN[2]		= {BTN_2,       COPILOT_LEFT_JOYSTICK};
-static const int INTAKE_OUT[2]		= {BTN_3,       COPILOT_LEFT_JOYSTICK};
-static const int INTAKE_SOL_IN[2]	= {BTN_4,       COPILOT_LEFT_JOYSTICK};
-static const int INTAKE_SOL_OUT[2]	= {BTN_5,       COPILOT_LEFT_JOYSTICK};
-static const int INTAKE_SEQUENCE[2]	= {BTN_1,		COPILOT_LEFT_JOYSTICK};
+static const int INTAKE_IN[2]		= {BTN_5,       COPILOT};
+static const int INTAKE_OUT[2]		= {BTN_6,       COPILOT};
+static const int INTAKE_SOL_IN[2]	= {BTN_4,       COPILOT};
+static const int INTAKE_SOL_OUT[2]	= {BTN_3,       COPILOT};
+static const int INTAKE_SEQUENCE[2]	= {BTN_12,		COPILOT};
+static const int CENTER_SEQUENCE[2] = {BTN_11,		COPILOT};	//NOT ASSIGNED
+static const int CV_TOGGLE[2]		= {BTN_2,		COPILOT};	//NOT ASSIGNED
 
-static const int PLATFORM_KICK_POS1[2]  = {BTN_3,		 COPILOT_RIGHT_JOYSTICK};
-static const int PLATFORM_KICK_POS2[2]  = {BTN_4,		 COPILOT_RIGHT_JOYSTICK};
-static const int PLATFORM_KICK_POS3[2]  = {BTN_6,		 COPILOT_RIGHT_JOYSTICK};
+
+static const int PLATFORM_KICK_GOAL1[2]  = {BTN_10,		 COPILOT};
+static const int PLATFORM_KICK_GOAL2[2]  = {BTN_9,		 COPILOT};
+static const int PLATFORM_KICK_TRUS1[2]  = {BTN_8,		 COPILOT};
+static const int PLATFORM_KICK_TRUS2[2]  = {BTN_7,		 COPILOT};	//NOT ASSIGNED
 
 
 #endif
