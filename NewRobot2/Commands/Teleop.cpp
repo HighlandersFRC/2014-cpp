@@ -95,7 +95,9 @@ void Teleop::Execute()
 	// @todo: CLEAN int Max_time = (int)SmartDashboard::GetNumber("Kicker Time");
 	
 	// manual joystick kick
-	if (oi->getBtn(MANUAL_KICK)) 
+
+	//XXX this button no longer exists. I want to comment it out because it won't work with our controls, but I don't know if it is still necessary.
+	if (oi->getBtn(MANUAL_KICK))
 	{
 		kick_prep = false;
 		kick_ball = false;
@@ -103,6 +105,7 @@ void Teleop::Execute()
 		kicker_timer->Stop();
 		kicker_timer->Reset();
 	}
+	
 	else if (oi->getBtn(KICKER_PREP)) 
 	{
 		// button kick
@@ -260,19 +263,25 @@ void Teleop::Execute()
 	}
 	
 	// pre-set platform movement buttons
-	if(oi->getBtn(PLATFORM_KICK_POS1)) 
+	if(oi->getBtn(PLATFORM_KICK_GOAL1)) 
 	{
 		platform->Enable();
 		PID_enable = true;
 		platform->SetSetpoint(1.0);
 	} 
-	else if(oi->getBtn(PLATFORM_KICK_POS2)) 
+	else if(oi->getBtn(PLATFORM_KICK_GOAL2)) 
 	{
 		platform->Enable();
 		PID_enable = true;
 		platform->SetSetpoint(2.0);
 	} 
-	else if(oi->getBtn(PLATFORM_KICK_POS3)) 
+	else if(oi->getBtn(PLATFORM_KICK_TRUS1)) 
+	{
+		platform->Enable();
+		PID_enable = true;
+		platform->SetSetpoint(3.0);
+	}
+	else if(oi->getBtn(PLATFORM_KICK_TRUS1)) 
 	{
 		platform->Enable();
 		PID_enable = true;
