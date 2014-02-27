@@ -64,14 +64,14 @@ static const int INTAKE_OUT[2]		= {BTN_6,       COPILOT};
 static const int INTAKE_SOL_IN[2]	= {BTN_4,       COPILOT};
 static const int INTAKE_SOL_OUT[2]	= {BTN_3,       COPILOT};
 static const int INTAKE_SEQUENCE[2]	= {BTN_12,		COPILOT};
-static const int CENTER_SEQUENCE[2] = {BTN_11,		COPILOT};	//NOT ASSIGNED
+static const int CENTER_SEQUENCE[2] = {BTN_11,		COPILOT};
 static const int CV_TOGGLE[2]		= {BTN_2,		COPILOT};	//NOT ASSIGNED
 
 
 static const int PLATFORM_KICK_GOAL1[2]  = {BTN_10,		 COPILOT};
 static const int PLATFORM_KICK_GOAL2[2]  = {BTN_9,		 COPILOT};
 static const int PLATFORM_KICK_TRUS1[2]  = {BTN_8,		 COPILOT};
-static const int PLATFORM_KICK_TRUS2[2]  = {BTN_7,		 COPILOT};	//NOT ASSIGNED
+static const int PLATFORM_KICK_TRUS2[2]  = {BTN_7,		 COPILOT};
 
 
 #endif

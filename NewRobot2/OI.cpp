@@ -14,8 +14,7 @@ OI::OI()
 {
 	driverLeftJoystick   = new Joystick(DRIVER_LEFT_JOYSTICK);
 	driverRightJoystick  = new Joystick(DRIVER_RIGHT_JOYSTICK);
-	copilotLeftJoystick  = new Joystick(COPILOT_LEFT_JOYSTICK);
-	copilotRightJoystick = new Joystick(COPILOT_RIGHT_JOYSTICK);
+	copilot  = new Joystick(COPILOT);
 }
 
 bool OI::getBtn(const int btn[2]) 
@@ -36,12 +35,7 @@ double OI::getAxisRightDrive(const int axis[2])
 	return driverRightJoystick->GetRawAxis(axis[0]);
 }
 
-double OI::getAxisCopilotLeft(const int axis[2]) 
+double OI::getAxisCopilot(const int axis[2]) 
 {
-	return copilotLeftJoystick->GetRawAxis(axis[0]);
-}
-
-double OI::getAxisCopilotRight(const int axis[2]) 
-{
-	return copilotRightJoystick->GetRawAxis(axis[0]);
+	return copilot->GetRawAxis(axis[0]);
 }

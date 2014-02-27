@@ -96,93 +96,92 @@ void Teleop::Execute()
 	
 	// manual joystick kick
 
-	//XXX this button no longer exists. I want to comment it out because it won't work with our controls, but I don't know if it is still necessary.
-	if (oi->getBtn(MANUAL_KICK))
-	{
-		kick_prep = false;
-		kick_ball = false;
-		kicker->setSpeed(-oi->getAxisCopilotRight(KICKER_MAN_C));
-		kicker_timer->Stop();
-		kicker_timer->Reset();
-	}
-	
-	else if (oi->getBtn(KICKER_PREP)) 
-	{
-		// button kick
-		kick_prep = true;
-		kicker_timer->Reset();
-	}
-	else if (oi->getBtn(KICK)) 
-	{
-		kick_ball = true;
-	}
-	else if (!kick_prep && !kick_ball)
-	{
-		// Stop Kicker Arm
-		kicker->setSpeed(0.00);
-	}
-	
-	// AUTO-KICKER PREP SEQUENCE
-	if (kick_prep) 
-	{
-		kicker_timer->Start();
+	if (oi->getBtn(CV_TOGGLE)) {
 		
-		if (kicker_timer->Get() <= 0.3) 
-		{	
-			// Moves kicker above ball to hold it for 0.4 seconds
-			kicker->setSpeed(-0.5);
-		} 
-		else if (kicker_timer->Get() <= 0.8) 
+		
+		//RUN SOME CV CODES!!!
+		
+		
+	}
+	
+	else { //Run normal Kick Stuff
+	
+		if (oi->getBtn(KICKER_PREP)) 
 		{
-			intake->MoveSolenoid(true);		
-			
-			// Puts intake forward and moves wheels inward for 0.4 seconds
-			kicker->setSpeed(0.0);
-			intake->Set(-0.5);
-		} 
-		else if (!kick_ball) 
+			// button kick
+			kick_prep = true;
+			kicker_timer->Reset();
+		}
+		else if (oi->getBtn(KICK)) 
 		{
-			intake->Set(0.0);	
+			kick_ball = true;
+		}
+		else if (!kick_prep && !kick_ball)
+		{
+			// Stop Kicker Arm
+			kicker->setSpeed(0.00);
+		}
+	
+		// AUTO-KICKER PREP SEQUENCE
+		if (kick_prep) 
+		{
+			kicker_timer->Start();
 			
-			// Stops intake wheels and sets SetPoint of platform to SD_PREP_KICK_PLAT_HEIGHT
-			platform->Enable();			
-			PID_enable = true;
+			if (kicker_timer->Get() <= 0.3) 
+			{	
+				// Moves kicker above ball to hold it for 0.4 seconds
+				kicker->setSpeed(-0.5);
+			} 
+			else if (kicker_timer->Get() <= 0.8) 
+			{
+				intake->MoveSolenoid(true);		
 			
-			platform->SetSetpoint(SmartDashboard::GetNumber(SD_PREP_KICK_PLAT_HEIGHT));
+				// Puts intake forward and moves wheels inward for 0.4 seconds
+				kicker->setSpeed(0.0);
+				intake->Set(-0.5);
+			} 
+			else if (!kick_ball) 
+			{
+				intake->Set(0.0);	
 			
-			if (platform->GetSetpoint() >= SmartDashboard::GetNumber(SD_PREP_KICK_THRESHOLD_HEIGHT))
-			{		
-				// keeps the kicker holding the ball if the platform gets too high
-				kicker->setSpeed(-0.2);
+				// Stops intake wheels and sets SetPoint of platform to SD_PREP_KICK_PLAT_HEIGHT
+				platform->Enable();			
+				PID_enable = true;
+			
+				platform->SetSetpoint(SmartDashboard::GetNumber(SD_PREP_KICK_PLAT_HEIGHT));
+			
+				if (platform->GetSetpoint() >= SmartDashboard::GetNumber(SD_PREP_KICK_THRESHOLD_HEIGHT))
+				{		
+					// keeps the kicker holding the ball if the platform gets too high
+					kicker->setSpeed(-0.2);
+				}
+			} 
+			else 
+			{
+				kicker_timer->Stop();
+				kicker_timer->Reset();
+				kick_prep = false;
 			}
-		} 
-		else 
-		{
-			kicker_timer->Stop();
-			kicker_timer->Reset();
-			kick_prep = false;
 		}
-	}
 	
-	// AUTO-KICKER KICK SEQUENCE
-	if(kick_ball) 
-	{
-		kicker_timer->Start();
-		
-		if(kicker_timer->Get() <= 0.4) 
-		{	
-			// kicks ball for 0.4 seconds
-			kicker->setSpeed(SmartDashboard::GetNumber(SD_KICK_SPEED_FWD));
-		} 
-		else 
+		// AUTO-KICKER KICK SEQUENCE
+		if(kick_ball) 
 		{
-			platform->SetSetpoint(1.0);
-			kicker_timer->Stop();
-			kicker_timer->Reset();
-			kick_ball = false;
+			kicker_timer->Start();
+		
+			if(kicker_timer->Get() <= 0.4) 
+			{	
+				// kicks ball for 0.4 seconds
+				kicker->setSpeed(SmartDashboard::GetNumber(SD_KICK_SPEED_FWD));
+			} 
+			else {
+				platform->SetSetpoint(1.0);
+				kicker_timer->Stop();
+				kicker_timer->Reset();
+				kick_ball = false;
+			}
 		}
 	}
-
 	
 	//*************** Move Intake Arm and Motors *****************//
 #if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
@@ -239,6 +238,15 @@ void Teleop::Execute()
 		intake->MoveSolenoid(false);
 		intake->Set(0.00);
 	}
+
+	//Center Ball Sequence: "raise arm, wheels in, lower arm."
+	if(oi->getBtn(CENTER_SEQUENCE)) {
+		intake->MoveSolenoid(false);
+		intake->Set(-1.00);
+		sleep(400);
+		intake->Set(0);
+		intake->MoveSolenoid(true);
+	}
 	
 #endif // #if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)
 	
@@ -246,7 +254,7 @@ void Teleop::Execute()
 	//*************** Move platform ******************************//
 	
 	// manual platform movement
-	if ((oi->getAxisCopilotLeft(PLATFORM_C) <= 0.1 ) && (oi->getAxisCopilotLeft(PLATFORM_C) >= -0.1 )) 
+	if ((oi->getAxisCopilot(PLATFORM_C) <= 0.1 ) && (oi->getAxisCopilot(PLATFORM_C) >= -0.1 )) 
 	{
 		if (!PID_enable) 
 		{
@@ -259,7 +267,7 @@ void Teleop::Execute()
 		PID_enable = false;
 		kick_prep = false;
 		kick_ball = false;
-		platform->setSpeed(-oi->getAxisCopilotLeft(PLATFORM_C));
+		platform->setSpeed(-oi->getAxisCopilot(PLATFORM_C));
 	}
 	
 	// pre-set platform movement buttons
@@ -281,11 +289,11 @@ void Teleop::Execute()
 		PID_enable = true;
 		platform->SetSetpoint(3.0);
 	}
-	else if(oi->getBtn(PLATFORM_KICK_TRUS1)) 
+	else if(oi->getBtn(PLATFORM_KICK_TRUS2)) 
 	{
 		platform->Enable();
 		PID_enable = true;
-		platform->SetSetpoint(3.0);
+		platform->SetSetpoint(2.5);
 	}
 	
 	SmartDashboard::PutNumber(SD_PLATFORM_PID_POS, platform->GetPosition());

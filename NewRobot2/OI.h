@@ -7,8 +7,7 @@ class OI {
 private:
 	Joystick *driverLeftJoystick;
 	Joystick *driverRightJoystick;
-	Joystick *copilotLeftJoystick;
-	Joystick *copilotRightJoystick;
+	Joystick *copilot;
 	
 public:
 	OI();
@@ -17,8 +16,7 @@ public:
 	
 	double getAxisLeftDrive(const int axis[2]);
 	double getAxisRightDrive(const int axis[2]);
-	double getAxisCopilotLeft(const int axis[2]);
-	double getAxisCopilotRight(const int axis[2]);
+	double getAxisCopilot(const int axis[2]);
 	
 };
 
