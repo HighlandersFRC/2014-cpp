@@ -18,7 +18,7 @@ double Vision::get_DS_Distance() {
 	double distance = ((DistanceSensor->GetVoltage()/5)*1024);
 	
 	// Post data to SmartDashboard
-	SmartDashboard::PutNumber("Distance Sensor", distance);
+	SmartDashboard::PutNumber(SD_DISTANCE, distance);
 	
 	return distance;
 }

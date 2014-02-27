@@ -40,16 +40,15 @@ void CommandBase::init()
 {
 	// Initialze SmartDashboard Values 
 	//   Numeric Values:
-	SmartDashboard::PutNumber(SD_KICKER_NEXT_SPEED, 0);
-	SmartDashboard::PutNumber(SD_KICKER_CURRENT_SPEED, 0);
-	SmartDashboard::PutNumber(SD_DISTANCE, 0);
-	SmartDashboard::PutNumber(SD_PLATFORM_PID_POS, 0);
-	SmartDashboard::PutNumber(SD_INTAKE_WHEELS_SPEED, 0);
-	SmartDashboard::PutNumber(SD_KICK_SPEED_FWD, 1.0);
-	SmartDashboard::PutNumber(SD_PREP_KICK_THRESHOLD_HEIGHT, 2.8);
-	SmartDashboard::PutNumber(SD_PREP_KICK_PLAT_HEIGHT, 2.3);
-	SmartDashboard::PutNumber(SD_DRIVE_ENCODER_L_SPEED, 0);
-	SmartDashboard::PutNumber(SD_DRIVE_ENCODER_R_SPEED, 0);
+	SmartDashboard::PutNumber(SD_KICKER_CURRENT_SPEED,       0);
+	SmartDashboard::PutNumber(SD_DISTANCE,                   0);
+	SmartDashboard::PutNumber(SD_PLATFORM_POS,               0);
+	SmartDashboard::PutNumber(SD_KICK_SPEED_FWD,             1.0);
+	SmartDashboard::PutNumber(SD_PREP_KICK_PLAT_HEIGHT,      2.3);
+	SmartDashboard::PutNumber(SD_DRIVE_ENCODER_L_SPEED,      0);
+	SmartDashboard::PutNumber(SD_DRIVE_ENCODER_R_SPEED,      0);
+	SmartDashboard::PutNumber(SD_DRIVE_ENCODER_L_VAL,        0);
+	SmartDashboard::PutNumber(SD_DRIVE_ENCODER_R_VAL,        0);
 
 	//   Debug string values
 	SmartDashboard::PutString(SD_DBG_PRT_LAST_MINUS_3, "--------------------------------------------------------");
@@ -59,9 +58,10 @@ void CommandBase::init()
 	
 	//   multi-value string
 	SmartDashboard::PutString(SD_INTAKE_ARM_POS,    SD_STRING_UNKNOWN);
-	SmartDashboard::PutString(SD_COMPRESSOR_ON_OFF, SD_STRING_UNKNOWN);
+	SmartDashboard::PutString(SD_COMPRESSOR,        SD_STRING_UNKNOWN);
 	SmartDashboard::PutString(SD_PLATFORM_LOCATION, SD_STRING_UNKNOWN);
 	SmartDashboard::PutString(SD_INTAKE_WHEELS_DIR, SD_STRING_UNKNOWN);
+	SmartDashboard::PutString(SD_CHASSIS_SHIFTER,   SD_STRING_UNKNOWN);
 
 	lw = LiveWindow::GetInstance();
 	

@@ -98,6 +98,7 @@ void Teleop::Execute()
 	// @todo: CLEAN int Max_time = (int)SmartDashboard::GetNumber("Kicker Time");
 	
 	// manual joystick kick
+	
 	if (oi->getBtn(MANUAL_KICK)) 
 	{
 		kick_prep = false;
@@ -184,7 +185,6 @@ void Teleop::Execute()
 		}
 	}
 
-	
 	//*************** Move Intake Arm and Motors *****************//
 #if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
 	if (driver_1->GetRawButton(5)) {
@@ -285,7 +285,7 @@ void Teleop::Execute()
 		platform->SetSetpoint(3.0);
 	}
 	
-	SmartDashboard::PutNumber(SD_PLATFORM_PID_POS, platform->GetPosition());
+	SmartDashboard::PutNumber(SD_PLATFORM_POS, platform->GetPosition());
 }
 
 

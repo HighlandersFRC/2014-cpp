@@ -41,17 +41,20 @@
 
 // SmartDashboard Values Key tokens:
 //   Numeric Values:
-#define SD_KICKER_NEXT_SPEED     		"Next Kick Speed"
 #define SD_KICKER_CURRENT_SPEED  		"Current Kick Speed"
-#define SD_DISTANCE              		"Distance in centimeters"
-#define SD_PLATFORM_PID_POS      		"Platform PID Position"
-#define SD_INTAKE_WHEELS_SPEED   		"Intake Wheel Speed"
-#define SD_PREP_KICK_PLAT_HEIGHT     	"Prep Kick Platform Height"
-#define SD_PREP_KICK_THRESHOLD_HEIGHT 	"Prep Kick Threshold Height"
 #define SD_KICK_SPEED_FWD               "Kicker Speed Forward"
-//   Chassis encoder values
+
+#define SD_DISTANCE              		"Distance Sensor (cm)"
+
+#define SD_PLATFORM_POS         		"Platform Position"
+
+#define SD_PREP_KICK_PLAT_HEIGHT     	"Prep Kick Platform Height"
+
 #define SD_DRIVE_ENCODER_L_SPEED        "Left Motor Speed"
 #define SD_DRIVE_ENCODER_R_SPEED        "Right Motor Speed"
+#define SD_DRIVE_ENCODER_L_VAL          "Left Motor Value"
+#define SD_DRIVE_ENCODER_R_VAL          "Right Motor Value"
+
 //   Debug string values
 #define SD_DBG_PRT_DISPLAY_COUNT  4
 #define SD_DBG_PRT_LAST          		"Debug print (last)"
@@ -60,20 +63,30 @@
 #define SD_DBG_PRT_LAST_MINUS_3  		"Debug print (last-3)"
 //   multi-value string
 //     Intake arm: IN, OUT, UNKNOWN
-#define SD_INTAKE_ARM_POS        		"Intake Arm Position"
+#define SD_INTAKE_ARM_POS        		"Intake Arm"
+
 //     Compressor: ON, OFF, UNKNOWN
-#define SD_COMPRESSOR_ON_OFF     		"Compressor On/OFF"
+#define SD_COMPRESSOR           		"Compressor"
+
 //     Platform location: BOTTOM, LOW_KICK, HIGH_KICK, TOP, NONE
 #define SD_PLATFORM_LOCATION     		"Platform Known Locations"
+
 //     Intake Wheel Direction: IN, OUT, OFF, UNKNOWN
-#define SD_INTAKE_WHEELS_DIR     		"Intake Wheels Spin Direction"
+#define SD_INTAKE_WHEELS_DIR     		"Intake Wheels"
+
+//     Chassis Shifter value
+#define SD_CHASSIS_SHIFTER              "Drive Shifter Gear"
+
 // Generic String values for discreet settings:
   #define SD_STRING_ON       "ON"
   #define SD_STRING_OFF      "OFF"
   #define SD_STRING_IN       "IN"
   #define SD_STRING_OUT      "OUT"
   #define SD_STRING_UNKNOWN  "UNKNOWN"
-
+  #define SD_STRING_HIGH     "HIGH"
+  #define SD_STRING_LOW      "LOW"
+  #define SD_STRING_LOWERED  "LOWERED"
+  #define SD_STRING_RAISED   "RAISED"
 
 #endif // #ifndef ROBOTMAP_H
 

@@ -21,10 +21,10 @@ void Intake::Set(double num) {
 void Intake::MoveSolenoid(bool val) {
 	if(val) {
 		sol->Set(sol->kForward);
-		SmartDashboard::PutString("Intake Arm", "Lowered");
+		SmartDashboard::PutString(SD_INTAKE_ARM_POS, SD_STRING_LOWERED);
 	} else {
 		sol->Set(sol->kReverse);
-		SmartDashboard::PutString("Intake Arm", "Raised");
+		SmartDashboard::PutString(SD_INTAKE_ARM_POS, SD_STRING_RAISED);
 	}
 }
 

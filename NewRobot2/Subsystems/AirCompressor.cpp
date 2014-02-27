@@ -13,21 +13,21 @@ void AirCompressor::InitDefaultCommand() {
 
 void AirCompressor::Update() {
 	if (compressor->GetPressureSwitchValue()) {
-		SmartDashboard::PutString("Compressor", "OFF");
+		SmartDashboard::PutString(SD_COMPRESSOR, SD_STRING_OFF);
 	}
 	else {
-		SmartDashboard::PutString("Compressor", "ON");
+		SmartDashboard::PutString(SD_COMPRESSOR, SD_STRING_ON);
 	}
 }
 
 void AirCompressor::Stop() {
 	compressor->Stop();
-	SmartDashboard::PutString("Compressor", "OFF");
+	SmartDashboard::PutString(SD_COMPRESSOR, SD_STRING_OFF);
 }
 
 void AirCompressor::Start() {
 	compressor->Start();
-	SmartDashboard::PutString("Compressor", "ON");
+	SmartDashboard::PutString(SD_COMPRESSOR, SD_STRING_ON);
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
