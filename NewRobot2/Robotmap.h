@@ -48,7 +48,6 @@
 #define SD_INTAKE_WHEELS_SPEED   		"Intake Wheel Speed"
 #define SD_PREP_KICK_PLAT_HEIGHT     	"Prep Kick Platform Height"
 #define SD_PREP_KICK_THRESHOLD_HEIGHT 	"Prep Kick Threshold Height"
-#define SD_KICK_SPEED_FWD               "Kicker Speed Forward"
 //   Debug string values
 #define SD_DBG_PRT_DISPLAY_COUNT  4
 #define SD_DBG_PRT_LAST          		"Debug print (last)"

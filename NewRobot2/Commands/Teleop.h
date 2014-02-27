@@ -17,6 +17,7 @@ private:
 	double pos;
 	bool PID_enable;
 	bool intake_sequence_pressed;
+	double platform_offset;
 	
 	bool kick_prep;
 	bool kick_ball;

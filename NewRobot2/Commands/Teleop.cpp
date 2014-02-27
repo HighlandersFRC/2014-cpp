@@ -45,12 +45,13 @@ void Teleop::Initialize()
 	// @todo: CLEAN 	SmartDashboard::PutNumber("I Value: ", 0.0);
 	// @todo: CLEAN 	SmartDashboard::PutNumber("D Value: ", 0.0);
 	
-	platform->SetSetpoint(1.0);
+	platform->SetSetpoint(1.0 + ((oi->getAxisCopilot(PLATFORM_OFF)) *platform_offset));
 	
 	pos = 0;
 	PID_enable = true;
 	kick_prep = false;
 	kick_ball = false;
+	platform_offset = .2;
 }
 
 
@@ -106,17 +107,11 @@ void Teleop::Execute()
 	
 	else { //Run normal Kick Stuff
 	
-		if (oi->getBtn(KICKER_PREP)) 
-		{
-			// button kick
-			kick_prep = true;
-			kicker_timer->Reset();
-		}
-		else if (oi->getBtn(KICK)) 
+		if (oi->getBtn(KICK)) 
 		{
 			kick_ball = true;
 		}
-		else if (!kick_prep && !kick_ball)
+		else if (!kick_ball)
 		{
 			// Stop Kicker Arm
 			kicker->setSpeed(0.00);
@@ -148,7 +143,7 @@ void Teleop::Execute()
 				platform->Enable();			
 				PID_enable = true;
 			
-				platform->SetSetpoint(SmartDashboard::GetNumber(SD_PREP_KICK_PLAT_HEIGHT));
+				platform->SetSetpoint(SmartDashboard::GetNumber(SD_PREP_KICK_PLAT_HEIGHT) + ((oi->getAxisCopilot(PLATFORM_OFF)) *platform_offset));
 			
 				if (platform->GetSetpoint() >= SmartDashboard::GetNumber(SD_PREP_KICK_THRESHOLD_HEIGHT))
 				{		
@@ -172,10 +167,14 @@ void Teleop::Execute()
 			if(kicker_timer->Get() <= 0.4) 
 			{	
 				// kicks ball for 0.4 seconds
-				kicker->setSpeed(SmartDashboard::GetNumber(SD_KICK_SPEED_FWD));
+				kicker->setSpeed(((oi->getBtn(KICKER_POWER) + 1) /2 ) + (oi->getAxisCopilot(KICKER_OFF) *.2)); //should default KICKER_POWER to 1
+				/*
+				 * KICKER_POWER reads -1 to 1, should be 0 to 1			+1 /2
+				 * KICKER_OFF reads -1 to 1, i guess should be  -.2 to .2 		*.2 for now, idk
+				*/
 			} 
 			else {
-				platform->SetSetpoint(1.0);
+				platform->SetSetpoint(1.0 + ((oi->getAxisCopilot(PLATFORM_OFF)) *platform_offset));
 				kicker_timer->Stop();
 				kicker_timer->Reset();
 				kick_ball = false;
@@ -253,52 +252,77 @@ void Teleop::Execute()
 	
 	//*************** Move platform ******************************//
 	
+	/*Platform off
+	 * gives value from -1 to 1
+	 * should be something like -.2 to .2 i guess. probably won't work. TODO definitely tune this value.
+	 * changed my mind. since this will show up everywhere, I'll put a variable at the top and populate it throughout.
+	 * k, it's now the double platform_offset. set at initialize. change it when tested.
+	 * so, now I think the value should be platform->SetSetpoint(### + ((oi->getAxis(PLATFORM_OFF)) *platform_offset))
+	 */
+	
+	
 	// manual platform movement
-	if ((oi->getAxisCopilot(PLATFORM_C) <= 0.1 ) && (oi->getAxisCopilot(PLATFORM_C) >= -0.1 )) 
-	{
-		if (!PID_enable) 
-		{
-			platform->setSpeed(0.00);
-		}
-	} 
-	else 
-	{
-		platform->Disable();
-		PID_enable = false;
-		kick_prep = false;
-		kick_ball = false;
-		platform->setSpeed(-oi->getAxisCopilot(PLATFORM_C));
-	}
 	
+	
+	if (oi->getBtn(CV_TOGGLE)) {
+		
+		
+		//CVCVCVCVCVCVCVCVCVCVCVCVCVCVCVCVCVCV
+		
+	}
+	else {
+		// manual platform movement	
+		if ((oi->getAxisCopilot(PLATFORM_C) <= 0.1 ) && (oi->getAxisCopilot(PLATFORM_C) >= -0.1 )) 
+			{
+				if (!PID_enable) 
+				{
+					platform->setSpeed(0.00);
+				}
+			} 
+		else 
+			{
+				platform->Disable();
+				PID_enable = false;
+				kick_prep = false;
+				kick_ball = false;
+				//stuff after the preceeding + involve the platform offset. TODO definitely calibrate the platform offset here.
+				platform->setSpeed(-oi->getAxisCopilot(PLATFORM_C) + oi->getAxisCopilot(PLATFORM_OFF));
+			}
+		
+		
 	// pre-set platform movement buttons
-	if(oi->getBtn(PLATFORM_KICK_GOAL1)) 
-	{
-		platform->Enable();
-		PID_enable = true;
-		platform->SetSetpoint(1.0);
-	} 
-	else if(oi->getBtn(PLATFORM_KICK_GOAL2)) 
-	{
-		platform->Enable();
-		PID_enable = true;
-		platform->SetSetpoint(2.0);
-	} 
-	else if(oi->getBtn(PLATFORM_KICK_TRUS1)) 
-	{
-		platform->Enable();
-		PID_enable = true;
-		platform->SetSetpoint(3.0);
-	}
-	else if(oi->getBtn(PLATFORM_KICK_TRUS2)) 
-	{
-		platform->Enable();
-		PID_enable = true;
-		platform->SetSetpoint(2.5);
-	}
+		if(oi->getBtn(PLATFORM_KICK_GOAL1)) 
+		{
+			platform->Enable();
+			PID_enable = true;
+			platform->SetSetpoint(1.0 + ((oi->getAxisCopilot(PLATFORM_OFF)) *platform_offset));
+			kick_prep = true;
+		} 
+		else if(oi->getBtn(PLATFORM_KICK_GOAL2)) 
+		{
+			platform->Enable();
+			PID_enable = true;
+			platform->SetSetpoint(2.0 + ((oi->getAxisCopilot(PLATFORM_OFF)) *platform_offset));
+			kick_prep = true;
+		} 
+		else if(oi->getBtn(PLATFORM_KICK_TRUS1)) 
+		{
+			platform->Enable();
+			PID_enable = true;
+			platform->SetSetpoint(3.0 + ((oi->getAxisCopilot(PLATFORM_OFF)) *platform_offset));
+			kick_prep = true;
+		}
+		else if(oi->getBtn(PLATFORM_KICK_TRUS2)) 
+		{
+			platform->Enable();
+			PID_enable = true;
+			platform->SetSetpoint(2.5 + ((oi->getAxisCopilot(PLATFORM_OFF)) *platform_offset));
+			kick_prep = true;
+		}
 	
-	SmartDashboard::PutNumber(SD_PLATFORM_PID_POS, platform->GetPosition());
+		SmartDashboard::PutNumber(SD_PLATFORM_PID_POS, platform->GetPosition());
+	}
 }
-
 
 /* Teleop::IsFinished()
  * Input   -

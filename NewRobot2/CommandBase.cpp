@@ -45,7 +45,6 @@ void CommandBase::init()
 	SmartDashboard::PutNumber(SD_DISTANCE, 0);
 	SmartDashboard::PutNumber(SD_PLATFORM_PID_POS, 0);
 	SmartDashboard::PutNumber(SD_INTAKE_WHEELS_SPEED, 0);
-	SmartDashboard::PutNumber(SD_KICK_SPEED_FWD, 1.0);
 	SmartDashboard::PutNumber(SD_PREP_KICK_THRESHOLD_HEIGHT, 2.8);
 	SmartDashboard::PutNumber(SD_PREP_KICK_PLAT_HEIGHT, 2.3);
 
