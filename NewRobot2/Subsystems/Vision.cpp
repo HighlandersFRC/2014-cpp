@@ -24,13 +24,13 @@ double Vision::get_DS_Distance() {
 }
 
 double Vision::get_V_Distance() {
-	return SmartDashboard::GetNumber("Vision_Range");
+	return 0;//SmartDashboard::GetNumber("Vision_Range");
 }
 
 double Vision::get_V_X() {
-	return SmartDashboard::GetNumber("Vision_X");
+	return 0;//SmartDashboard::GetNumber("Vision_X");
 }
 
 double Vision::get_V_Y() {
-	return SmartDashboard::GetNumber("Vision_Y");
+	return 0;//SmartDashboard::GetNumber("Vision_Y");
 }
