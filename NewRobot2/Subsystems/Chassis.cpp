@@ -69,12 +69,14 @@ void Chassis::tankDrive(double left, double right){
 	drive_left_2->Set(left);
 	drive_right_1->Set(right*-1);
 	drive_right_2->Set(right*-1);
+#if (FULL_PRINT==1)
 
 	SmartDashboard::PutNumber(SD_DRIVE_ENCODER_L_SPEED, left_encode->GetRate());
 	SmartDashboard::PutNumber(SD_DRIVE_ENCODER_R_SPEED, right_encode->GetRate());
 	
 	SmartDashboard::PutNumber(SD_DRIVE_ENCODER_L_VAL, left_encode->GetDistance());
 	SmartDashboard::PutNumber(SD_DRIVE_ENCODER_R_VAL, right_encode->GetDistance());
+#endif
 }
 
 
@@ -164,11 +166,15 @@ void Chassis::gyroReset() {
 void Chassis::setShifter(bool pos){
 	if (pos) {
 		shifter->Set(shifter->kForward);
+#if (FULL_PRINT==1)	
 		SmartDashboard::PutString(SD_CHASSIS_SHIFTER, SD_STRING_HIGH);
+#endif		
 	}
 	else {
 		shifter->Set(shifter->kReverse);
+#if (FULL_PRINT==1)
 		SmartDashboard::PutString(SD_CHASSIS_SHIFTER, SD_STRING_LOW);
+#endif
 	}
 }
 

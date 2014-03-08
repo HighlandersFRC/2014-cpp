@@ -3,6 +3,7 @@
 
 #include "WPILib.h"
 
+#define FULL_PRINT 1
 
 // Debug message verbosity levels.
 // -- Each debug message has a verbosity level

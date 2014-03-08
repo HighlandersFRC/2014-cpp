@@ -1,5 +1,7 @@
 #include "Intake.h"
 #include "../Robotmap.h"
+#include "../DebugPrint.h"
+
 /*TODO: Double Solenoid (used as single solenoid) pneumatics
  * must raise the intake when ready to fire Kicker through button.
  * A PG 188 motor must be configured for the axel to drive the
@@ -21,10 +23,14 @@ void Intake::Set(double num) {
 void Intake::MoveSolenoid(bool val) {
 	if(val) {
 		sol->Set(sol->kForward);
+#if (FULL_PRINT==1)	
 		SmartDashboard::PutString(SD_INTAKE_ARM_POS, SD_STRING_LOWERED);
+#endif		
 	} else {
 		sol->Set(sol->kReverse);
+#if (FULL_PRINT==1)
 		SmartDashboard::PutString(SD_INTAKE_ARM_POS, SD_STRING_RAISED);
+#endif		
 	}
 }
 

@@ -26,7 +26,7 @@ void Autonomous::Initialize()
 	chassis->encoderReset();
 	program = AUTO_SHOOT;
 	state = S_INIT;
-	platform->SetSetpoint(2.6);
+	platform->SetSetpoint(1.47);
 	ticktock->Reset();
 }
 
@@ -37,7 +37,9 @@ void Autonomous::Execute()
 	//double TOLERANCE = 0.01;
 	//double platform_level = 1.68;
 
+#if (FULL_PRINT==1)
 	cout<<"Left Encoder: "<<chassis->encoderLeftGet()<<"\t\tRight  Encoder: "<<chassis->encoderRightGet();
+#endif
 	string s;
 
 	switch(program) {
@@ -56,13 +58,11 @@ void Autonomous::Execute()
 						state = S_AS_READY;
 					} else if (ticktock->Get() <= 1.6) {
 						intake->MoveSolenoid(false);
+						kicker->setSpeed(-0.5);
 						state = S_AS_READY;
 					} else if (ticktock->Get() <= 2.8) {
 						intake->MoveSolenoid(true);
-						
-						if (ticktock->Get() >= 2.4) {
-						kicker->setSpeed(-0.5);
-						}
+						kicker->setSpeed(0.0);
 						
 						if (-chassis->encoderLeftGet() <= 10000 && -chassis->encoderRightGet() <= 10000) {
 							if(-chassis->encoderLeftGet() > -chassis->encoderRightGet()) {
@@ -222,8 +222,9 @@ void Autonomous::Execute()
 //			
 //			//AUTO_GETBALL_HOTSPOT ends here
 	}
-
+#if (FULL_PRINT==1)
 	cout<<s<<"\n";
+#endif
 }
 
 
@@ -241,7 +242,7 @@ void Autonomous::End()
 			
 	chassis->encoderReset();
 	chassis->tankDrive(0.0, 0.0);
-	platform->SetSetpoint(2.6);
+	platform->SetSetpoint(1.47);
 	program = AUTO_SHOOT;
 	state = S_INIT;
 }
@@ -255,7 +256,7 @@ void Autonomous::Interrupted()
 			
 	chassis->encoderReset();
 	chassis->tankDrive(0.0, 0.0);
-	platform->SetSetpoint(2.6);
+	platform->SetSetpoint(1.47);
 	program = AUTO_SHOOT;
 	state = S_INIT;
 }

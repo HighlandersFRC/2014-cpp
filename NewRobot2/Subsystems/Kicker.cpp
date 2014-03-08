@@ -41,5 +41,7 @@ void Kicker::setSpeed(double s)
 {
 	motor_1->Set(s);
 	motor_2->Set(s);
-	SmartDashboard::PutNumber(SD_KICKER_CURRENT_SPEED, s);
+#if (FULL_PRINT==1)
+		SmartDashboard::PutNumber(SD_KICKER_CURRENT_SPEED, s);
+#endif		
 }

@@ -12,12 +12,15 @@ void AirCompressor::InitDefaultCommand() {
 }
 
 void AirCompressor::Update() {
+// tfrye : turn off these outputs because they may be eating up memory.
+#if (FULL_PRINT==1)
 	if (compressor->GetPressureSwitchValue()) {
 		SmartDashboard::PutString(SD_COMPRESSOR, SD_STRING_OFF);
 	}
 	else {
 		SmartDashboard::PutString(SD_COMPRESSOR, SD_STRING_ON);
 	}
+#endif
 }
 
 void AirCompressor::Stop() {

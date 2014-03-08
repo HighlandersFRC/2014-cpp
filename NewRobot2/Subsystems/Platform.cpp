@@ -15,7 +15,7 @@ Platform::Platform() : PIDSubsystem("Platform", 20, 0.0, 0.1, 0.2)
 	
 	// Values for Practice Bot
 	// @todo tfrye 2-25-2014: Change these values for competition bot.
-	SetInputRange(0.76f, 3.348f);
+	SetInputRange(0.561f, 3.184f);
 	
 	// @todo: CLEAN SetSetpoint(STOW);
 	

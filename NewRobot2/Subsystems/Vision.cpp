@@ -1,5 +1,6 @@
 #include "Vision.h"
 #include "../Robotmap.h"
+#include "../DebugPrint.h"
 
 Vision::Vision() : Subsystem("Vision") {
 	DistanceSensor = new AnalogChannel(DIST_SENS);
@@ -18,8 +19,9 @@ double Vision::get_DS_Distance() {
 	double distance = ((DistanceSensor->GetVoltage()/5)*1024);
 	
 	// Post data to SmartDashboard
+#if (FULL_PRINT==1)
 	SmartDashboard::PutNumber(SD_DISTANCE, distance);
-	
+#endif	
 	return distance;
 }
 

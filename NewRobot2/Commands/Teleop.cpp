@@ -72,8 +72,9 @@ void Teleop::Execute()
 	// @todo: CLEAN SmartDashboard::PutData(Scheduler::GetInstance());
 
 	//*************** Get Vision Data ****************************//
+#if (FULL_PRINT==1)	
 	vision->get_DS_Distance();
-	
+#endif	
 	//*************** Move Chassis Motors ************************//
 #if (DRIVE_TYPE == DRIVE_TYPE_ARCADE)	
 	chassis->arcadeDrive(-driver_1->GetRawAxis(1), -driver_1->GetRawAxis(2));
@@ -284,8 +285,9 @@ void Teleop::Execute()
 		PID_enable = true;
 		platform->SetSetpoint(3.0);
 	}
-	
+#if (FULL_PRINT==1)
 	SmartDashboard::PutNumber(SD_PLATFORM_POS, platform->GetPosition());
+#endif
 }
 
 
